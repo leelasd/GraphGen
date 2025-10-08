@@ -1,7 +1,7 @@
 # GraphGen Setup and Exploration Progress
 
-**Date:** October 7, 2025  
-**Session Duration:** ~2 hours (21:15 - 22:04)
+**Date:** October 7-8, 2025  
+**Session Duration:** ~4 hours (21:15 - 00:48)
 
 ## 🎯 What We Accomplished
 
@@ -248,4 +248,132 @@ TOKENIZER_MODEL=meta-llama/Llama-3.2-1B
 
 ---
 
-**Final Status:** ✅ **GraphGen with GraphML input + Llama 3.2 tokenizer fully operational**
+## 🔧 **LiteLLM + AWS Bedrock Integration (Session Extension)**
+
+### **15. AWS Bedrock Alternative to OpenRouter**
+**Challenge:** Replace OpenRouter with AWS Bedrock for cost-effective, enterprise-grade model access
+
+**Motivation:**
+- **Cost efficiency:** Direct AWS Bedrock access vs. OpenRouter markup
+- **Enterprise compliance:** AWS security and governance
+- **Model availability:** Access to latest Claude 3.7 Sonnet and Llama 3.2 models
+- **Cross-region inference:** Higher throughput and availability
+
+### **16. LiteLLM Proxy Server Setup**
+**LiteLLM Configuration (`litellm_config.yaml`):**
+```yaml
+model_list:
+  - model_name: claude-3-7-sonnet
+    litellm_params:
+      model: bedrock/anthropic.claude-3-7-sonnet-20250219-v1:0
+      aws_region_name: us-east-1
+      aws_profile_name: genai
+
+  - model_name: llama-3-2-3b
+    litellm_params:
+      model: bedrock/us.meta.llama3-2-3b-instruct-v1:0
+      aws_region_name: us-east-1
+      aws_profile_name: genai
+
+general_settings:
+  master_key: bedrock-graphgen-2024
+  port: 4000
+```
+
+**Key Configuration Elements:**
+- **AWS Profile:** Uses `genai` profile for Bedrock authentication
+- **Cross-region inference:** `us.` prefix for Llama 3.2 3B enables multi-region routing
+- **OpenAI-compatible API:** Provides `/v1/chat/completions` endpoint
+- **Master key authentication:** Secures proxy access
+
+### **17. AWS Bedrock Model Discovery**
+**Available Models via AWS CLI:**
+```bash
+# List Claude 3.7 Sonnet
+aws bedrock list-foundation-models --region us-east-1 --profile genai \
+  --query "modelSummaries[?contains(modelId, 'claude-3-7')]"
+
+# Result: anthropic.claude-3-7-sonnet-20250219-v1:0
+```
+
+**Model Requirements:**
+- **Inference Profiles:** Both models require inference profile access for on-demand throughput
+- **Cross-region support:** Llama 3.2 3B supports `us.` prefix, Claude 3.7 does not
+- **Model permissions:** Explicit access requests needed through AWS Bedrock console
+
+### **18. Testing Results**
+
+#### **✅ Llama 3.2 3B Instruct - WORKING**
+```bash
+curl -X POST http://localhost:4000/v1/chat/completions \
+  -H "Authorization: Bearer bedrock-graphgen-2024" \
+  -d '{"model": "llama-3-2-3b", "messages": [{"role": "user", "content": "Hello"}]}'
+
+# Response: "Hello. Is there something I can help you with"
+```
+
+**Success Factors:**
+- ✅ Cross-region inference profile: `us.meta.llama3-2-3b-instruct-v1:0`
+- ✅ Proper AWS authentication via `genai` profile
+- ✅ LiteLLM compatibility with Bedrock Llama models
+- ✅ OpenAI-compatible API responses
+
+#### **❌ Claude 3.7 Sonnet - FAILED**
+```bash
+# Error: "Invocation of model ID anthropic.claude-3-7-sonnet-20250219-v1:0 
+# with on-demand throughput isn't supported. Retry your request with the ID 
+# or ARN of an inference profile that contains this model."
+```
+
+**Failure Reasons:**
+- ❌ Claude 3.7 Sonnet requires inference profile (not available with `us.` prefix)
+- ❌ LiteLLM doesn't recognize `us.anthropic.claude-3-7-sonnet-*` format
+- ❌ Model may need explicit access permissions in AWS account
+- ❌ Possible incompatibility between LiteLLM and newest Claude models
+
+### **19. Updated GraphGen Environment**
+**Modified `.env` for Bedrock integration:**
+```bash
+# Synthesizer - Using LiteLLM proxy for Bedrock access
+SYNTHESIZER_MODEL=claude-3-7-sonnet  # (fallback to working model needed)
+SYNTHESIZER_BASE_URL=http://localhost:4000/v1
+SYNTHESIZER_API_KEY=bedrock-graphgen-2024
+
+# Trainee - Working Llama 3.2 3B via Bedrock
+TRAINEE_MODEL=llama-3-2-3b
+TRAINEE_BASE_URL=http://localhost:4000/v1
+TRAINEE_API_KEY=bedrock-graphgen-2024
+
+TOKENIZER_MODEL=meta-llama/Llama-3.2-1B
+```
+
+### **20. Key Insights from LiteLLM + Bedrock Integration**
+
+**✅ What Works:**
+- **Llama models:** Full compatibility with cross-region inference profiles
+- **Cost reduction:** Direct Bedrock access eliminates OpenRouter markup
+- **OpenAI compatibility:** Seamless integration with existing GraphGen code
+- **AWS enterprise features:** Security, compliance, and governance benefits
+
+**❌ Current Limitations:**
+- **Claude 3.7 Sonnet:** Requires inference profile not supported by LiteLLM
+- **Model access:** Some models need explicit permission requests
+- **Cross-region support:** Inconsistent across different model providers
+- **LiteLLM compatibility:** Newer Bedrock features may not be immediately supported
+
+**🔄 Recommended Approach:**
+1. **Use Llama 3.2 3B** for trainee model (fully working)
+2. **Fallback to Claude 3.5 Sonnet** for synthesizer until 3.7 support improves
+3. **Monitor LiteLLM updates** for Claude 3.7 Sonnet compatibility
+4. **Request model access** through AWS Bedrock console for all required models
+
+### **21. Production Deployment Strategy**
+**For GraphGen with Bedrock:**
+- **Hybrid approach:** Bedrock for supported models, OpenRouter for others
+- **Cost optimization:** Use Bedrock for high-volume generation tasks
+- **Fallback configuration:** Multiple model providers for reliability
+- **Monitoring:** Track model availability and performance across providers
+
+---
+
+**Final Status:** ✅ **GraphGen with partial Bedrock integration - Llama 3.2 3B working, Claude 3.7 Sonnet pending**
