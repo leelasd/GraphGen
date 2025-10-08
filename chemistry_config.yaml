@@ -1,0 +1,69 @@
+# Chemistry Synthetic Data Generation Configuration
+
+# Model Configuration (using existing LiteLLM + Bedrock setup)
+model:
+  name: "llama-3-3-70b"  # Use Llama 3.3 70B for high-quality generation
+  backend: "openai"
+  base_url: "http://localhost:4000/v1"
+  api_key: "bedrock-graphgen-2024"
+  max_requests_per_minute: 60
+  max_tokens_per_minute: 100000
+
+# Data Generation Settings
+generation:
+  logd_prediction:
+    enabled: true
+    num_samples: 50  # Number of SMILES to generate LogD predictions for
+    
+  molecule_generation:
+    enabled: true
+    num_samples: 30  # Number of target property sets to generate molecules for
+    
+  chemistry_qa:
+    enabled: true
+    num_samples: 40  # Number of Q&A pairs to generate
+
+# Output Settings
+output:
+  format: "jsonl"  # Output format: jsonl, json, csv
+  file_path: "/Users/ldodda/Documents/Codes/GraphGen/chemistry_training_data.jsonl"
+  include_metadata: true
+  
+# Chemistry-specific Settings
+chemistry:
+  logd_range: [-5, 8]  # LogD value range
+  molecular_weight_range: [150, 500]  # Molecular weight range for generation
+  difficulty_levels: ["beginner", "intermediate", "advanced"]
+  
+  # Topics for Q&A generation
+  topics:
+    - "LogD and LogP relationships"
+    - "ADMET properties"
+    - "Structure-activity relationships"
+    - "Drug-like properties"
+    - "Pharmacokinetic parameters"
+    - "Molecular descriptors"
+    - "QSAR modeling"
+    - "Bioavailability prediction"
+    - "Protein-ligand interactions"
+    - "Chemical space exploration"
+    - "Medicinal chemistry optimization"
+    - "Pharmacophore modeling"
+
+# Sample SMILES for LogD prediction (can be expanded)
+sample_smiles:
+  - "CCO"  # Ethanol
+  - "CC(C)O"  # Isopropanol
+  - "c1ccccc1"  # Benzene
+  - "CCc1ccccc1"  # Ethylbenzene
+  - "CC(=O)O"  # Acetic acid
+  - "CCN(CC)CC"  # Triethylamine
+  - "c1ccc(cc1)O"  # Phenol
+  - "CC(C)(C)c1ccc(cc1)O"  # 4-tert-butylphenol
+  - "CCc1ccc(cc1)N"  # 4-ethylaniline
+  - "CC(=O)Nc1ccc(cc1)O"  # Paracetamol
+  - "CC1=CC=C(C=C1)C(=O)O"  # p-Toluic acid
+  - "c1ccc2c(c1)cccn2"  # Quinoline
+  - "CCc1ccc(cc1)C(=O)O"  # 4-ethylbenzoic acid
+  - "CC(C)Cc1ccc(cc1)C(C)C(=O)O"  # Ibuprofen
+  - "CN1CCN(CC1)c2ccc(cc2)Cl"  # Chlorpromazine derivative
