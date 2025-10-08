@@ -1,10 +1,11 @@
-from graphgen.models import CsvReader, JsonlReader, JsonReader, TxtReader
+from graphgen.models import CsvReader, JsonlReader, JsonReader, TxtReader, GraphmlReader
 
 _MAPPING = {
     "jsonl": JsonlReader,
     "json": JsonReader,
     "txt": TxtReader,
     "csv": CsvReader,
+    "graphml": GraphmlReader,
 }
 
 

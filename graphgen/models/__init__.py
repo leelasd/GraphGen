@@ -5,7 +5,7 @@ from .evaluate.reward_evaluator import RewardEvaluator
 from .evaluate.uni_evaluator import UniEvaluator
 from .llm.openai_client import OpenAIClient
 from .llm.topk_token_model import TopkTokenModel
-from .reader import CsvReader, JsonlReader, JsonReader, TxtReader
+from .reader import CsvReader, JsonlReader, JsonReader, TxtReader, GraphmlReader
 from .search.db.uniprot_search import UniProtSearch
 from .search.kg.wiki_search import WikiSearch
 from .search.web.bing_search import BingSearch

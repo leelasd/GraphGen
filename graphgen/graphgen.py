@@ -97,6 +97,9 @@ class GraphGen:
         """
         insert chunks into the graph
         """
+        # Track input file path for GraphML detection
+        self._input_file_path = read_config["input_file"]
+        
         # Step 1: Read files
         data = read_files(read_config["input_file"])
         if len(data) == 0:
@@ -146,15 +149,24 @@ class GraphGen:
 
         # Step 3: Extract entities and relations from chunks
         logger.info("[Entity and Relation Extraction]...")
-        _add_entities_and_relations = await extract_kg(
-            llm_client=self.synthesizer_llm_client,
-            kg_instance=self.graph_storage,
-            tokenizer_instance=self.tokenizer_instance,
-            chunks=[
-                Chunk(id=k, content=v["content"]) for k, v in inserting_chunks.items()
-            ],
-            progress_bar=self.progress_bar,
-        )
+        
+        # Check if input was a GraphML file - if so, copy it to cache
+        if hasattr(self, '_input_file_path') and self._input_file_path.endswith('.graphml'):
+            import shutil
+            target_path = os.path.join(self.working_dir, "graph.graphml")
+            shutil.copy2(self._input_file_path, target_path)
+            logger.info("Copied GraphML input to %s", target_path)
+            _add_entities_and_relations = True  # Skip extraction since we have the graph
+        else:
+            _add_entities_and_relations = await extract_kg(
+                llm_client=self.synthesizer_llm_client,
+                kg_instance=self.graph_storage,
+                tokenizer_instance=self.tokenizer_instance,
+                chunks=[
+                    Chunk(id=k, content=v["content"]) for k, v in inserting_chunks.items()
+                ],
+                progress_bar=self.progress_bar,
+            )
         if not _add_entities_and_relations:
             logger.warning("No entities or relations extracted")
             return
