@@ -37,9 +37,18 @@ model_list:
       aws_region_name: us-east-1
       aws_profile_name: genai
 
-general_settings:
-  master_key: bedrock-graphgen-2024
-  port: 4000
+  # Claude models (inference profiles)
+  - model_name: claude-3-7-sonnet
+    litellm_params:
+      model: bedrock/us.anthropic.claude-3-7-sonnet-20250219-v1:0
+      aws_region_name: us-east-1
+      aws_profile_name: genai
+
+  - model_name: claude-sonnet-4
+    litellm_params:
+      model: bedrock/us.anthropic.claude-sonnet-4-20250514-v1:0
+      aws_region_name: us-east-1
+      aws_profile_name: genai
 
 general_settings:
   master_key: bedrock-graphgen-2024
