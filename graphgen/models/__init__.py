@@ -33,6 +33,7 @@ if TYPE_CHECKING:
     )
     from .reader import (
         CSVReader,
+        GraphmlReader,
         HuggingFaceReader,
         JSONReader,
         ParquetReader,
@@ -88,13 +89,14 @@ _import_map = {
     "LeidenPartitioner": ".partitioner",
     # Reader
     "CSVReader": ".reader",
+    "GraphmlReader": ".reader",
+    "HuggingFaceReader": ".reader",
     "JSONReader": ".reader",
     "ParquetReader": ".reader",
     "PDFReader": ".reader",
     "PickleReader": ".reader",
     "RDFReader": ".reader",
     "TXTReader": ".reader",
-    "HuggingFaceReader": ".reader",
     # Searcher
     "InterProSearch": ".searcher.db.interpro_searcher",
     "NCBISearch": ".searcher.db.ncbi_searcher",
