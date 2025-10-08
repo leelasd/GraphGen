@@ -286,6 +286,52 @@ general_settings:
 - **OpenAI-compatible API:** Provides `/v1/chat/completions` endpoint
 - **Master key authentication:** Secures proxy access
 
+### **16.1. LiteLLM Server Operations**
+**Starting the LiteLLM Proxy Server:**
+```bash
+# Start LiteLLM server with configuration
+cd /Users/ldodda/Documents/Codes/GraphGen
+litellm --config litellm_config.yaml &
+
+# Server runs on http://localhost:4000
+# Health check: curl http://localhost:4000/health
+```
+
+**Server Management Commands:**
+```bash
+# Kill existing LiteLLM process
+pkill -f litellm
+
+# Restart server (kill + start)
+pkill -f litellm && sleep 3 && litellm --config litellm_config.yaml &
+
+# Check server status
+curl -s http://localhost:4000/health
+```
+
+**Testing Model Endpoints:**
+```bash
+# Test Llama 3.2 3B (working)
+curl -X POST http://localhost:4000/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer bedrock-graphgen-2024" \
+  -d '{
+    "model": "llama-3-2-3b",
+    "messages": [{"role": "user", "content": "Hello"}],
+    "max_tokens": 10
+  }'
+
+# Test Claude 3.7 Sonnet (requires inference profile)
+curl -X POST http://localhost:4000/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer bedrock-graphgen-2024" \
+  -d '{
+    "model": "claude-3-7-sonnet",
+    "messages": [{"role": "user", "content": "Hello"}],
+    "max_tokens": 10
+  }'
+```
+
 ### **17. AWS Bedrock Model Discovery**
 **Available Models via AWS CLI:**
 ```bash
