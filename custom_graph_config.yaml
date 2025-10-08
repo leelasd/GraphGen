@@ -1,0 +1,24 @@
+read:
+  input_file: your_graph.graphml  # path to your GraphML file
+  
+generate:
+  mode: cot  # atomic, aggregated, multi_hop, cot
+  data_format: Sharegpt  # Alpaca, Sharegpt, ChatML
+
+# Skip text processing steps since you're providing the graph directly
+split:
+  chunk_size: 1024
+  chunk_overlap: 100
+  
+search:
+  enabled: false
+  
+quiz_and_judge:
+  enabled: false
+  
+partition:
+  method: leiden
+  method_params:
+    max_size: 20
+    use_lcc: false
+    random_seed: 42

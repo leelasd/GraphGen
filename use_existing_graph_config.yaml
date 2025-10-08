@@ -1,0 +1,18 @@
+read:
+  input_file: dummy.jsonl  # minimal dummy file
+split:
+  chunk_size: 1024
+  chunk_overlap: 100
+search:
+  enabled: false
+quiz_and_judge:
+  enabled: false  # Skip knowledge gap detection
+partition:
+  method: leiden
+  method_params:
+    max_size: 20
+    use_lcc: false
+    random_seed: 42
+generate:
+  mode: cot
+  data_format: ChatML
