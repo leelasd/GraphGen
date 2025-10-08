@@ -11,6 +11,30 @@
 - ✅ Installed all project dependencies from `requirements.txt` (128 packages)
 - ✅ Configured environment variables in `.env` file
 
+#### **Detailed uv Virtual Environment Setup:**
+```bash
+# Install uv package manager
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Create Python 3.10 virtual environment
+uv venv --python 3.10
+
+# Activate virtual environment
+source .venv/bin/activate
+
+# Install dependencies (128 packages including transformers, huggingface_hub)
+uv pip install -r requirements.txt
+
+# Additional packages installed during session:
+uv pip install transformers huggingface_hub
+```
+
+**Virtual Environment Benefits:**
+- ✅ **Fast dependency resolution** - uv is significantly faster than pip
+- ✅ **Isolated environment** - No conflicts with system Python packages
+- ✅ **Reproducible builds** - Exact package versions locked
+- ✅ **Easy cleanup** - Simply delete `.venv/` directory to remove
+
 ### 2. **Environment Configuration**
 **Created `.env` with:**
 ```bash
@@ -145,3 +169,83 @@ python3 -m graphgen.generate --config_file test_chatml_config.yaml --output_dir 
 ---
 
 **Status:** ✅ **GraphGen fully operational and ready for production use**
+
+## 🔧 **Advanced Tokenizer Integration (Session Extension)**
+
+### **9. Llama 3.2 Tokenizer Integration**
+**Challenge:** Integrating gated Llama 3.2 1B tokenizer for proper fine-tuning compatibility
+
+**Steps Completed:**
+- ✅ Installed `transformers` library for Hugging Face tokenizer support
+- ✅ Configured Hugging Face authentication with fine-grained token
+- ✅ Resolved gated repository access permissions
+- ✅ Successfully integrated `meta-llama/Llama-3.2-1B` tokenizer
+
+### **10. Hugging Face Authentication Setup**
+**Requirements for Gated Models:**
+```bash
+# Install huggingface_hub
+uv pip install huggingface_hub transformers
+
+# Authenticate with Hugging Face
+huggingface-cli login
+# or
+hf auth login
+```
+
+**Critical Token Configuration:**
+1. **Create fine-grained token** at https://huggingface.co/settings/tokens
+2. **Enable permissions:**
+   - ✅ "Access public gated repositories" 
+   - ✅ "Read access to contents of all public repos"
+3. **Token scope:** Must include gated repository access
+
+### **11. Tokenizer Compatibility Research**
+**Key Findings via Perplexity:**
+- **ChatML** is the preferred format for modern Llama fine-tuning
+- **Llama 3.2** uses version-specific tokenizers (not backward compatible)
+- **Non-gated alternatives:** `openlm-research/open_llama_3b`, `NousResearch/Meta-Llama-3-8B-Alternate-Tokenizer`
+- **Version compatibility:** Each Llama version (3.0, 3.2, 3.3, 4.0) requires matching tokenizer
+
+### **12. Troubleshooting & Resolution**
+**Issues Encountered:**
+1. **Missing transformers:** `ModuleNotFoundError: No module named 'transformers'`
+   - **Solution:** `uv pip install transformers`
+
+2. **Gated repository access:** `403 Client Error: Forbidden`
+   - **Solution:** Enable "Access public gated repositories" in token settings
+
+3. **Token permissions:** `Please enable access to public gated repositories in your fine-grained token settings`
+   - **Solution:** Update token permissions at https://huggingface.co/settings/tokens
+
+### **13. Final Configuration**
+**Working `.env` setup:**
+```bash
+SYNTHESIZER_MODEL=anthropic/claude-sonnet-4
+SYNTHESIZER_BASE_URL=https://openrouter.ai/api/v1
+SYNTHESIZER_API_KEY=sk-or-v1-[redacted]
+
+TRAINEE_MODEL=meta-llama/llama-3.2-3b-instruct
+TRAINEE_BASE_URL=https://openrouter.ai/api/v1
+TRAINEE_API_KEY=sk-or-v1-[redacted]
+
+TOKENIZER_MODEL=meta-llama/Llama-3.2-1B
+```
+
+### **14. Production Recommendations**
+**For Llama Fine-tuning:**
+- **Llama 3.2 1B/3B:** Use `meta-llama/Llama-3.2-1B` tokenizer
+- **Llama 3.2 8B:** Use `meta-llama/Meta-Llama-3-8B` tokenizer  
+- **Non-gated alternative:** `openlm-research/open_llama_3b`
+- **Data format:** ChatML for modern Llama training frameworks
+
+**GraphGen now supports:**
+- ✅ Direct GraphML input (.graphml files)
+- ✅ Gated Llama tokenizers with proper authentication
+- ✅ Multiple data formats (ChatML, ShareGPT, Alpaca)
+- ✅ Custom entity types in knowledge graphs
+- ✅ Production-ready synthetic data generation
+
+---
+
+**Final Status:** ✅ **GraphGen with GraphML input + Llama 3.2 tokenizer fully operational**
