@@ -1,0 +1,16 @@
+model_list:
+  - model_name: claude-3-7-sonnet
+    litellm_params:
+      model: bedrock/anthropic.claude-3-7-sonnet-20250219-v1:0
+      aws_region_name: us-east-1
+      aws_profile_name: genai
+
+  - model_name: llama-3-2-3b
+    litellm_params:
+      model: bedrock/us.meta.llama3-2-3b-instruct-v1:0
+      aws_region_name: us-east-1
+      aws_profile_name: genai
+
+general_settings:
+  master_key: bedrock-graphgen-2024
+  port: 4000
