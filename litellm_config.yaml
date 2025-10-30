@@ -1,5 +1,5 @@
 model_list:
-  # Direct access models (confirmed working)
+  # Direct access models
   - model_name: llama-3-8b
     litellm_params:
       model: bedrock/meta.llama3-8b-instruct-v1:0
@@ -12,7 +12,7 @@ model_list:
       aws_region_name: us-east-1
       aws_profile_name: genai
 
-  # Cross-region inference models (confirmed working)
+  # Cross-region inference models
   - model_name: llama-3-2-3b
     litellm_params:
       model: bedrock/us.meta.llama3-2-3b-instruct-v1:0
@@ -37,7 +37,7 @@ model_list:
       aws_region_name: us-east-1
       aws_profile_name: genai
 
-  # Claude models (inference profiles)
+  # Claude models
   - model_name: claude-3-7-sonnet
     litellm_params:
       model: bedrock/us.anthropic.claude-3-7-sonnet-20250219-v1:0
@@ -53,3 +53,6 @@ model_list:
 general_settings:
   master_key: bedrock-graphgen-2024
   port: 4000
+
+litellm_settings:
+  drop_params: true  # Drop unsupported parameters like logprobs
