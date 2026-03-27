@@ -36,12 +36,12 @@ def test_build_molecule_nodes():
 def test_build_similarity_edges():
     from chemistry.kg2_build.build_kg2 import build_similarity_edges
     nodes = [
-        {"id": "mol_0", "smiles": "c1ccccc1"},
-        {"id": "mol_1", "smiles": "c1ccccc1C(=O)O"},  # similar to benzene
-        {"id": "mol_2", "smiles": "CCN"},              # not similar to benzene
+        {"id": "mol_0", "smiles": "c1ccccc1N"},        # aniline
+        {"id": "mol_1", "smiles": "c1ccccc1C(=O)O"},   # benzoic acid — Morgan sim=0.316
+        {"id": "mol_2", "smiles": "CCN"},               # ethylamine — not similar
     ]
     edges = build_similarity_edges(nodes, threshold=0.3)
-    # benzene and benzoic acid should be similar
+    # aniline and benzoic acid should be similar (Morgan r=2 Tanimoto=0.316)
     similar_pairs = [(e["source"], e["target"]) for e in edges]
     assert ("mol_0", "mol_1") in similar_pairs or ("mol_1", "mol_0") in similar_pairs
 

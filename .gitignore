@@ -188,3 +188,4 @@ config.yaml
 # Generated/large files
 generated-docs/repomix_output.xml
 bespokelabs-curator/learn-curator.ipynb
+chemistry/kg2_build/molecule_graph.graphml

@@ -7,7 +7,7 @@ import networkx as nx
 import pandas as pd
 import yaml
 from rdkit import Chem, DataStructs
-from rdkit.Chem import AllChem, Crippen, Descriptors, Lipinski, MACCSkeys, rdMolDescriptors
+from rdkit.Chem import AllChem, Crippen, Descriptors, Lipinski, rdMolDescriptors
 from rdkit.Chem.Scaffolds import MurckoScaffold
 
 from chemistry.kg1_build.compute_edges import detect_functional_groups
@@ -91,7 +91,7 @@ def build_similarity_edges(nodes: list[dict], threshold: float = 0.6) -> list[di
     for node in nodes:
         mol = Chem.MolFromSmiles(node["smiles"])
         if mol:
-            fps.append(MACCSkeys.GenMACCSKeys(mol))
+            fps.append(AllChem.GetMorganFingerprintAsBitVect(mol, radius=2, nBits=2048))
             valid_nodes.append(node)
 
     edges = []
@@ -227,6 +227,7 @@ if __name__ == "__main__":
     if smiles_col != "smiles":
         df = df.rename(columns={smiles_col: "smiles"})
     df = df.dropna(subset=["smiles", "logd_exp"])
+    df = df.head(1000)  # POC cap: ~1K molecules per spec
     G = build_kg2(fg_defs=fg_defs, df=df)
     export_graphml(G, Path("chemistry/kg2_build/molecule_graph.graphml"))
     print(f"KG2: {G.number_of_nodes()} nodes, {G.number_of_edges()} edges")
