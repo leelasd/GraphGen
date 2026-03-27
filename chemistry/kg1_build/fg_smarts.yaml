@@ -80,7 +80,7 @@ functional_groups:
     smarts: "[CX4](F)(F)F"
     category: lipophilic
   - name: cyclopropyl
-    smarts: "[C@@H]1CC1"
+    smarts: "[CH2]1CC1"
     category: lipophilic
   - name: indole
     smarts: "c1ccc2[nH]ccc2c1"
@@ -104,6 +104,9 @@ functional_groups:
   - name: nitro
     smarts: "[$([NX3](=O)=O),$([NX3+](=O)[O-])][!#8]"
     category: ewg
+  # Note: trifluoromethyl_ewg is a subset of trifluoromethyl (above).
+  # On aryl-CF3 molecules both patterns match.
+  # compute_nodes.py should apply priority: trifluoromethyl_ewg > trifluoromethyl for aryl context.
   - name: trifluoromethyl_ewg
     smarts: "cC(F)(F)F"
     category: ewg
@@ -118,6 +121,9 @@ functional_groups:
   - name: sulfoxide
     smarts: "[#16X3](=[OX1])"
     category: sulfur
+  # Note: sulfone pattern is a structural subset of sulfonamide (above).
+  # Both will match on sulfonamide-containing molecules.
+  # compute_nodes.py should apply priority: sulfonamide > sulfone.
   - name: sulfone
     smarts: "[#16X4](=[OX1])(=[OX1])"
     category: sulfur
