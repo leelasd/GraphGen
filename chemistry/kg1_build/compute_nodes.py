@@ -3,22 +3,71 @@ from __future__ import annotations
 import logging
 from typing import Any
 
-import yaml
 from rdkit import Chem
 from rdkit.Chem import Crippen, Descriptors, Lipinski, rdMolDescriptors
 
 logger = logging.getLogger(__name__)
 
-# Probe molecules for each FG category — used when no explicit probe provided
-_CATEGORY_PROBES = {
-    "acidic": "CC(=O)O",        # acetic acid
-    "basic": "CCN",              # ethylamine
-    "neutral_polar": "CCO",      # ethanol
-    "lipophilic": "c1ccccc1",    # benzene
-    "halogen": "CCF",            # fluoroethane
-    "ewg": "CC(=O)C",           # acetone
-    "sulfur": "CCS",             # ethanethiol
+# Probe molecules: one per FG that actually contains the SMARTS pattern.
+# Verified: each SMARTS matches its probe via RDKit HasSubstructMatch.
+_FG_PROBES: dict[str, str] = {
+    # acidic
+    "carboxylic_acid": "CC(=O)O",
+    "sulfonamide": "CS(=O)(=O)N",
+    "tetrazole": "c1nn[nH]n1",
+    "phosphoric_acid": "OP(=O)(O)O",
+    # basic
+    "primary_amine": "CCN",
+    "secondary_amine": "CCNCC",
+    "tertiary_amine": "CCN(CC)CC",
+    "piperazine": "C1CNCCN1",
+    "morpholine": "C1CNCCO1",
+    "piperidine": "C1CCNCC1",
+    "pyrrolidine": "C1CCNC1",
+    "pyridine": "c1ccncc1",
+    "imidazole": "c1cnc[nH]1",
+    "guanidine": "NC(=N)N",
+    # neutral polar
+    "amide": "CC(=O)N",
+    "hydroxyl": "CCO",
+    "ether": "CCOCC",
+    "ester": "CC(=O)OCC",
+    "ketone": "CC(=O)C",
+    "aldehyde": "CC=O",
+    "nitrile": "CC#N",
+    "urea": "NC(=O)N",
+    # lipophilic
+    "aromatic_ring": "c1ccccc1",
+    "trifluoromethyl": "CC(F)(F)F",
+    "cyclopropyl": "C1CC1C",
+    "indole": "c1ccc2[nH]ccc2c1",
+    "thiophene": "c1ccsc1",
+    # halogen
+    "fluorine": "CCF",
+    "chlorine": "CCCl",
+    "bromine": "CCBr",
+    # ewg
+    "nitro": "CC[N+](=O)[O-]",
+    "trifluoromethyl_ewg": "FC(F)(F)c1ccccc1",
+    # sulfur
+    "thiol": "CCS",
+    "thioether": "CCSCC",
+    "sulfoxide": "CCS(=O)C",
+    "sulfone": "CCS(=O)(=O)C",
 }
+
+# Category fallbacks for any FG not in _FG_PROBES
+_CATEGORY_PROBES = {
+    "acidic": "CC(=O)O",
+    "basic": "CCN",
+    "neutral_polar": "CCO",
+    "lipophilic": "c1ccccc1",
+    "halogen": "CCF",
+    "ewg": "CC(=O)C",
+    "sulfur": "CCS",
+}
+
+_REF_MOL = Chem.MolFromSmiles("C")  # methane, LogP = 0.666; used as LogP reference
 
 
 def compute_rdkit_attributes(fg_name: str, smarts: str, probe_smiles: str) -> dict[str, Any]:
@@ -34,10 +83,8 @@ def compute_rdkit_attributes(fg_name: str, smarts: str, probe_smiles: str) -> di
         return {"logp_contribution": 0.0, "hbd": 0, "hba": 0, "tpsa": 0.0, "mw": 0.0}
 
     # Crippen LogP contribution: delta between probe and methane (simplest reference)
-    ref = Chem.MolFromSmiles("C")
     probe_logp = Crippen.MolLogP(probe)
-    ref_logp = Crippen.MolLogP(ref)
-    logp_contrib = round(probe_logp - ref_logp, 3)
+    logp_contrib = round(probe_logp - Crippen.MolLogP(_REF_MOL), 3)
 
     return {
         "logp_contribution": logp_contrib,
@@ -80,7 +127,7 @@ def build_fg_node(fg_def: dict[str, str], probe_smiles: str | None = None) -> di
     category = fg_def["category"]
 
     if probe_smiles is None:
-        probe_smiles = _CATEGORY_PROBES.get(category, "CC")
+        probe_smiles = _FG_PROBES.get(name) or _CATEGORY_PROBES.get(category, "CC")
 
     rdkit_attrs = compute_rdkit_attributes(name, smarts, probe_smiles)
     ob_attrs = compute_openbabel_ionization(smarts, probe_smiles)
@@ -127,7 +174,7 @@ def build_all_fg_nodes(
 
 
 if __name__ == "__main__":
-    import yaml
+    import yaml  # noqa: PLC0415
     logging.basicConfig(level=logging.INFO)
     data = yaml.safe_load(open("chemistry/kg1_build/fg_smarts.yaml"))
     nodes = build_all_fg_nodes(data["functional_groups"])
