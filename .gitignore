@@ -181,3 +181,10 @@ cache
 # macOS
 .DS_Store
 **/.DS_Store
+
+*.json
+config.yaml
+
+# Generated/large files
+generated-docs/repomix_output.xml
+bespokelabs-curator/learn-curator.ipynb

@@ -5,6 +5,7 @@ model_list:
       model: bedrock/meta.llama3-8b-instruct-v1:0
       aws_region_name: us-east-1
       aws_profile_name: genai
+      
 
   - model_name: llama-3-70b
     litellm_params:
@@ -37,6 +38,12 @@ model_list:
       aws_region_name: us-east-1
       aws_profile_name: genai
 
+  - model_name: llama-4-maverick
+    litellm_params:
+      model: bedrock/us.meta.llama4-maverick-17b-instruct-v1:0
+      aws_region_name: us-east-1
+      aws_profile_name: genai
+
   # Claude models
   - model_name: claude-3-7-sonnet
     litellm_params:
@@ -51,8 +58,11 @@ model_list:
       aws_profile_name: genai
 
 general_settings:
-  master_key: bedrock-graphgen-2024
+  master_key: your-master-key-here
   port: 4000
 
 litellm_settings:
-  drop_params: true  # Drop unsupported parameters like logprobs
+  enable_json_schema_validation: True
+  drop_params: true
+
+
