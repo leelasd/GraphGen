@@ -175,7 +175,7 @@ def generate_dpo_pairs(
                     chosen=llm_response,
                     rejected=rejected,
                 ))
-            break  # one perturbation set per molecule is enough for POC
+            # One perturbation set per molecule (3 pairs); continue to next molecule
 
     logger.info("Generated %d DPO pairs", len(pairs))
     return pairs

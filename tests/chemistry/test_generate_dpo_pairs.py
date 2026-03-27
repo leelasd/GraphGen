@@ -27,6 +27,9 @@ def test_extract_logd_from_response():
     resp2 = "Prediction: LogD = -1.5"
     assert abs(extract_logd_prediction(resp2) - (-1.5)) < 0.01
 
+    resp3 = "LogD ~ 3.1"
+    assert abs(extract_logd_prediction(resp3) - 3.1) < 0.01
+
     assert extract_logd_prediction("No prediction here") is None
 
 
@@ -38,9 +41,16 @@ def test_build_perturbation_rejected():
         "Step 3: At pH 7.4, neutral.\n"
         "Prediction: LogD ≈ -0.3"
     )
-    rejected = perturb_reasoning(correct, perturbation="ignore_ionization")
-    assert rejected != correct
-    assert "LogD" in rejected
+    for strategy in ["ignore_ionization", "wrong_ph", "miss_fg"]:
+        rejected = perturb_reasoning(correct, strategy)
+        assert rejected != correct, f"Perturbation '{strategy}' did not modify the chain"
+        assert "LogD" in rejected, f"Perturbation '{strategy}' removed LogD from output"
+        # Prediction value should be sign-inverted: -0.3 → 0.3
+        import re
+        match = re.search(r"Prediction: LogD ≈ (-?\d+\.?\d*)", rejected)
+        assert match is not None, f"Perturbation '{strategy}' missing prediction line"
+        assert float(match.group(1)) == pytest.approx(0.3, abs=0.01), \
+            f"Perturbation '{strategy}' did not invert prediction sign"
 
 
 def test_save_dpo_pairs():
