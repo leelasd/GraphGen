@@ -1,5 +1,5 @@
 # chemistry/configs/chemistry_cot_config.yaml
-# KG1 → SFT-2 Chain-of-thought (ChatML format)
+# KG1 → SFT-2 Chain-of-thought (Sharegpt/ChatML format)
 global_params:
   working_dir: chemistry/output/kg1_cot_cache
   graph_backend: networkx
