@@ -3,6 +3,7 @@ from __future__ import annotations
 import logging
 from collections import defaultdict
 from itertools import combinations
+from pathlib import Path
 from typing import Any
 
 import pandas as pd
@@ -56,6 +57,9 @@ def find_mmps(df: pd.DataFrame, fg_defs: list[dict]) -> list[dict[str, Any]]:
         diff = r1["fgs"].symmetric_difference(r2["fgs"])
         if len(diff) != 1:
             continue
+        # Only pair molecules sharing the same scaffold (standard MMP constraint)
+        if r1["scaffold"] != r2["scaffold"]:
+            continue
         fg_name = next(iter(diff))
         delta = round(r1["logd"] - r2["logd"], 3)
         # Positive delta: r1 has the FG and is more lipophilic
@@ -106,8 +110,7 @@ def build_cooccurrence_edges(df: pd.DataFrame, fg_defs: list[dict]) -> list[dict
 
     edges = []
     for (fg_a, fg_b), count in cooccur.items():
-        if count < 1:
-            continue
+        # Include all co-occurrence pairs regardless of frequency
         content = (
             f"[{fg_a}] and [{fg_b}] co-occur in {count} molecule(s) in the dataset. "
             f"Their combined effect on LogD should be considered together."
@@ -125,7 +128,7 @@ def build_cooccurrence_edges(df: pd.DataFrame, fg_defs: list[dict]) -> list[dict
 if __name__ == "__main__":
     import yaml
     logging.basicConfig(level=logging.INFO)
-    fg_defs = yaml.safe_load(open("chemistry/kg1_build/fg_smarts.yaml"))["functional_groups"]
+    fg_defs = yaml.safe_load(Path("chemistry/kg1_build/fg_smarts.yaml").read_text())["functional_groups"]
     df = pd.read_csv("test_logd.csv")
     df.columns = [c.lower().strip() for c in df.columns]
     # Expect columns: smiles, logd_exp (or similar)
