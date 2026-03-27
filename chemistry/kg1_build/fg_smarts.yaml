@@ -1,0 +1,123 @@
+# chemistry/kg1_build/fg_smarts.yaml
+functional_groups:
+  # --- Acidic groups ---
+  - name: carboxylic_acid
+    smarts: "[CX3](=O)[OX2H1]"
+    category: acidic
+  - name: sulfonamide
+    smarts: "[#16X4](=[OX1])(=[OX1])[NX3]"
+    category: acidic
+  - name: tetrazole
+    smarts: "c1nn[nH]n1"
+    category: acidic
+  - name: phosphoric_acid
+    smarts: "P(=O)(O)O"
+    category: acidic
+
+  # --- Basic groups ---
+  - name: primary_amine
+    smarts: "[NX3;H2;!$(NC=O)]"
+    category: basic
+  - name: secondary_amine
+    smarts: "[NX3;H1;!$(NC=O);!$(N~[!#6])]"
+    category: basic
+  - name: tertiary_amine
+    smarts: "[NX3;H0;!$(NC=O);!$(N~[!#6])]"
+    category: basic
+  - name: piperazine
+    smarts: "N1CCNCC1"
+    category: basic
+  - name: morpholine
+    smarts: "N1CCOCC1"
+    category: basic
+  - name: piperidine
+    smarts: "N1CCCCC1"
+    category: basic
+  - name: pyrrolidine
+    smarts: "N1CCCC1"
+    category: basic
+  - name: pyridine
+    smarts: "n1ccccc1"
+    category: basic
+  - name: imidazole
+    smarts: "c1cnc[nH]1"
+    category: basic
+  - name: guanidine
+    smarts: "[NX3][CX3](=[NX2])[NX3]"
+    category: basic
+
+  # --- Neutral polar groups ---
+  - name: amide
+    smarts: "[NX3][CX3](=[OX1])"
+    category: neutral_polar
+  - name: hydroxyl
+    smarts: "[OX2H;!$(OC=O)]"
+    category: neutral_polar
+  - name: ether
+    smarts: "[OD2]([#6])[#6]"
+    category: neutral_polar
+  - name: ester
+    smarts: "[#6][CX3](=O)[OX2H0][#6]"
+    category: neutral_polar
+  - name: ketone
+    smarts: "[#6][CX3](=O)[#6]"
+    category: neutral_polar
+  - name: aldehyde
+    smarts: "[CX3H1](=O)"
+    category: neutral_polar
+  - name: nitrile
+    smarts: "[NX1]#[CX2]"
+    category: neutral_polar
+  - name: urea
+    smarts: "[NX3][CX3](=[OX1])[NX3]"
+    category: neutral_polar
+
+  # --- Lipophilic groups ---
+  - name: aromatic_ring
+    smarts: "c1ccccc1"
+    category: lipophilic
+  - name: trifluoromethyl
+    smarts: "[CX4](F)(F)F"
+    category: lipophilic
+  - name: cyclopropyl
+    smarts: "[C@@H]1CC1"
+    category: lipophilic
+  - name: indole
+    smarts: "c1ccc2[nH]ccc2c1"
+    category: lipophilic
+  - name: thiophene
+    smarts: "c1ccsc1"
+    category: lipophilic
+
+  # --- Halogen groups ---
+  - name: fluorine
+    smarts: "[F;$(F-[#6])]"
+    category: halogen
+  - name: chlorine
+    smarts: "[Cl;$(Cl-[#6])]"
+    category: halogen
+  - name: bromine
+    smarts: "[Br;$(Br-[#6])]"
+    category: halogen
+
+  # --- Electron-withdrawing groups ---
+  - name: nitro
+    smarts: "[$([NX3](=O)=O),$([NX3+](=O)[O-])][!#8]"
+    category: ewg
+  - name: trifluoromethyl_ewg
+    smarts: "cC(F)(F)F"
+    category: ewg
+
+  # --- Sulfur groups ---
+  - name: thiol
+    smarts: "[SX2H]"
+    category: sulfur
+  - name: thioether
+    smarts: "[SX2]([#6])[#6]"
+    category: sulfur
+  - name: sulfoxide
+    smarts: "[#16X3](=[OX1])"
+    category: sulfur
+  - name: sulfone
+    smarts: "[#16X4](=[OX1])(=[OX1])"
+    category: sulfur
