@@ -1,0 +1,3505 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key id="d17" for="edge" attr.name="count" attr.type="string"/>
+<key id="d16" for="edge" attr.name="content" attr.type="string"/>
+<key id="d15" for="edge" attr.name="n_pairs" attr.type="string"/>
+<key id="d14" for="edge" attr.name="delta_logd" attr.type="string"/>
+<key id="d13" for="edge" attr.name="edge_type" attr.type="string"/>
+<key id="d12" for="node" attr.name="delta_logd" attr.type="string"/>
+<key id="d11" for="node" attr.name="node_type" attr.type="string"/>
+<key id="d10" for="node" attr.name="formal_charge_ph74" attr.type="long"/>
+<key id="d9" for="node" attr.name="ionized_at_ph74" attr.type="string"/>
+<key id="d8" for="node" attr.name="mw" attr.type="double"/>
+<key id="d7" for="node" attr.name="tpsa" attr.type="double"/>
+<key id="d6" for="node" attr.name="hba" attr.type="long"/>
+<key id="d5" for="node" attr.name="hbd" attr.type="long"/>
+<key id="d4" for="node" attr.name="logp_contribution" attr.type="double"/>
+<key id="d3" for="node" attr.name="content" attr.type="string"/>
+<key id="d2" for="node" attr.name="category" attr.type="string"/>
+<key id="d1" for="node" attr.name="smarts" attr.type="string"/>
+<key id="d0" for="node" attr.name="name" attr.type="string"/>
+<graph edgedefault="undirected"><node id="carboxylic_acid">
+  <data key="d0">carboxylic_acid</data>
+  <data key="d1">[CX3](=O)[OX2H1]</data>
+  <data key="d2">acidic</data>
+  <data key="d3">[carboxylic_acid] is a acidic functional group (SMARTS: [CX3](=O)[OX2H1]). Physicochemical properties: LogP contribution = -0.545, HBD = 1, HBA = 1, TPSA = 37.3 Angstrom^2, MW contribution = 60.02. Ionization: neutral at pH 7.4. Category: acidic.</data>
+  <data key="d4">-0.545</data>
+  <data key="d5">1</data>
+  <data key="d6">1</data>
+  <data key="d7">37.3</data>
+  <data key="d8">60.02</data>
+  <data key="d9">False</data>
+  <data key="d10">0</data>
+</node>
+<node id="sulfonamide">
+  <data key="d0">sulfonamide</data>
+  <data key="d1">[#16X4](=[OX1])(=[OX1])[NX3]</data>
+  <data key="d2">acidic</data>
+  <data key="d3">[sulfonamide] is a acidic functional group (SMARTS: [#16X4](=[OX1])(=[OX1])[NX3]). Physicochemical properties: LogP contribution = -1.731, HBD = 1, HBA = 2, TPSA = 60.16 Angstrom^2, MW contribution = 95.0. Ionization: neutral at pH 7.4. Category: acidic.</data>
+  <data key="d4">-1.731</data>
+  <data key="d5">1</data>
+  <data key="d6">2</data>
+  <data key="d7">60.16</data>
+  <data key="d8">95.0</data>
+  <data key="d9">False</data>
+  <data key="d10">0</data>
+</node>
+<node id="tetrazole">
+  <data key="d0">tetrazole</data>
+  <data key="d1">c1nn[nH]n1</data>
+  <data key="d2">acidic</data>
+  <data key="d3">[tetrazole] is a acidic functional group (SMARTS: c1nn[nH]n1). Physicochemical properties: LogP contribution = -1.436, HBD = 1, HBA = 3, TPSA = 54.46 Angstrom^2, MW contribution = 70.03. Ionization: neutral at pH 7.4. Category: acidic.</data>
+  <data key="d4">-1.436</data>
+  <data key="d5">1</data>
+  <data key="d6">3</data>
+  <data key="d7">54.46</data>
+  <data key="d8">70.03</data>
+  <data key="d9">False</data>
+  <data key="d10">0</data>
+</node>
+<node id="phosphoric_acid">
+  <data key="d0">phosphoric_acid</data>
+  <data key="d1">P(=O)(O)O</data>
+  <data key="d2">acidic</data>
+  <data key="d3">[phosphoric_acid] is a acidic functional group (SMARTS: P(=O)(O)O). Physicochemical properties: LogP contribution = -1.565, HBD = 3, HBA = 1, TPSA = 77.76 Angstrom^2, MW contribution = 97.98. Ionization: neutral at pH 7.4. Category: acidic.</data>
+  <data key="d4">-1.565</data>
+  <data key="d5">3</data>
+  <data key="d6">1</data>
+  <data key="d7">77.76</data>
+  <data key="d8">97.98</data>
+  <data key="d9">False</data>
+  <data key="d10">0</data>
+</node>
+<node id="primary_amine">
+  <data key="d0">primary_amine</data>
+  <data key="d1">[NX3;H2;!$(NC=O)]</data>
+  <data key="d2">basic</data>
+  <data key="d3">[primary_amine] is a basic functional group (SMARTS: [NX3;H2;!$(NC=O)]). Physicochemical properties: LogP contribution = -0.671, HBD = 1, HBA = 1, TPSA = 26.02 Angstrom^2, MW contribution = 45.06. Ionization: neutral at pH 7.4. Category: basic.</data>
+  <data key="d4">-0.671</data>
+  <data key="d5">1</data>
+  <data key="d6">1</data>
+  <data key="d7">26.02</data>
+  <data key="d8">45.06</data>
+  <data key="d9">False</data>
+  <data key="d10">0</data>
+</node>
+<node id="secondary_amine">
+  <data key="d0">secondary_amine</data>
+  <data key="d1">[NX3;H1;!$(NC=O);!$(N~[!#6])]</data>
+  <data key="d2">basic</data>
+  <data key="d3">[secondary_amine] is a basic functional group (SMARTS: [NX3;H1;!$(NC=O);!$(N~[!#6])]). Physicochemical properties: LogP contribution = -0.02, HBD = 1, HBA = 1, TPSA = 12.03 Angstrom^2, MW contribution = 73.09. Ionization: neutral at pH 7.4. Category: basic.</data>
+  <data key="d4">-0.02</data>
+  <data key="d5">1</data>
+  <data key="d6">1</data>
+  <data key="d7">12.03</data>
+  <data key="d8">73.09</data>
+  <data key="d9">False</data>
+  <data key="d10">0</data>
+</node>
+<node id="tertiary_amine">
+  <data key="d0">tertiary_amine</data>
+  <data key="d1">[NX3;H0;!$(NC=O);!$(N~[!#6])]</data>
+  <data key="d2">basic</data>
+  <data key="d3">[tertiary_amine] is a basic functional group (SMARTS: [NX3;H0;!$(NC=O);!$(N~[!#6])]). Physicochemical properties: LogP contribution = 0.712, HBD = 0, HBA = 1, TPSA = 3.24 Angstrom^2, MW contribution = 101.12. Ionization: neutral at pH 7.4. Category: basic.</data>
+  <data key="d4">0.712</data>
+  <data key="d5">0</data>
+  <data key="d6">1</data>
+  <data key="d7">3.24</data>
+  <data key="d8">101.12</data>
+  <data key="d9">False</data>
+  <data key="d10">0</data>
+</node>
+<node id="piperazine">
+  <data key="d0">piperazine</data>
+  <data key="d1">N1CCNCC1</data>
+  <data key="d2">basic</data>
+  <data key="d3">[piperazine] is a basic functional group (SMARTS: N1CCNCC1). Physicochemical properties: LogP contribution = -1.457, HBD = 2, HBA = 2, TPSA = 24.06 Angstrom^2, MW contribution = 86.08. Ionization: neutral at pH 7.4. Category: basic.</data>
+  <data key="d4">-1.457</data>
+  <data key="d5">2</data>
+  <data key="d6">2</data>
+  <data key="d7">24.06</data>
+  <data key="d8">86.08</data>
+  <data key="d9">False</data>
+  <data key="d10">0</data>
+</node>
+<node id="morpholine">
+  <data key="d0">morpholine</data>
+  <data key="d1">N1CCOCC1</data>
+  <data key="d2">basic</data>
+  <data key="d3">[morpholine] is a basic functional group (SMARTS: N1CCOCC1). Physicochemical properties: LogP contribution = -1.03, HBD = 1, HBA = 2, TPSA = 21.26 Angstrom^2, MW contribution = 87.07. Ionization: neutral at pH 7.4. Category: basic.</data>
+  <data key="d4">-1.03</data>
+  <data key="d5">1</data>
+  <data key="d6">2</data>
+  <data key="d7">21.26</data>
+  <data key="d8">87.07</data>
+  <data key="d9">False</data>
+  <data key="d10">0</data>
+</node>
+<node id="piperidine">
+  <data key="d0">piperidine</data>
+  <data key="d1">N1CCCCC1</data>
+  <data key="d2">basic</data>
+  <data key="d3">[piperidine] is a basic functional group (SMARTS: N1CCCCC1). Physicochemical properties: LogP contribution = 0.124, HBD = 1, HBA = 1, TPSA = 12.03 Angstrom^2, MW contribution = 85.09. Ionization: neutral at pH 7.4. Category: basic.</data>
+  <data key="d4">0.124</data>
+  <data key="d5">1</data>
+  <data key="d6">1</data>
+  <data key="d7">12.03</data>
+  <data key="d8">85.09</data>
+  <data key="d9">False</data>
+  <data key="d10">0</data>
+</node>
+<node id="pyrrolidine">
+  <data key="d0">pyrrolidine</data>
+  <data key="d1">N1CCCC1</data>
+  <data key="d2">basic</data>
+  <data key="d3">[pyrrolidine] is a basic functional group (SMARTS: N1CCCC1). Physicochemical properties: LogP contribution = -0.266, HBD = 1, HBA = 1, TPSA = 12.03 Angstrom^2, MW contribution = 71.07. Ionization: neutral at pH 7.4. Category: basic.</data>
+  <data key="d4">-0.266</data>
+  <data key="d5">1</data>
+  <data key="d6">1</data>
+  <data key="d7">12.03</data>
+  <data key="d8">71.07</data>
+  <data key="d9">False</data>
+  <data key="d10">0</data>
+</node>
+<node id="pyridine">
+  <data key="d0">pyridine</data>
+  <data key="d1">n1ccccc1</data>
+  <data key="d2">basic</data>
+  <data key="d3">[pyridine] is a basic functional group (SMARTS: n1ccccc1). Physicochemical properties: LogP contribution = 0.445, HBD = 0, HBA = 1, TPSA = 12.89 Angstrom^2, MW contribution = 79.04. Ionization: neutral at pH 7.4. Category: basic.</data>
+  <data key="d4">0.445</data>
+  <data key="d5">0</data>
+  <data key="d6">1</data>
+  <data key="d7">12.89</data>
+  <data key="d8">79.04</data>
+  <data key="d9">False</data>
+  <data key="d10">0</data>
+</node>
+<node id="imidazole">
+  <data key="d0">imidazole</data>
+  <data key="d1">c1cnc[nH]1</data>
+  <data key="d2">basic</data>
+  <data key="d3">[imidazole] is a basic functional group (SMARTS: c1cnc[nH]1). Physicochemical properties: LogP contribution = -0.226, HBD = 1, HBA = 1, TPSA = 28.68 Angstrom^2, MW contribution = 68.04. Ionization: neutral at pH 7.4. Category: basic.</data>
+  <data key="d4">-0.226</data>
+  <data key="d5">1</data>
+  <data key="d6">1</data>
+  <data key="d7">28.68</data>
+  <data key="d8">68.04</data>
+  <data key="d9">False</data>
+  <data key="d10">0</data>
+</node>
+<node id="guanidine">
+  <data key="d0">guanidine</data>
+  <data key="d1">[NX3][CX3](=[NX2])[NX3]</data>
+  <data key="d2">basic</data>
+  <data key="d3">[guanidine] is a basic functional group (SMARTS: [NX3][CX3](=[NX2])[NX3]). Physicochemical properties: LogP contribution = -1.798, HBD = 3, HBA = 1, TPSA = 75.89 Angstrom^2, MW contribution = 59.05. Ionization: neutral at pH 7.4. Category: basic.</data>
+  <data key="d4">-1.798</data>
+  <data key="d5">3</data>
+  <data key="d6">1</data>
+  <data key="d7">75.89</data>
+  <data key="d8">59.05</data>
+  <data key="d9">False</data>
+  <data key="d10">0</data>
+</node>
+<node id="amide">
+  <data key="d0">amide</data>
+  <data key="d1">[NX3][CX3](=[OX1])</data>
+  <data key="d2">neutral_polar</data>
+  <data key="d3">[amide] is a neutral_polar functional group (SMARTS: [NX3][CX3](=[OX1])). Physicochemical properties: LogP contribution = -1.144, HBD = 1, HBA = 1, TPSA = 43.09 Angstrom^2, MW contribution = 59.04. Ionization: neutral at pH 7.4. Category: neutral_polar.</data>
+  <data key="d4">-1.144</data>
+  <data key="d5">1</data>
+  <data key="d6">1</data>
+  <data key="d7">43.09</data>
+  <data key="d8">59.04</data>
+  <data key="d9">False</data>
+  <data key="d10">0</data>
+</node>
+<node id="hydroxyl">
+  <data key="d0">hydroxyl</data>
+  <data key="d1">[OX2H;!$(OC=O)]</data>
+  <data key="d2">neutral_polar</data>
+  <data key="d3">[hydroxyl] is a neutral_polar functional group (SMARTS: [OX2H;!$(OC=O)]). Physicochemical properties: LogP contribution = -0.637, HBD = 1, HBA = 1, TPSA = 20.23 Angstrom^2, MW contribution = 46.04. Ionization: neutral at pH 7.4. Category: neutral_polar.</data>
+  <data key="d4">-0.637</data>
+  <data key="d5">1</data>
+  <data key="d6">1</data>
+  <data key="d7">20.23</data>
+  <data key="d8">46.04</data>
+  <data key="d9">False</data>
+  <data key="d10">0</data>
+</node>
+<node id="ether">
+  <data key="d0">ether</data>
+  <data key="d1">[OD2]([#6])[#6]</data>
+  <data key="d2">neutral_polar</data>
+  <data key="d3">[ether] is a neutral_polar functional group (SMARTS: [OD2]([#6])[#6]). Physicochemical properties: LogP contribution = 0.407, HBD = 0, HBA = 1, TPSA = 9.23 Angstrom^2, MW contribution = 74.07. Ionization: neutral at pH 7.4. Category: neutral_polar.</data>
+  <data key="d4">0.407</data>
+  <data key="d5">0</data>
+  <data key="d6">1</data>
+  <data key="d7">9.23</data>
+  <data key="d8">74.07</data>
+  <data key="d9">False</data>
+  <data key="d10">0</data>
+</node>
+<node id="ester">
+  <data key="d0">ester</data>
+  <data key="d1">[#6][CX3](=O)[OX2H0][#6]</data>
+  <data key="d2">neutral_polar</data>
+  <data key="d3">[ester] is a neutral_polar functional group (SMARTS: [#6][CX3](=O)[OX2H0][#6]). Physicochemical properties: LogP contribution = -0.067, HBD = 0, HBA = 2, TPSA = 26.3 Angstrom^2, MW contribution = 88.05. Ionization: neutral at pH 7.4. Category: neutral_polar.</data>
+  <data key="d4">-0.067</data>
+  <data key="d5">0</data>
+  <data key="d6">2</data>
+  <data key="d7">26.3</data>
+  <data key="d8">88.05</data>
+  <data key="d9">False</data>
+  <data key="d10">0</data>
+</node>
+<node id="ketone">
+  <data key="d0">ketone</data>
+  <data key="d1">[#6][CX3](=O)[#6]</data>
+  <data key="d2">neutral_polar</data>
+  <data key="d3">[ketone] is a neutral_polar functional group (SMARTS: [#6][CX3](=O)[#6]). Physicochemical properties: LogP contribution = -0.041, HBD = 0, HBA = 1, TPSA = 17.07 Angstrom^2, MW contribution = 58.04. Ionization: neutral at pH 7.4. Category: neutral_polar.</data>
+  <data key="d4">-0.041</data>
+  <data key="d5">0</data>
+  <data key="d6">1</data>
+  <data key="d7">17.07</data>
+  <data key="d8">58.04</data>
+  <data key="d9">False</data>
+  <data key="d10">0</data>
+</node>
+<node id="aldehyde">
+  <data key="d0">aldehyde</data>
+  <data key="d1">[CX3H1](=O)</data>
+  <data key="d2">neutral_polar</data>
+  <data key="d3">[aldehyde] is a neutral_polar functional group (SMARTS: [CX3H1](=O)). Physicochemical properties: LogP contribution = -0.431, HBD = 0, HBA = 1, TPSA = 17.07 Angstrom^2, MW contribution = 44.03. Ionization: neutral at pH 7.4. Category: neutral_polar.</data>
+  <data key="d4">-0.431</data>
+  <data key="d5">0</data>
+  <data key="d6">1</data>
+  <data key="d7">17.07</data>
+  <data key="d8">44.03</data>
+  <data key="d9">False</data>
+  <data key="d10">0</data>
+</node>
+<node id="nitrile">
+  <data key="d0">nitrile</data>
+  <data key="d1">[NX1]#[CX2]</data>
+  <data key="d2">neutral_polar</data>
+  <data key="d3">[nitrile] is a neutral_polar functional group (SMARTS: [NX1]#[CX2]). Physicochemical properties: LogP contribution = -0.106, HBD = 0, HBA = 1, TPSA = 23.79 Angstrom^2, MW contribution = 41.03. Ionization: neutral at pH 7.4. Category: neutral_polar.</data>
+  <data key="d4">-0.106</data>
+  <data key="d5">0</data>
+  <data key="d6">1</data>
+  <data key="d7">23.79</data>
+  <data key="d8">41.03</data>
+  <data key="d9">False</data>
+  <data key="d10">0</data>
+</node>
+<node id="urea">
+  <data key="d0">urea</data>
+  <data key="d1">[NX3][CX3](=[OX1])[NX3]</data>
+  <data key="d2">neutral_polar</data>
+  <data key="d3">[urea] is a neutral_polar functional group (SMARTS: [NX3][CX3](=[OX1])[NX3]). Physicochemical properties: LogP contribution = -1.612, HBD = 2, HBA = 1, TPSA = 69.11 Angstrom^2, MW contribution = 60.03. Ionization: neutral at pH 7.4. Category: neutral_polar.</data>
+  <data key="d4">-1.612</data>
+  <data key="d5">2</data>
+  <data key="d6">1</data>
+  <data key="d7">69.11</data>
+  <data key="d8">60.03</data>
+  <data key="d9">False</data>
+  <data key="d10">0</data>
+</node>
+<node id="aromatic_ring">
+  <data key="d0">aromatic_ring</data>
+  <data key="d1">c1ccccc1</data>
+  <data key="d2">lipophilic</data>
+  <data key="d3">[aromatic_ring] is a lipophilic functional group (SMARTS: c1ccccc1). Physicochemical properties: LogP contribution = 1.05, HBD = 0, HBA = 0, TPSA = 0.0 Angstrom^2, MW contribution = 78.05. Ionization: neutral at pH 7.4. Category: lipophilic.</data>
+  <data key="d4">1.05</data>
+  <data key="d5">0</data>
+  <data key="d6">0</data>
+  <data key="d7">0.0</data>
+  <data key="d8">78.05</data>
+  <data key="d9">False</data>
+  <data key="d10">0</data>
+</node>
+<node id="trifluoromethyl">
+  <data key="d0">trifluoromethyl</data>
+  <data key="d1">[CX4](F)(F)F</data>
+  <data key="d2">lipophilic</data>
+  <data key="d3">[trifluoromethyl] is a lipophilic functional group (SMARTS: [CX4](F)(F)F). Physicochemical properties: LogP contribution = 0.933, HBD = 0, HBA = 0, TPSA = 0.0 Angstrom^2, MW contribution = 84.02. Ionization: neutral at pH 7.4. Category: lipophilic.</data>
+  <data key="d4">0.933</data>
+  <data key="d5">0</data>
+  <data key="d6">0</data>
+  <data key="d7">0.0</data>
+  <data key="d8">84.02</data>
+  <data key="d9">False</data>
+  <data key="d10">0</data>
+</node>
+<node id="cyclopropyl">
+  <data key="d0">cyclopropyl</data>
+  <data key="d1">[CH2]1CC1</data>
+  <data key="d2">lipophilic</data>
+  <data key="d3">[cyclopropyl] is a lipophilic functional group (SMARTS: [CH2]1CC1). Physicochemical properties: LogP contribution = 0.78, HBD = 0, HBA = 0, TPSA = 0.0 Angstrom^2, MW contribution = 56.06. Ionization: neutral at pH 7.4. Category: lipophilic.</data>
+  <data key="d4">0.78</data>
+  <data key="d5">0</data>
+  <data key="d6">0</data>
+  <data key="d7">0.0</data>
+  <data key="d8">56.06</data>
+  <data key="d9">False</data>
+  <data key="d10">0</data>
+</node>
+<node id="indole">
+  <data key="d0">indole</data>
+  <data key="d1">c1ccc2[nH]ccc2c1</data>
+  <data key="d2">lipophilic</data>
+  <data key="d3">[indole] is a lipophilic functional group (SMARTS: c1ccc2[nH]ccc2c1). Physicochemical properties: LogP contribution = 1.532, HBD = 1, HBA = 0, TPSA = 15.79 Angstrom^2, MW contribution = 117.06. Ionization: neutral at pH 7.4. Category: lipophilic.</data>
+  <data key="d4">1.532</data>
+  <data key="d5">1</data>
+  <data key="d6">0</data>
+  <data key="d7">15.79</data>
+  <data key="d8">117.06</data>
+  <data key="d9">False</data>
+  <data key="d10">0</data>
+</node>
+<node id="thiophene">
+  <data key="d0">thiophene</data>
+  <data key="d1">c1ccsc1</data>
+  <data key="d2">lipophilic</data>
+  <data key="d3">[thiophene] is a lipophilic functional group (SMARTS: c1ccsc1). Physicochemical properties: LogP contribution = 1.112, HBD = 0, HBA = 1, TPSA = 0.0 Angstrom^2, MW contribution = 84.0. Ionization: neutral at pH 7.4. Category: lipophilic.</data>
+  <data key="d4">1.112</data>
+  <data key="d5">0</data>
+  <data key="d6">1</data>
+  <data key="d7">0.0</data>
+  <data key="d8">84.0</data>
+  <data key="d9">False</data>
+  <data key="d10">0</data>
+</node>
+<node id="fluorine">
+  <data key="d0">fluorine</data>
+  <data key="d1">[F;$(F-[#6])]</data>
+  <data key="d2">halogen</data>
+  <data key="d3">[fluorine] is a halogen functional group (SMARTS: [F;$(F-[#6])]). Physicochemical properties: LogP contribution = 0.34, HBD = 0, HBA = 0, TPSA = 0.0 Angstrom^2, MW contribution = 48.04. Ionization: neutral at pH 7.4. Category: halogen.</data>
+  <data key="d4">0.34</data>
+  <data key="d5">0</data>
+  <data key="d6">0</data>
+  <data key="d7">0.0</data>
+  <data key="d8">48.04</data>
+  <data key="d9">False</data>
+  <data key="d10">0</data>
+</node>
+<node id="chlorine">
+  <data key="d0">chlorine</data>
+  <data key="d1">[Cl;$(Cl-[#6])]</data>
+  <data key="d2">halogen</data>
+  <data key="d3">[chlorine] is a halogen functional group (SMARTS: [Cl;$(Cl-[#6])]). Physicochemical properties: LogP contribution = 0.609, HBD = 0, HBA = 0, TPSA = 0.0 Angstrom^2, MW contribution = 64.01. Ionization: neutral at pH 7.4. Category: halogen.</data>
+  <data key="d4">0.609</data>
+  <data key="d5">0</data>
+  <data key="d6">0</data>
+  <data key="d7">0.0</data>
+  <data key="d8">64.01</data>
+  <data key="d9">False</data>
+  <data key="d10">0</data>
+</node>
+<node id="bromine">
+  <data key="d0">bromine</data>
+  <data key="d1">[Br;$(Br-[#6])]</data>
+  <data key="d2">halogen</data>
+  <data key="d3">[bromine] is a halogen functional group (SMARTS: [Br;$(Br-[#6])]). Physicochemical properties: LogP contribution = 0.765, HBD = 0, HBA = 0, TPSA = 0.0 Angstrom^2, MW contribution = 107.96. Ionization: neutral at pH 7.4. Category: halogen.</data>
+  <data key="d4">0.765</data>
+  <data key="d5">0</data>
+  <data key="d6">0</data>
+  <data key="d7">0.0</data>
+  <data key="d8">107.96</data>
+  <data key="d9">False</data>
+  <data key="d10">0</data>
+</node>
+<node id="nitro">
+  <data key="d0">nitro</data>
+  <data key="d1">[$([NX3](=O)=O),$([NX3+](=O)[O-])][!#8]</data>
+  <data key="d2">ewg</data>
+  <data key="d3">[nitro] is a ewg functional group (SMARTS: [$([NX3](=O)=O),$([NX3+](=O)[O-])][!#8]). Physicochemical properties: LogP contribution = -0.353, HBD = 0, HBA = 2, TPSA = 43.14 Angstrom^2, MW contribution = 75.03. Ionization: neutral at pH 7.4. Category: ewg.</data>
+  <data key="d4">-0.353</data>
+  <data key="d5">0</data>
+  <data key="d6">2</data>
+  <data key="d7">43.14</data>
+  <data key="d8">75.03</data>
+  <data key="d9">False</data>
+  <data key="d10">0</data>
+</node>
+<node id="trifluoromethyl_ewg">
+  <data key="d0">trifluoromethyl_ewg</data>
+  <data key="d1">cC(F)(F)F</data>
+  <data key="d2">ewg</data>
+  <data key="d3">[trifluoromethyl_ewg] is a ewg functional group (SMARTS: cC(F)(F)F). Physicochemical properties: LogP contribution = 2.069, HBD = 0, HBA = 0, TPSA = 0.0 Angstrom^2, MW contribution = 146.03. Ionization: neutral at pH 7.4. Category: ewg.</data>
+  <data key="d4">2.069</data>
+  <data key="d5">0</data>
+  <data key="d6">0</data>
+  <data key="d7">0.0</data>
+  <data key="d8">146.03</data>
+  <data key="d9">False</data>
+  <data key="d10">0</data>
+</node>
+<node id="thiol">
+  <data key="d0">thiol</data>
+  <data key="d1">[SX2H]</data>
+  <data key="d2">sulfur</data>
+  <data key="d3">[thiol] is a sulfur functional group (SMARTS: [SX2H]). Physicochemical properties: LogP contribution = 0.3, HBD = 1, HBA = 1, TPSA = 0.0 Angstrom^2, MW contribution = 62.02. Ionization: neutral at pH 7.4. Category: sulfur.</data>
+  <data key="d4">0.3</data>
+  <data key="d5">1</data>
+  <data key="d6">1</data>
+  <data key="d7">0.0</data>
+  <data key="d8">62.02</data>
+  <data key="d9">False</data>
+  <data key="d10">0</data>
+</node>
+<node id="thioether">
+  <data key="d0">thioether</data>
+  <data key="d1">[SX2]([#6])[#6]</data>
+  <data key="d2">sulfur</data>
+  <data key="d3">[thioether] is a sulfur functional group (SMARTS: [SX2]([#6])[#6]). Physicochemical properties: LogP contribution = 1.123, HBD = 0, HBA = 1, TPSA = 0.0 Angstrom^2, MW contribution = 90.05. Ionization: neutral at pH 7.4. Category: sulfur.</data>
+  <data key="d4">1.123</data>
+  <data key="d5">0</data>
+  <data key="d6">1</data>
+  <data key="d7">0.0</data>
+  <data key="d8">90.05</data>
+  <data key="d9">False</data>
+  <data key="d10">0</data>
+</node>
+<node id="sulfoxide">
+  <data key="d0">sulfoxide</data>
+  <data key="d1">[#16X3](=[OX1])</data>
+  <data key="d2">sulfur</data>
+  <data key="d3">[sulfoxide] is a sulfur functional group (SMARTS: [#16X3](=[OX1])). Physicochemical properties: LogP contribution = -0.251, HBD = 0, HBA = 1, TPSA = 17.07 Angstrom^2, MW contribution = 92.03. Ionization: neutral at pH 7.4. Category: sulfur.</data>
+  <data key="d4">-0.251</data>
+  <data key="d5">0</data>
+  <data key="d6">1</data>
+  <data key="d7">17.07</data>
+  <data key="d8">92.03</data>
+  <data key="d9">False</data>
+  <data key="d10">0</data>
+</node>
+<node id="sulfone">
+  <data key="d0">sulfone</data>
+  <data key="d1">[#16X4](=[OX1])(=[OX1])</data>
+  <data key="d2">sulfur</data>
+  <data key="d3">[sulfone] is a sulfur functional group (SMARTS: [#16X4](=[OX1])(=[OX1])). Physicochemical properties: LogP contribution = -0.585, HBD = 0, HBA = 2, TPSA = 34.14 Angstrom^2, MW contribution = 108.02. Ionization: neutral at pH 7.4. Category: sulfur.</data>
+  <data key="d4">-0.585</data>
+  <data key="d5">0</data>
+  <data key="d6">2</data>
+  <data key="d7">34.14</data>
+  <data key="d8">108.02</data>
+  <data key="d9">False</data>
+  <data key="d10">0</data>
+</node>
+<node id="logd_effect_carboxylic_acid">
+  <data key="d3">LogD effect node for carboxylic_acid. Average δLogD = -2.23 units from 309 matched molecular pairs.</data>
+  <data key="d11">logd_effect</data>
+  <data key="d12">-2.229</data>
+</node>
+<node id="logd_effect_urea">
+  <data key="d3">LogD effect node for urea. Average δLogD = -0.14 units from 94 matched molecular pairs.</data>
+  <data key="d11">logd_effect</data>
+  <data key="d12">-0.145</data>
+</node>
+<node id="logd_effect_hydroxyl">
+  <data key="d3">LogD effect node for hydroxyl. Average δLogD = -1.30 units from 698 matched molecular pairs.</data>
+  <data key="d11">logd_effect</data>
+  <data key="d12">-1.296</data>
+</node>
+<node id="logd_effect_thioether">
+  <data key="d3">LogD effect node for thioether. Average δLogD = +1.44 units from 82 matched molecular pairs.</data>
+  <data key="d11">logd_effect</data>
+  <data key="d12">1.442</data>
+</node>
+<node id="logd_effect_ether">
+  <data key="d3">LogD effect node for ether. Average δLogD = -0.08 units from 768 matched molecular pairs.</data>
+  <data key="d11">logd_effect</data>
+  <data key="d12">-0.079</data>
+</node>
+<node id="logd_effect_amide">
+  <data key="d3">LogD effect node for amide. Average δLogD = -0.45 units from 280 matched molecular pairs.</data>
+  <data key="d11">logd_effect</data>
+  <data key="d12">-0.446</data>
+</node>
+<node id="logd_effect_bromine">
+  <data key="d3">LogD effect node for bromine. Average δLogD = +0.50 units from 156 matched molecular pairs.</data>
+  <data key="d11">logd_effect</data>
+  <data key="d12">0.497</data>
+</node>
+<node id="logd_effect_fluorine">
+  <data key="d3">LogD effect node for fluorine. Average δLogD = -0.01 units from 790 matched molecular pairs.</data>
+  <data key="d11">logd_effect</data>
+  <data key="d12">-0.012</data>
+</node>
+<node id="logd_effect_primary_amine">
+  <data key="d3">LogD effect node for primary_amine. Average δLogD = -1.41 units from 303 matched molecular pairs.</data>
+  <data key="d11">logd_effect</data>
+  <data key="d12">-1.41</data>
+</node>
+<node id="logd_effect_nitrile">
+  <data key="d3">LogD effect node for nitrile. Average δLogD = +0.05 units from 317 matched molecular pairs.</data>
+  <data key="d11">logd_effect</data>
+  <data key="d12">0.052</data>
+</node>
+<node id="logd_effect_ketone">
+  <data key="d3">LogD effect node for ketone. Average δLogD = -0.25 units from 55 matched molecular pairs.</data>
+  <data key="d11">logd_effect</data>
+  <data key="d12">-0.247</data>
+</node>
+<node id="logd_effect_chlorine">
+  <data key="d3">LogD effect node for chlorine. Average δLogD = +0.34 units from 634 matched molecular pairs.</data>
+  <data key="d11">logd_effect</data>
+  <data key="d12">0.345</data>
+</node>
+<node id="logd_effect_ester">
+  <data key="d3">LogD effect node for ester. Average δLogD = +0.44 units from 46 matched molecular pairs.</data>
+  <data key="d11">logd_effect</data>
+  <data key="d12">0.439</data>
+</node>
+<node id="logd_effect_tertiary_amine">
+  <data key="d3">LogD effect node for tertiary_amine. Average δLogD = -0.31 units from 206 matched molecular pairs.</data>
+  <data key="d11">logd_effect</data>
+  <data key="d12">-0.307</data>
+</node>
+<node id="logd_effect_secondary_amine">
+  <data key="d3">LogD effect node for secondary_amine. Average δLogD = -1.94 units from 290 matched molecular pairs.</data>
+  <data key="d11">logd_effect</data>
+  <data key="d12">-1.94</data>
+</node>
+<node id="logd_effect_trifluoromethyl">
+  <data key="d3">LogD effect node for trifluoromethyl. Average δLogD = +0.61 units from 66 matched molecular pairs.</data>
+  <data key="d11">logd_effect</data>
+  <data key="d12">0.608</data>
+</node>
+<node id="logd_effect_thiol">
+  <data key="d3">LogD effect node for thiol. Average δLogD = -0.87 units from 29 matched molecular pairs.</data>
+  <data key="d11">logd_effect</data>
+  <data key="d12">-0.874</data>
+</node>
+<node id="logd_effect_imidazole">
+  <data key="d3">LogD effect node for imidazole. Average δLogD = -0.45 units from 31 matched molecular pairs.</data>
+  <data key="d11">logd_effect</data>
+  <data key="d12">-0.454</data>
+</node>
+<node id="logd_effect_nitro">
+  <data key="d3">LogD effect node for nitro. Average δLogD = -1.61 units from 220 matched molecular pairs.</data>
+  <data key="d11">logd_effect</data>
+  <data key="d12">-1.611</data>
+</node>
+<node id="logd_effect_sulfone">
+  <data key="d3">LogD effect node for sulfone. Average δLogD = -0.89 units from 182 matched molecular pairs.</data>
+  <data key="d11">logd_effect</data>
+  <data key="d12">-0.886</data>
+</node>
+<node id="logd_effect_trifluoromethyl_ewg">
+  <data key="d3">LogD effect node for trifluoromethyl_ewg. Average δLogD = +0.10 units from 19 matched molecular pairs.</data>
+  <data key="d11">logd_effect</data>
+  <data key="d12">0.095</data>
+</node>
+<node id="logd_effect_aldehyde">
+  <data key="d3">LogD effect node for aldehyde. Average δLogD = -0.52 units from 40 matched molecular pairs.</data>
+  <data key="d11">logd_effect</data>
+  <data key="d12">-0.516</data>
+</node>
+<node id="logd_effect_phosphoric_acid">
+  <data key="d3">LogD effect node for phosphoric_acid. Average δLogD = -2.90 units from 20 matched molecular pairs.</data>
+  <data key="d11">logd_effect</data>
+  <data key="d12">-2.905</data>
+</node>
+<node id="logd_effect_sulfonamide">
+  <data key="d3">LogD effect node for sulfonamide. Average δLogD = -0.21 units from 38 matched molecular pairs.</data>
+  <data key="d11">logd_effect</data>
+  <data key="d12">-0.206</data>
+</node>
+<node id="logd_effect_indole">
+  <data key="d3">LogD effect node for indole. Average δLogD = -1.69 units from 4 matched molecular pairs.</data>
+  <data key="d11">logd_effect</data>
+  <data key="d12">-1.693</data>
+</node>
+<node id="logd_effect_sulfoxide">
+  <data key="d3">LogD effect node for sulfoxide. Average δLogD = -3.34 units from 12 matched molecular pairs.</data>
+  <data key="d11">logd_effect</data>
+  <data key="d12">-3.343</data>
+</node>
+<node id="logd_effect_guanidine">
+  <data key="d3">LogD effect node for guanidine. Average δLogD = +0.15 units from 22 matched molecular pairs.</data>
+  <data key="d11">logd_effect</data>
+  <data key="d12">0.149</data>
+</node>
+<edge source="carboxylic_acid" target="logd_effect_carboxylic_acid">
+  <data key="d13">mmp_delta</data>
+  <data key="d14">-2.229</data>
+  <data key="d15">309</data>
+  <data key="d16">Adding [carboxylic_acid] to a molecule changes LogD by -2.23 units on average (based on 309 matched molecular pairs). Decreases lipophilicity.</data>
+</edge>
+<edge source="carboxylic_acid" target="aromatic_ring">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1173</data>
+  <data key="d16">[aromatic_ring] and [carboxylic_acid] co-occur in 1173 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="carboxylic_acid" target="ester">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">45</data>
+  <data key="d16">[carboxylic_acid] and [ester] co-occur in 45 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="carboxylic_acid" target="ether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">721</data>
+  <data key="d16">[carboxylic_acid] and [ether] co-occur in 721 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="carboxylic_acid" target="fluorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">470</data>
+  <data key="d16">[carboxylic_acid] and [fluorine] co-occur in 470 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="carboxylic_acid" target="hydroxyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">236</data>
+  <data key="d16">[carboxylic_acid] and [hydroxyl] co-occur in 236 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="carboxylic_acid" target="amide">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">470</data>
+  <data key="d16">[amide] and [carboxylic_acid] co-occur in 470 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="carboxylic_acid" target="primary_amine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">76</data>
+  <data key="d16">[carboxylic_acid] and [primary_amine] co-occur in 76 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="carboxylic_acid" target="pyrrolidine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">80</data>
+  <data key="d16">[carboxylic_acid] and [pyrrolidine] co-occur in 80 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="carboxylic_acid" target="secondary_amine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">174</data>
+  <data key="d16">[carboxylic_acid] and [secondary_amine] co-occur in 174 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="carboxylic_acid" target="chlorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">385</data>
+  <data key="d16">[carboxylic_acid] and [chlorine] co-occur in 385 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="carboxylic_acid" target="piperazine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">43</data>
+  <data key="d16">[carboxylic_acid] and [piperazine] co-occur in 43 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="carboxylic_acid" target="tertiary_amine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">295</data>
+  <data key="d16">[carboxylic_acid] and [tertiary_amine] co-occur in 295 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="carboxylic_acid" target="trifluoromethyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">151</data>
+  <data key="d16">[carboxylic_acid] and [trifluoromethyl] co-occur in 151 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="carboxylic_acid" target="trifluoromethyl_ewg">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">133</data>
+  <data key="d16">[carboxylic_acid] and [trifluoromethyl_ewg] co-occur in 133 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="carboxylic_acid" target="ketone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">54</data>
+  <data key="d16">[carboxylic_acid] and [ketone] co-occur in 54 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="carboxylic_acid" target="thioether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">62</data>
+  <data key="d16">[carboxylic_acid] and [thioether] co-occur in 62 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="carboxylic_acid" target="sulfonamide">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">83</data>
+  <data key="d16">[carboxylic_acid] and [sulfonamide] co-occur in 83 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="carboxylic_acid" target="sulfone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">146</data>
+  <data key="d16">[carboxylic_acid] and [sulfone] co-occur in 146 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="carboxylic_acid" target="thiophene">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">33</data>
+  <data key="d16">[carboxylic_acid] and [thiophene] co-occur in 33 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="carboxylic_acid" target="cyclopropyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">105</data>
+  <data key="d16">[carboxylic_acid] and [cyclopropyl] co-occur in 105 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="carboxylic_acid" target="tetrazole">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1</data>
+  <data key="d16">[carboxylic_acid] and [tetrazole] co-occur in 1 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="carboxylic_acid" target="nitro">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">12</data>
+  <data key="d16">[carboxylic_acid] and [nitro] co-occur in 12 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="carboxylic_acid" target="pyridine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">315</data>
+  <data key="d16">[carboxylic_acid] and [pyridine] co-occur in 315 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="carboxylic_acid" target="piperidine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">97</data>
+  <data key="d16">[carboxylic_acid] and [piperidine] co-occur in 97 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="carboxylic_acid" target="imidazole">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">21</data>
+  <data key="d16">[carboxylic_acid] and [imidazole] co-occur in 21 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="carboxylic_acid" target="bromine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">22</data>
+  <data key="d16">[bromine] and [carboxylic_acid] co-occur in 22 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="carboxylic_acid" target="urea">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">40</data>
+  <data key="d16">[carboxylic_acid] and [urea] co-occur in 40 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="carboxylic_acid" target="nitrile">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">35</data>
+  <data key="d16">[carboxylic_acid] and [nitrile] co-occur in 35 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="carboxylic_acid" target="indole">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">73</data>
+  <data key="d16">[carboxylic_acid] and [indole] co-occur in 73 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="carboxylic_acid" target="morpholine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">16</data>
+  <data key="d16">[carboxylic_acid] and [morpholine] co-occur in 16 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="carboxylic_acid" target="sulfoxide">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1</data>
+  <data key="d16">[carboxylic_acid] and [sulfoxide] co-occur in 1 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="carboxylic_acid" target="guanidine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">12</data>
+  <data key="d16">[carboxylic_acid] and [guanidine] co-occur in 12 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="carboxylic_acid" target="thiol">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">5</data>
+  <data key="d16">[carboxylic_acid] and [thiol] co-occur in 5 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="carboxylic_acid" target="aldehyde">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1</data>
+  <data key="d16">[aldehyde] and [carboxylic_acid] co-occur in 1 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="sulfonamide" target="logd_effect_sulfonamide">
+  <data key="d13">mmp_delta</data>
+  <data key="d14">-0.206</data>
+  <data key="d15">38</data>
+  <data key="d16">Adding [sulfonamide] to a molecule changes LogD by -0.21 units on average (based on 38 matched molecular pairs). Decreases lipophilicity.</data>
+</edge>
+<edge source="sulfonamide" target="amide">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">441</data>
+  <data key="d16">[amide] and [sulfonamide] co-occur in 441 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="sulfonamide" target="aromatic_ring">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">898</data>
+  <data key="d16">[aromatic_ring] and [sulfonamide] co-occur in 898 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="sulfonamide" target="primary_amine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">133</data>
+  <data key="d16">[primary_amine] and [sulfonamide] co-occur in 133 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="sulfonamide" target="sulfone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">965</data>
+  <data key="d16">[sulfonamide] and [sulfone] co-occur in 965 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="sulfonamide" target="urea">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">57</data>
+  <data key="d16">[sulfonamide] and [urea] co-occur in 57 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="sulfonamide" target="fluorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">376</data>
+  <data key="d16">[fluorine] and [sulfonamide] co-occur in 376 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="sulfonamide" target="trifluoromethyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">141</data>
+  <data key="d16">[sulfonamide] and [trifluoromethyl] co-occur in 141 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="sulfonamide" target="trifluoromethyl_ewg">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">76</data>
+  <data key="d16">[sulfonamide] and [trifluoromethyl_ewg] co-occur in 76 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="sulfonamide" target="thiol">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">6</data>
+  <data key="d16">[sulfonamide] and [thiol] co-occur in 6 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="sulfonamide" target="pyrrolidine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">135</data>
+  <data key="d16">[pyrrolidine] and [sulfonamide] co-occur in 135 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="sulfonamide" target="piperazine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">70</data>
+  <data key="d16">[piperazine] and [sulfonamide] co-occur in 70 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="sulfonamide" target="piperidine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">96</data>
+  <data key="d16">[piperidine] and [sulfonamide] co-occur in 96 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="sulfonamide" target="tertiary_amine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">227</data>
+  <data key="d16">[sulfonamide] and [tertiary_amine] co-occur in 227 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="sulfonamide" target="chlorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">248</data>
+  <data key="d16">[chlorine] and [sulfonamide] co-occur in 248 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="sulfonamide" target="thiophene">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">63</data>
+  <data key="d16">[sulfonamide] and [thiophene] co-occur in 63 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="sulfonamide" target="cyclopropyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">83</data>
+  <data key="d16">[cyclopropyl] and [sulfonamide] co-occur in 83 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="sulfonamide" target="pyridine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">227</data>
+  <data key="d16">[pyridine] and [sulfonamide] co-occur in 227 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="sulfonamide" target="ether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">498</data>
+  <data key="d16">[ether] and [sulfonamide] co-occur in 498 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="sulfonamide" target="hydroxyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">180</data>
+  <data key="d16">[hydroxyl] and [sulfonamide] co-occur in 180 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="sulfonamide" target="indole">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">23</data>
+  <data key="d16">[indole] and [sulfonamide] co-occur in 23 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="sulfonamide" target="secondary_amine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">177</data>
+  <data key="d16">[secondary_amine] and [sulfonamide] co-occur in 177 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="sulfonamide" target="ketone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">42</data>
+  <data key="d16">[ketone] and [sulfonamide] co-occur in 42 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="sulfonamide" target="thioether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">16</data>
+  <data key="d16">[sulfonamide] and [thioether] co-occur in 16 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="sulfonamide" target="nitrile">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">62</data>
+  <data key="d16">[nitrile] and [sulfonamide] co-occur in 62 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="sulfonamide" target="morpholine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">54</data>
+  <data key="d16">[morpholine] and [sulfonamide] co-occur in 54 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="sulfonamide" target="ester">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">8</data>
+  <data key="d16">[ester] and [sulfonamide] co-occur in 8 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="sulfonamide" target="imidazole">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">9</data>
+  <data key="d16">[imidazole] and [sulfonamide] co-occur in 9 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="sulfonamide" target="bromine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">23</data>
+  <data key="d16">[bromine] and [sulfonamide] co-occur in 23 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="sulfonamide" target="guanidine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">6</data>
+  <data key="d16">[guanidine] and [sulfonamide] co-occur in 6 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="sulfonamide" target="nitro">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">3</data>
+  <data key="d16">[nitro] and [sulfonamide] co-occur in 3 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="sulfonamide" target="sulfoxide">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1</data>
+  <data key="d16">[sulfonamide] and [sulfoxide] co-occur in 1 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="sulfonamide" target="aldehyde">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1</data>
+  <data key="d16">[aldehyde] and [sulfonamide] co-occur in 1 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="sulfonamide" target="tetrazole">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">3</data>
+  <data key="d16">[sulfonamide] and [tetrazole] co-occur in 3 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tetrazole" target="amide">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">16</data>
+  <data key="d16">[amide] and [tetrazole] co-occur in 16 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tetrazole" target="aromatic_ring">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">29</data>
+  <data key="d16">[aromatic_ring] and [tetrazole] co-occur in 29 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tetrazole" target="bromine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">3</data>
+  <data key="d16">[bromine] and [tetrazole] co-occur in 3 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tetrazole" target="urea">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">2</data>
+  <data key="d16">[tetrazole] and [urea] co-occur in 2 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tetrazole" target="fluorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">9</data>
+  <data key="d16">[fluorine] and [tetrazole] co-occur in 9 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tetrazole" target="pyridine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">7</data>
+  <data key="d16">[pyridine] and [tetrazole] co-occur in 7 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tetrazole" target="trifluoromethyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">8</data>
+  <data key="d16">[tetrazole] and [trifluoromethyl] co-occur in 8 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tetrazole" target="trifluoromethyl_ewg">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">8</data>
+  <data key="d16">[tetrazole] and [trifluoromethyl_ewg] co-occur in 8 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tetrazole" target="tertiary_amine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">7</data>
+  <data key="d16">[tertiary_amine] and [tetrazole] co-occur in 7 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tetrazole" target="chlorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">7</data>
+  <data key="d16">[chlorine] and [tetrazole] co-occur in 7 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tetrazole" target="hydroxyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">2</data>
+  <data key="d16">[hydroxyl] and [tetrazole] co-occur in 2 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tetrazole" target="ether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">6</data>
+  <data key="d16">[ether] and [tetrazole] co-occur in 6 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tetrazole" target="morpholine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1</data>
+  <data key="d16">[morpholine] and [tetrazole] co-occur in 1 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tetrazole" target="secondary_amine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">2</data>
+  <data key="d16">[secondary_amine] and [tetrazole] co-occur in 2 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tetrazole" target="ester">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1</data>
+  <data key="d16">[ester] and [tetrazole] co-occur in 1 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tetrazole" target="sulfone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">4</data>
+  <data key="d16">[sulfone] and [tetrazole] co-occur in 4 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tetrazole" target="nitrile">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1</data>
+  <data key="d16">[nitrile] and [tetrazole] co-occur in 1 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tetrazole" target="piperidine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">2</data>
+  <data key="d16">[piperidine] and [tetrazole] co-occur in 2 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tetrazole" target="indole">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1</data>
+  <data key="d16">[indole] and [tetrazole] co-occur in 1 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tetrazole" target="primary_amine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1</data>
+  <data key="d16">[primary_amine] and [tetrazole] co-occur in 1 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tetrazole" target="thiophene">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1</data>
+  <data key="d16">[tetrazole] and [thiophene] co-occur in 1 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="phosphoric_acid" target="logd_effect_phosphoric_acid">
+  <data key="d13">mmp_delta</data>
+  <data key="d14">-2.905</data>
+  <data key="d15">20</data>
+  <data key="d16">Adding [phosphoric_acid] to a molecule changes LogD by -2.90 units on average (based on 20 matched molecular pairs). Decreases lipophilicity.</data>
+</edge>
+<edge source="phosphoric_acid" target="hydroxyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">59</data>
+  <data key="d16">[hydroxyl] and [phosphoric_acid] co-occur in 59 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="phosphoric_acid" target="pyridine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">13</data>
+  <data key="d16">[phosphoric_acid] and [pyridine] co-occur in 13 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="phosphoric_acid" target="secondary_amine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">6</data>
+  <data key="d16">[phosphoric_acid] and [secondary_amine] co-occur in 6 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="phosphoric_acid" target="chlorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">6</data>
+  <data key="d16">[chlorine] and [phosphoric_acid] co-occur in 6 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="phosphoric_acid" target="primary_amine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">33</data>
+  <data key="d16">[phosphoric_acid] and [primary_amine] co-occur in 33 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="phosphoric_acid" target="amide">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">15</data>
+  <data key="d16">[amide] and [phosphoric_acid] co-occur in 15 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="phosphoric_acid" target="aromatic_ring">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">34</data>
+  <data key="d16">[aromatic_ring] and [phosphoric_acid] co-occur in 34 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="phosphoric_acid" target="ether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">50</data>
+  <data key="d16">[ether] and [phosphoric_acid] co-occur in 50 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="phosphoric_acid" target="ketone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1</data>
+  <data key="d16">[ketone] and [phosphoric_acid] co-occur in 1 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="phosphoric_acid" target="piperazine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1</data>
+  <data key="d16">[phosphoric_acid] and [piperazine] co-occur in 1 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="phosphoric_acid" target="ester">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">28</data>
+  <data key="d16">[ester] and [phosphoric_acid] co-occur in 28 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="phosphoric_acid" target="nitrile">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">17</data>
+  <data key="d16">[nitrile] and [phosphoric_acid] co-occur in 17 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="phosphoric_acid" target="fluorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">4</data>
+  <data key="d16">[fluorine] and [phosphoric_acid] co-occur in 4 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="phosphoric_acid" target="thioether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1</data>
+  <data key="d16">[phosphoric_acid] and [thioether] co-occur in 1 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="phosphoric_acid" target="guanidine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">8</data>
+  <data key="d16">[guanidine] and [phosphoric_acid] co-occur in 8 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="phosphoric_acid" target="bromine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">7</data>
+  <data key="d16">[bromine] and [phosphoric_acid] co-occur in 7 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="phosphoric_acid" target="imidazole">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">2</data>
+  <data key="d16">[imidazole] and [phosphoric_acid] co-occur in 2 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="phosphoric_acid" target="cyclopropyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1</data>
+  <data key="d16">[cyclopropyl] and [phosphoric_acid] co-occur in 1 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="primary_amine" target="logd_effect_primary_amine">
+  <data key="d13">mmp_delta</data>
+  <data key="d14">-1.41</data>
+  <data key="d15">303</data>
+  <data key="d16">Adding [primary_amine] to a molecule changes LogD by -1.41 units on average (based on 303 matched molecular pairs). Decreases lipophilicity.</data>
+</edge>
+<edge source="primary_amine" target="amide">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">476</data>
+  <data key="d16">[amide] and [primary_amine] co-occur in 476 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="primary_amine" target="aromatic_ring">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">926</data>
+  <data key="d16">[aromatic_ring] and [primary_amine] co-occur in 926 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="primary_amine" target="hydroxyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">203</data>
+  <data key="d16">[hydroxyl] and [primary_amine] co-occur in 203 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="primary_amine" target="ether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">496</data>
+  <data key="d16">[ether] and [primary_amine] co-occur in 496 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="primary_amine" target="fluorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">266</data>
+  <data key="d16">[fluorine] and [primary_amine] co-occur in 266 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="primary_amine" target="piperidine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">84</data>
+  <data key="d16">[piperidine] and [primary_amine] co-occur in 84 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="primary_amine" target="tertiary_amine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">248</data>
+  <data key="d16">[primary_amine] and [tertiary_amine] co-occur in 248 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="primary_amine" target="sulfone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">156</data>
+  <data key="d16">[primary_amine] and [sulfone] co-occur in 156 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="primary_amine" target="thioether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">58</data>
+  <data key="d16">[primary_amine] and [thioether] co-occur in 58 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="primary_amine" target="chlorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">196</data>
+  <data key="d16">[chlorine] and [primary_amine] co-occur in 196 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="primary_amine" target="trifluoromethyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">67</data>
+  <data key="d16">[primary_amine] and [trifluoromethyl] co-occur in 67 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="primary_amine" target="trifluoromethyl_ewg">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">44</data>
+  <data key="d16">[primary_amine] and [trifluoromethyl_ewg] co-occur in 44 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="primary_amine" target="nitrile">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">111</data>
+  <data key="d16">[nitrile] and [primary_amine] co-occur in 111 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="primary_amine" target="secondary_amine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">233</data>
+  <data key="d16">[primary_amine] and [secondary_amine] co-occur in 233 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="primary_amine" target="pyridine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">335</data>
+  <data key="d16">[primary_amine] and [pyridine] co-occur in 335 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="primary_amine" target="imidazole">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">18</data>
+  <data key="d16">[imidazole] and [primary_amine] co-occur in 18 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="primary_amine" target="thiophene">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">54</data>
+  <data key="d16">[primary_amine] and [thiophene] co-occur in 54 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="primary_amine" target="ketone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">35</data>
+  <data key="d16">[ketone] and [primary_amine] co-occur in 35 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="primary_amine" target="urea">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">23</data>
+  <data key="d16">[primary_amine] and [urea] co-occur in 23 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="primary_amine" target="guanidine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">90</data>
+  <data key="d16">[guanidine] and [primary_amine] co-occur in 90 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="primary_amine" target="morpholine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">65</data>
+  <data key="d16">[morpholine] and [primary_amine] co-occur in 65 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="primary_amine" target="bromine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">8</data>
+  <data key="d16">[bromine] and [primary_amine] co-occur in 8 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="primary_amine" target="piperazine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">45</data>
+  <data key="d16">[piperazine] and [primary_amine] co-occur in 45 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="primary_amine" target="pyrrolidine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">83</data>
+  <data key="d16">[primary_amine] and [pyrrolidine] co-occur in 83 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="primary_amine" target="ester">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">55</data>
+  <data key="d16">[ester] and [primary_amine] co-occur in 55 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="primary_amine" target="indole">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">29</data>
+  <data key="d16">[indole] and [primary_amine] co-occur in 29 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="primary_amine" target="cyclopropyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">69</data>
+  <data key="d16">[cyclopropyl] and [primary_amine] co-occur in 69 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="primary_amine" target="nitro">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">5</data>
+  <data key="d16">[nitro] and [primary_amine] co-occur in 5 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="primary_amine" target="thiol">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">5</data>
+  <data key="d16">[primary_amine] and [thiol] co-occur in 5 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="secondary_amine" target="logd_effect_secondary_amine">
+  <data key="d13">mmp_delta</data>
+  <data key="d14">-1.94</data>
+  <data key="d15">290</data>
+  <data key="d16">Adding [secondary_amine] to a molecule changes LogD by -1.94 units on average (based on 290 matched molecular pairs). Decreases lipophilicity.</data>
+</edge>
+<edge source="secondary_amine" target="piperidine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">457</data>
+  <data key="d16">[piperidine] and [secondary_amine] co-occur in 457 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="secondary_amine" target="thioether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">114</data>
+  <data key="d16">[secondary_amine] and [thioether] co-occur in 114 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="secondary_amine" target="amide">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1008</data>
+  <data key="d16">[amide] and [secondary_amine] co-occur in 1008 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="secondary_amine" target="aromatic_ring">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">2003</data>
+  <data key="d16">[aromatic_ring] and [secondary_amine] co-occur in 2003 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="secondary_amine" target="hydroxyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">491</data>
+  <data key="d16">[hydroxyl] and [secondary_amine] co-occur in 491 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="secondary_amine" target="fluorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">775</data>
+  <data key="d16">[fluorine] and [secondary_amine] co-occur in 775 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="secondary_amine" target="pyrrolidine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">256</data>
+  <data key="d16">[pyrrolidine] and [secondary_amine] co-occur in 256 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="secondary_amine" target="trifluoromethyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">203</data>
+  <data key="d16">[secondary_amine] and [trifluoromethyl] co-occur in 203 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="secondary_amine" target="trifluoromethyl_ewg">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">150</data>
+  <data key="d16">[secondary_amine] and [trifluoromethyl_ewg] co-occur in 150 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="secondary_amine" target="ether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1183</data>
+  <data key="d16">[ether] and [secondary_amine] co-occur in 1183 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="secondary_amine" target="tertiary_amine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">787</data>
+  <data key="d16">[secondary_amine] and [tertiary_amine] co-occur in 787 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="secondary_amine" target="nitrile">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">172</data>
+  <data key="d16">[nitrile] and [secondary_amine] co-occur in 172 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="secondary_amine" target="chlorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">472</data>
+  <data key="d16">[chlorine] and [secondary_amine] co-occur in 472 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="secondary_amine" target="piperazine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">277</data>
+  <data key="d16">[piperazine] and [secondary_amine] co-occur in 277 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="secondary_amine" target="pyridine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">827</data>
+  <data key="d16">[pyridine] and [secondary_amine] co-occur in 827 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="secondary_amine" target="thiophene">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">77</data>
+  <data key="d16">[secondary_amine] and [thiophene] co-occur in 77 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="secondary_amine" target="imidazole">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">68</data>
+  <data key="d16">[imidazole] and [secondary_amine] co-occur in 68 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="secondary_amine" target="guanidine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">61</data>
+  <data key="d16">[guanidine] and [secondary_amine] co-occur in 61 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="secondary_amine" target="nitro">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">11</data>
+  <data key="d16">[nitro] and [secondary_amine] co-occur in 11 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="secondary_amine" target="sulfone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">281</data>
+  <data key="d16">[secondary_amine] and [sulfone] co-occur in 281 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="secondary_amine" target="ketone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">46</data>
+  <data key="d16">[ketone] and [secondary_amine] co-occur in 46 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="secondary_amine" target="morpholine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">138</data>
+  <data key="d16">[morpholine] and [secondary_amine] co-occur in 138 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="secondary_amine" target="bromine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">38</data>
+  <data key="d16">[bromine] and [secondary_amine] co-occur in 38 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="secondary_amine" target="urea">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">73</data>
+  <data key="d16">[secondary_amine] and [urea] co-occur in 73 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="secondary_amine" target="ester">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">65</data>
+  <data key="d16">[ester] and [secondary_amine] co-occur in 65 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="secondary_amine" target="cyclopropyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">130</data>
+  <data key="d16">[cyclopropyl] and [secondary_amine] co-occur in 130 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="secondary_amine" target="indole">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">53</data>
+  <data key="d16">[indole] and [secondary_amine] co-occur in 53 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="secondary_amine" target="aldehyde">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">8</data>
+  <data key="d16">[aldehyde] and [secondary_amine] co-occur in 8 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tertiary_amine" target="logd_effect_tertiary_amine">
+  <data key="d13">mmp_delta</data>
+  <data key="d14">-0.307</data>
+  <data key="d15">206</data>
+  <data key="d16">Adding [tertiary_amine] to a molecule changes LogD by -0.31 units on average (based on 206 matched molecular pairs). Decreases lipophilicity.</data>
+</edge>
+<edge source="tertiary_amine" target="aromatic_ring">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">2873</data>
+  <data key="d16">[aromatic_ring] and [tertiary_amine] co-occur in 2873 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tertiary_amine" target="ether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1767</data>
+  <data key="d16">[ether] and [tertiary_amine] co-occur in 1767 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tertiary_amine" target="piperidine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1061</data>
+  <data key="d16">[piperidine] and [tertiary_amine] co-occur in 1061 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tertiary_amine" target="amide">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1689</data>
+  <data key="d16">[amide] and [tertiary_amine] co-occur in 1689 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tertiary_amine" target="piperazine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">898</data>
+  <data key="d16">[piperazine] and [tertiary_amine] co-occur in 898 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tertiary_amine" target="urea">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">250</data>
+  <data key="d16">[tertiary_amine] and [urea] co-occur in 250 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tertiary_amine" target="thioether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">108</data>
+  <data key="d16">[tertiary_amine] and [thioether] co-occur in 108 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tertiary_amine" target="fluorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1127</data>
+  <data key="d16">[fluorine] and [tertiary_amine] co-occur in 1127 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tertiary_amine" target="morpholine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">425</data>
+  <data key="d16">[morpholine] and [tertiary_amine] co-occur in 425 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tertiary_amine" target="imidazole">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">106</data>
+  <data key="d16">[imidazole] and [tertiary_amine] co-occur in 106 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tertiary_amine" target="chlorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">677</data>
+  <data key="d16">[chlorine] and [tertiary_amine] co-occur in 677 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tertiary_amine" target="hydroxyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">539</data>
+  <data key="d16">[hydroxyl] and [tertiary_amine] co-occur in 539 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tertiary_amine" target="pyrrolidine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">622</data>
+  <data key="d16">[pyrrolidine] and [tertiary_amine] co-occur in 622 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tertiary_amine" target="nitrile">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">230</data>
+  <data key="d16">[nitrile] and [tertiary_amine] co-occur in 230 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tertiary_amine" target="pyridine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1065</data>
+  <data key="d16">[pyridine] and [tertiary_amine] co-occur in 1065 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tertiary_amine" target="trifluoromethyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">294</data>
+  <data key="d16">[tertiary_amine] and [trifluoromethyl] co-occur in 294 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tertiary_amine" target="trifluoromethyl_ewg">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">222</data>
+  <data key="d16">[tertiary_amine] and [trifluoromethyl_ewg] co-occur in 222 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tertiary_amine" target="sulfone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">342</data>
+  <data key="d16">[sulfone] and [tertiary_amine] co-occur in 342 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tertiary_amine" target="thiophene">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">127</data>
+  <data key="d16">[tertiary_amine] and [thiophene] co-occur in 127 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tertiary_amine" target="cyclopropyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">201</data>
+  <data key="d16">[cyclopropyl] and [tertiary_amine] co-occur in 201 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tertiary_amine" target="ester">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">96</data>
+  <data key="d16">[ester] and [tertiary_amine] co-occur in 96 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tertiary_amine" target="thiol">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">3</data>
+  <data key="d16">[tertiary_amine] and [thiol] co-occur in 3 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tertiary_amine" target="ketone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">120</data>
+  <data key="d16">[ketone] and [tertiary_amine] co-occur in 120 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tertiary_amine" target="nitro">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">31</data>
+  <data key="d16">[nitro] and [tertiary_amine] co-occur in 31 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tertiary_amine" target="guanidine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">41</data>
+  <data key="d16">[guanidine] and [tertiary_amine] co-occur in 41 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tertiary_amine" target="bromine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">83</data>
+  <data key="d16">[bromine] and [tertiary_amine] co-occur in 83 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tertiary_amine" target="indole">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">129</data>
+  <data key="d16">[indole] and [tertiary_amine] co-occur in 129 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="tertiary_amine" target="aldehyde">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">3</data>
+  <data key="d16">[aldehyde] and [tertiary_amine] co-occur in 3 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperazine" target="amide">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">649</data>
+  <data key="d16">[amide] and [piperazine] co-occur in 649 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperazine" target="aromatic_ring">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">823</data>
+  <data key="d16">[aromatic_ring] and [piperazine] co-occur in 823 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperazine" target="piperidine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">104</data>
+  <data key="d16">[piperazine] and [piperidine] co-occur in 104 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperazine" target="urea">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">80</data>
+  <data key="d16">[piperazine] and [urea] co-occur in 80 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperazine" target="chlorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">196</data>
+  <data key="d16">[chlorine] and [piperazine] co-occur in 196 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperazine" target="ether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">453</data>
+  <data key="d16">[ether] and [piperazine] co-occur in 453 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperazine" target="hydroxyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">130</data>
+  <data key="d16">[hydroxyl] and [piperazine] co-occur in 130 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperazine" target="imidazole">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">36</data>
+  <data key="d16">[imidazole] and [piperazine] co-occur in 36 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperazine" target="pyridine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">286</data>
+  <data key="d16">[piperazine] and [pyridine] co-occur in 286 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperazine" target="fluorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">338</data>
+  <data key="d16">[fluorine] and [piperazine] co-occur in 338 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperazine" target="trifluoromethyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">95</data>
+  <data key="d16">[piperazine] and [trifluoromethyl] co-occur in 95 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperazine" target="trifluoromethyl_ewg">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">78</data>
+  <data key="d16">[piperazine] and [trifluoromethyl_ewg] co-occur in 78 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperazine" target="sulfone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">111</data>
+  <data key="d16">[piperazine] and [sulfone] co-occur in 111 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperazine" target="cyclopropyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">63</data>
+  <data key="d16">[cyclopropyl] and [piperazine] co-occur in 63 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperazine" target="thiol">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1</data>
+  <data key="d16">[piperazine] and [thiol] co-occur in 1 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperazine" target="bromine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">29</data>
+  <data key="d16">[bromine] and [piperazine] co-occur in 29 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperazine" target="ester">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">14</data>
+  <data key="d16">[ester] and [piperazine] co-occur in 14 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperazine" target="morpholine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">41</data>
+  <data key="d16">[morpholine] and [piperazine] co-occur in 41 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperazine" target="thioether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">23</data>
+  <data key="d16">[piperazine] and [thioether] co-occur in 23 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperazine" target="nitrile">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">87</data>
+  <data key="d16">[nitrile] and [piperazine] co-occur in 87 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperazine" target="pyrrolidine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">80</data>
+  <data key="d16">[piperazine] and [pyrrolidine] co-occur in 80 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperazine" target="thiophene">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">38</data>
+  <data key="d16">[piperazine] and [thiophene] co-occur in 38 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperazine" target="ketone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">26</data>
+  <data key="d16">[ketone] and [piperazine] co-occur in 26 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperazine" target="aldehyde">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1</data>
+  <data key="d16">[aldehyde] and [piperazine] co-occur in 1 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperazine" target="indole">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">20</data>
+  <data key="d16">[indole] and [piperazine] co-occur in 20 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperazine" target="nitro">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">13</data>
+  <data key="d16">[nitro] and [piperazine] co-occur in 13 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="morpholine" target="amide">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">311</data>
+  <data key="d16">[amide] and [morpholine] co-occur in 311 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="morpholine" target="aromatic_ring">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">418</data>
+  <data key="d16">[aromatic_ring] and [morpholine] co-occur in 418 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="morpholine" target="ether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">513</data>
+  <data key="d16">[ether] and [morpholine] co-occur in 513 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="morpholine" target="piperidine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">60</data>
+  <data key="d16">[morpholine] and [piperidine] co-occur in 60 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="morpholine" target="urea">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">73</data>
+  <data key="d16">[morpholine] and [urea] co-occur in 73 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="morpholine" target="hydroxyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">82</data>
+  <data key="d16">[hydroxyl] and [morpholine] co-occur in 82 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="morpholine" target="pyridine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">148</data>
+  <data key="d16">[morpholine] and [pyridine] co-occur in 148 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="morpholine" target="nitro">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1</data>
+  <data key="d16">[morpholine] and [nitro] co-occur in 1 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="morpholine" target="thiophene">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">26</data>
+  <data key="d16">[morpholine] and [thiophene] co-occur in 26 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="morpholine" target="chlorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">74</data>
+  <data key="d16">[chlorine] and [morpholine] co-occur in 74 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="morpholine" target="pyrrolidine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">64</data>
+  <data key="d16">[morpholine] and [pyrrolidine] co-occur in 64 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="morpholine" target="sulfone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">75</data>
+  <data key="d16">[morpholine] and [sulfone] co-occur in 75 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="morpholine" target="fluorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">156</data>
+  <data key="d16">[fluorine] and [morpholine] co-occur in 156 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="morpholine" target="trifluoromethyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">33</data>
+  <data key="d16">[morpholine] and [trifluoromethyl] co-occur in 33 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="morpholine" target="trifluoromethyl_ewg">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">22</data>
+  <data key="d16">[morpholine] and [trifluoromethyl_ewg] co-occur in 22 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="morpholine" target="ketone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">11</data>
+  <data key="d16">[ketone] and [morpholine] co-occur in 11 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="morpholine" target="aldehyde">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1</data>
+  <data key="d16">[aldehyde] and [morpholine] co-occur in 1 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="morpholine" target="nitrile">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">23</data>
+  <data key="d16">[morpholine] and [nitrile] co-occur in 23 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="morpholine" target="thioether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">22</data>
+  <data key="d16">[morpholine] and [thioether] co-occur in 22 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="morpholine" target="imidazole">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">13</data>
+  <data key="d16">[imidazole] and [morpholine] co-occur in 13 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="morpholine" target="cyclopropyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">18</data>
+  <data key="d16">[cyclopropyl] and [morpholine] co-occur in 18 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="morpholine" target="ester">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">13</data>
+  <data key="d16">[ester] and [morpholine] co-occur in 13 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="morpholine" target="bromine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1</data>
+  <data key="d16">[bromine] and [morpholine] co-occur in 1 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="morpholine" target="indole">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">5</data>
+  <data key="d16">[indole] and [morpholine] co-occur in 5 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="morpholine" target="thiol">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1</data>
+  <data key="d16">[morpholine] and [thiol] co-occur in 1 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperidine" target="aromatic_ring">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1292</data>
+  <data key="d16">[aromatic_ring] and [piperidine] co-occur in 1292 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperidine" target="ether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">823</data>
+  <data key="d16">[ether] and [piperidine] co-occur in 823 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperidine" target="thioether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">62</data>
+  <data key="d16">[piperidine] and [thioether] co-occur in 62 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperidine" target="amide">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">947</data>
+  <data key="d16">[amide] and [piperidine] co-occur in 947 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperidine" target="urea">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">146</data>
+  <data key="d16">[piperidine] and [urea] co-occur in 146 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperidine" target="fluorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">530</data>
+  <data key="d16">[fluorine] and [piperidine] co-occur in 530 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperidine" target="imidazole">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">44</data>
+  <data key="d16">[imidazole] and [piperidine] co-occur in 44 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperidine" target="chlorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">341</data>
+  <data key="d16">[chlorine] and [piperidine] co-occur in 341 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperidine" target="hydroxyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">269</data>
+  <data key="d16">[hydroxyl] and [piperidine] co-occur in 269 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperidine" target="nitrile">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">69</data>
+  <data key="d16">[nitrile] and [piperidine] co-occur in 69 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperidine" target="sulfone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">179</data>
+  <data key="d16">[piperidine] and [sulfone] co-occur in 179 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperidine" target="pyrrolidine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">171</data>
+  <data key="d16">[piperidine] and [pyrrolidine] co-occur in 171 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperidine" target="thiophene">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">66</data>
+  <data key="d16">[piperidine] and [thiophene] co-occur in 66 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperidine" target="ester">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">41</data>
+  <data key="d16">[ester] and [piperidine] co-occur in 41 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperidine" target="pyridine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">491</data>
+  <data key="d16">[piperidine] and [pyridine] co-occur in 491 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperidine" target="cyclopropyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">102</data>
+  <data key="d16">[cyclopropyl] and [piperidine] co-occur in 102 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperidine" target="trifluoromethyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">172</data>
+  <data key="d16">[piperidine] and [trifluoromethyl] co-occur in 172 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperidine" target="trifluoromethyl_ewg">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">116</data>
+  <data key="d16">[piperidine] and [trifluoromethyl_ewg] co-occur in 116 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperidine" target="ketone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">73</data>
+  <data key="d16">[ketone] and [piperidine] co-occur in 73 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperidine" target="bromine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">29</data>
+  <data key="d16">[bromine] and [piperidine] co-occur in 29 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperidine" target="nitro">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">6</data>
+  <data key="d16">[nitro] and [piperidine] co-occur in 6 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperidine" target="guanidine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">2</data>
+  <data key="d16">[guanidine] and [piperidine] co-occur in 2 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperidine" target="indole">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">43</data>
+  <data key="d16">[indole] and [piperidine] co-occur in 43 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="piperidine" target="aldehyde">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">2</data>
+  <data key="d16">[aldehyde] and [piperidine] co-occur in 2 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyrrolidine" target="amide">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">703</data>
+  <data key="d16">[amide] and [pyrrolidine] co-occur in 703 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyrrolidine" target="aromatic_ring">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">868</data>
+  <data key="d16">[aromatic_ring] and [pyrrolidine] co-occur in 868 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyrrolidine" target="fluorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">405</data>
+  <data key="d16">[fluorine] and [pyrrolidine] co-occur in 405 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyrrolidine" target="trifluoromethyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">123</data>
+  <data key="d16">[pyrrolidine] and [trifluoromethyl] co-occur in 123 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyrrolidine" target="trifluoromethyl_ewg">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">69</data>
+  <data key="d16">[pyrrolidine] and [trifluoromethyl_ewg] co-occur in 69 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyrrolidine" target="ether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">490</data>
+  <data key="d16">[ether] and [pyrrolidine] co-occur in 490 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyrrolidine" target="chlorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">239</data>
+  <data key="d16">[chlorine] and [pyrrolidine] co-occur in 239 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyrrolidine" target="thioether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">25</data>
+  <data key="d16">[pyrrolidine] and [thioether] co-occur in 25 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyrrolidine" target="sulfone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">154</data>
+  <data key="d16">[pyrrolidine] and [sulfone] co-occur in 154 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyrrolidine" target="urea">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">84</data>
+  <data key="d16">[pyrrolidine] and [urea] co-occur in 84 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyrrolidine" target="hydroxyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">215</data>
+  <data key="d16">[hydroxyl] and [pyrrolidine] co-occur in 215 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyrrolidine" target="pyridine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">278</data>
+  <data key="d16">[pyridine] and [pyrrolidine] co-occur in 278 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyrrolidine" target="bromine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">40</data>
+  <data key="d16">[bromine] and [pyrrolidine] co-occur in 40 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyrrolidine" target="ester">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">31</data>
+  <data key="d16">[ester] and [pyrrolidine] co-occur in 31 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyrrolidine" target="imidazole">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">20</data>
+  <data key="d16">[imidazole] and [pyrrolidine] co-occur in 20 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyrrolidine" target="nitro">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">2</data>
+  <data key="d16">[nitro] and [pyrrolidine] co-occur in 2 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyrrolidine" target="nitrile">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">84</data>
+  <data key="d16">[nitrile] and [pyrrolidine] co-occur in 84 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyrrolidine" target="ketone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">42</data>
+  <data key="d16">[ketone] and [pyrrolidine] co-occur in 42 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyrrolidine" target="thiophene">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">24</data>
+  <data key="d16">[pyrrolidine] and [thiophene] co-occur in 24 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyrrolidine" target="cyclopropyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">77</data>
+  <data key="d16">[cyclopropyl] and [pyrrolidine] co-occur in 77 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyrrolidine" target="indole">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">19</data>
+  <data key="d16">[indole] and [pyrrolidine] co-occur in 19 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyrrolidine" target="thiol">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">2</data>
+  <data key="d16">[pyrrolidine] and [thiol] co-occur in 2 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyrrolidine" target="guanidine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">8</data>
+  <data key="d16">[guanidine] and [pyrrolidine] co-occur in 8 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyridine" target="ether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1494</data>
+  <data key="d16">[ether] and [pyridine] co-occur in 1494 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyridine" target="hydroxyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">487</data>
+  <data key="d16">[hydroxyl] and [pyridine] co-occur in 487 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyridine" target="amide">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1613</data>
+  <data key="d16">[amide] and [pyridine] co-occur in 1613 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyridine" target="aromatic_ring">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">2488</data>
+  <data key="d16">[aromatic_ring] and [pyridine] co-occur in 2488 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyridine" target="imidazole">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">78</data>
+  <data key="d16">[imidazole] and [pyridine] co-occur in 78 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyridine" target="fluorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1157</data>
+  <data key="d16">[fluorine] and [pyridine] co-occur in 1157 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyridine" target="trifluoromethyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">399</data>
+  <data key="d16">[pyridine] and [trifluoromethyl] co-occur in 399 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyridine" target="trifluoromethyl_ewg">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">296</data>
+  <data key="d16">[pyridine] and [trifluoromethyl_ewg] co-occur in 296 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyridine" target="bromine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">47</data>
+  <data key="d16">[bromine] and [pyridine] co-occur in 47 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyridine" target="urea">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">146</data>
+  <data key="d16">[pyridine] and [urea] co-occur in 146 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyridine" target="sulfone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">346</data>
+  <data key="d16">[pyridine] and [sulfone] co-occur in 346 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyridine" target="indole">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">37</data>
+  <data key="d16">[indole] and [pyridine] co-occur in 37 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyridine" target="chlorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">653</data>
+  <data key="d16">[chlorine] and [pyridine] co-occur in 653 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyridine" target="nitrile">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">267</data>
+  <data key="d16">[nitrile] and [pyridine] co-occur in 267 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyridine" target="ketone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">119</data>
+  <data key="d16">[ketone] and [pyridine] co-occur in 119 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyridine" target="thiophene">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">77</data>
+  <data key="d16">[pyridine] and [thiophene] co-occur in 77 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyridine" target="cyclopropyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">267</data>
+  <data key="d16">[cyclopropyl] and [pyridine] co-occur in 267 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyridine" target="ester">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">45</data>
+  <data key="d16">[ester] and [pyridine] co-occur in 45 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyridine" target="nitro">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">8</data>
+  <data key="d16">[nitro] and [pyridine] co-occur in 8 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyridine" target="thioether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">98</data>
+  <data key="d16">[pyridine] and [thioether] co-occur in 98 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyridine" target="aldehyde">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">3</data>
+  <data key="d16">[aldehyde] and [pyridine] co-occur in 3 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="pyridine" target="guanidine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">9</data>
+  <data key="d16">[guanidine] and [pyridine] co-occur in 9 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="imidazole" target="logd_effect_imidazole">
+  <data key="d13">mmp_delta</data>
+  <data key="d14">-0.454</data>
+  <data key="d15">31</data>
+  <data key="d16">Adding [imidazole] to a molecule changes LogD by -0.45 units on average (based on 31 matched molecular pairs). Decreases lipophilicity.</data>
+</edge>
+<edge source="imidazole" target="aromatic_ring">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">243</data>
+  <data key="d16">[aromatic_ring] and [imidazole] co-occur in 243 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="imidazole" target="ether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">114</data>
+  <data key="d16">[ether] and [imidazole] co-occur in 114 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="imidazole" target="amide">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">91</data>
+  <data key="d16">[amide] and [imidazole] co-occur in 91 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="imidazole" target="fluorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">71</data>
+  <data key="d16">[fluorine] and [imidazole] co-occur in 71 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="imidazole" target="thioether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">25</data>
+  <data key="d16">[imidazole] and [thioether] co-occur in 25 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="imidazole" target="chlorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">53</data>
+  <data key="d16">[chlorine] and [imidazole] co-occur in 53 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="imidazole" target="nitro">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">10</data>
+  <data key="d16">[imidazole] and [nitro] co-occur in 10 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="imidazole" target="trifluoromethyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">42</data>
+  <data key="d16">[imidazole] and [trifluoromethyl] co-occur in 42 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="imidazole" target="trifluoromethyl_ewg">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">37</data>
+  <data key="d16">[imidazole] and [trifluoromethyl_ewg] co-occur in 37 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="imidazole" target="ketone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">6</data>
+  <data key="d16">[imidazole] and [ketone] co-occur in 6 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="imidazole" target="hydroxyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">43</data>
+  <data key="d16">[hydroxyl] and [imidazole] co-occur in 43 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="imidazole" target="urea">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">4</data>
+  <data key="d16">[imidazole] and [urea] co-occur in 4 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="imidazole" target="sulfone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">12</data>
+  <data key="d16">[imidazole] and [sulfone] co-occur in 12 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="imidazole" target="guanidine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">3</data>
+  <data key="d16">[guanidine] and [imidazole] co-occur in 3 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="imidazole" target="ester">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">5</data>
+  <data key="d16">[ester] and [imidazole] co-occur in 5 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="imidazole" target="thiophene">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">6</data>
+  <data key="d16">[imidazole] and [thiophene] co-occur in 6 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="imidazole" target="cyclopropyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">8</data>
+  <data key="d16">[cyclopropyl] and [imidazole] co-occur in 8 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="imidazole" target="bromine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">4</data>
+  <data key="d16">[bromine] and [imidazole] co-occur in 4 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="imidazole" target="nitrile">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">9</data>
+  <data key="d16">[imidazole] and [nitrile] co-occur in 9 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="guanidine" target="logd_effect_guanidine">
+  <data key="d13">mmp_delta</data>
+  <data key="d14">0.149</data>
+  <data key="d15">22</data>
+  <data key="d16">Adding [guanidine] to a molecule changes LogD by +0.15 units on average (based on 22 matched molecular pairs). Increases lipophilicity.</data>
+</edge>
+<edge source="guanidine" target="aromatic_ring">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">104</data>
+  <data key="d16">[aromatic_ring] and [guanidine] co-occur in 104 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="guanidine" target="thioether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">8</data>
+  <data key="d16">[guanidine] and [thioether] co-occur in 8 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="guanidine" target="amide">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">68</data>
+  <data key="d16">[amide] and [guanidine] co-occur in 68 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="guanidine" target="urea">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">3</data>
+  <data key="d16">[guanidine] and [urea] co-occur in 3 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="guanidine" target="chlorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">33</data>
+  <data key="d16">[chlorine] and [guanidine] co-occur in 33 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="guanidine" target="fluorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">27</data>
+  <data key="d16">[fluorine] and [guanidine] co-occur in 27 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="guanidine" target="ether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">54</data>
+  <data key="d16">[ether] and [guanidine] co-occur in 54 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="guanidine" target="hydroxyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">25</data>
+  <data key="d16">[guanidine] and [hydroxyl] co-occur in 25 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="guanidine" target="cyclopropyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">10</data>
+  <data key="d16">[cyclopropyl] and [guanidine] co-occur in 10 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="guanidine" target="bromine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">3</data>
+  <data key="d16">[bromine] and [guanidine] co-occur in 3 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="guanidine" target="sulfone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">6</data>
+  <data key="d16">[guanidine] and [sulfone] co-occur in 6 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="guanidine" target="nitro">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">2</data>
+  <data key="d16">[guanidine] and [nitro] co-occur in 2 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="guanidine" target="trifluoromethyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">8</data>
+  <data key="d16">[guanidine] and [trifluoromethyl] co-occur in 8 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="guanidine" target="trifluoromethyl_ewg">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">8</data>
+  <data key="d16">[guanidine] and [trifluoromethyl_ewg] co-occur in 8 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="guanidine" target="ester">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">8</data>
+  <data key="d16">[ester] and [guanidine] co-occur in 8 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="guanidine" target="thiophene">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">2</data>
+  <data key="d16">[guanidine] and [thiophene] co-occur in 2 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="guanidine" target="nitrile">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">2</data>
+  <data key="d16">[guanidine] and [nitrile] co-occur in 2 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="guanidine" target="ketone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">3</data>
+  <data key="d16">[guanidine] and [ketone] co-occur in 3 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="guanidine" target="indole">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">5</data>
+  <data key="d16">[guanidine] and [indole] co-occur in 5 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="guanidine" target="thiol">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1</data>
+  <data key="d16">[guanidine] and [thiol] co-occur in 1 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="amide" target="logd_effect_amide">
+  <data key="d13">mmp_delta</data>
+  <data key="d14">-0.446</data>
+  <data key="d15">280</data>
+  <data key="d16">Adding [amide] to a molecule changes LogD by -0.45 units on average (based on 280 matched molecular pairs). Decreases lipophilicity.</data>
+</edge>
+<edge source="amide" target="aromatic_ring">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">4411</data>
+  <data key="d16">[amide] and [aromatic_ring] co-occur in 4411 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="amide" target="chlorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1009</data>
+  <data key="d16">[amide] and [chlorine] co-occur in 1009 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="amide" target="fluorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1772</data>
+  <data key="d16">[amide] and [fluorine] co-occur in 1772 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="amide" target="hydroxyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1057</data>
+  <data key="d16">[amide] and [hydroxyl] co-occur in 1057 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="amide" target="trifluoromethyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">547</data>
+  <data key="d16">[amide] and [trifluoromethyl] co-occur in 547 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="amide" target="trifluoromethyl_ewg">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">338</data>
+  <data key="d16">[amide] and [trifluoromethyl_ewg] co-occur in 338 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="amide" target="urea">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">508</data>
+  <data key="d16">[amide] and [urea] co-occur in 508 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="amide" target="ether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">2675</data>
+  <data key="d16">[amide] and [ether] co-occur in 2675 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="amide" target="thioether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">215</data>
+  <data key="d16">[amide] and [thioether] co-occur in 215 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="amide" target="nitrile">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">287</data>
+  <data key="d16">[amide] and [nitrile] co-occur in 287 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="amide" target="sulfone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">708</data>
+  <data key="d16">[amide] and [sulfone] co-occur in 708 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="amide" target="bromine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">136</data>
+  <data key="d16">[amide] and [bromine] co-occur in 136 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="amide" target="thiol">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">25</data>
+  <data key="d16">[amide] and [thiol] co-occur in 25 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="amide" target="nitro">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">48</data>
+  <data key="d16">[amide] and [nitro] co-occur in 48 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="amide" target="thiophene">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">210</data>
+  <data key="d16">[amide] and [thiophene] co-occur in 210 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="amide" target="cyclopropyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">402</data>
+  <data key="d16">[amide] and [cyclopropyl] co-occur in 402 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="amide" target="ketone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">143</data>
+  <data key="d16">[amide] and [ketone] co-occur in 143 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="amide" target="ester">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">169</data>
+  <data key="d16">[amide] and [ester] co-occur in 169 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="amide" target="indole">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">116</data>
+  <data key="d16">[amide] and [indole] co-occur in 116 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="amide" target="aldehyde">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">16</data>
+  <data key="d16">[aldehyde] and [amide] co-occur in 16 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="amide" target="sulfoxide">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1</data>
+  <data key="d16">[amide] and [sulfoxide] co-occur in 1 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="hydroxyl" target="logd_effect_hydroxyl">
+  <data key="d13">mmp_delta</data>
+  <data key="d14">-1.296</data>
+  <data key="d15">698</data>
+  <data key="d16">Adding [hydroxyl] to a molecule changes LogD by -1.30 units on average (based on 698 matched molecular pairs). Decreases lipophilicity.</data>
+</edge>
+<edge source="hydroxyl" target="nitro">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">38</data>
+  <data key="d16">[hydroxyl] and [nitro] co-occur in 38 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="hydroxyl" target="ether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1065</data>
+  <data key="d16">[ether] and [hydroxyl] co-occur in 1065 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="hydroxyl" target="aromatic_ring">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1812</data>
+  <data key="d16">[aromatic_ring] and [hydroxyl] co-occur in 1812 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="hydroxyl" target="chlorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">354</data>
+  <data key="d16">[chlorine] and [hydroxyl] co-occur in 354 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="hydroxyl" target="nitrile">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">106</data>
+  <data key="d16">[hydroxyl] and [nitrile] co-occur in 106 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="hydroxyl" target="fluorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">609</data>
+  <data key="d16">[fluorine] and [hydroxyl] co-occur in 609 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="hydroxyl" target="sulfone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">305</data>
+  <data key="d16">[hydroxyl] and [sulfone] co-occur in 305 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="hydroxyl" target="ketone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">124</data>
+  <data key="d16">[hydroxyl] and [ketone] co-occur in 124 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="hydroxyl" target="ester">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">183</data>
+  <data key="d16">[ester] and [hydroxyl] co-occur in 183 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="hydroxyl" target="thiol">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">4</data>
+  <data key="d16">[hydroxyl] and [thiol] co-occur in 4 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="hydroxyl" target="thioether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">98</data>
+  <data key="d16">[hydroxyl] and [thioether] co-occur in 98 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="hydroxyl" target="thiophene">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">75</data>
+  <data key="d16">[hydroxyl] and [thiophene] co-occur in 75 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="hydroxyl" target="trifluoromethyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">183</data>
+  <data key="d16">[hydroxyl] and [trifluoromethyl] co-occur in 183 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="hydroxyl" target="trifluoromethyl_ewg">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">93</data>
+  <data key="d16">[hydroxyl] and [trifluoromethyl_ewg] co-occur in 93 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="hydroxyl" target="urea">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">41</data>
+  <data key="d16">[hydroxyl] and [urea] co-occur in 41 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="hydroxyl" target="cyclopropyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">99</data>
+  <data key="d16">[cyclopropyl] and [hydroxyl] co-occur in 99 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="hydroxyl" target="bromine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">43</data>
+  <data key="d16">[bromine] and [hydroxyl] co-occur in 43 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="hydroxyl" target="aldehyde">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">16</data>
+  <data key="d16">[aldehyde] and [hydroxyl] co-occur in 16 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="hydroxyl" target="indole">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">71</data>
+  <data key="d16">[hydroxyl] and [indole] co-occur in 71 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="hydroxyl" target="sulfoxide">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">2</data>
+  <data key="d16">[hydroxyl] and [sulfoxide] co-occur in 2 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ether" target="logd_effect_ether">
+  <data key="d13">mmp_delta</data>
+  <data key="d14">-0.079</data>
+  <data key="d15">768</data>
+  <data key="d16">Adding [ether] to a molecule changes LogD by -0.08 units on average (based on 768 matched molecular pairs). Decreases lipophilicity.</data>
+</edge>
+<edge source="ether" target="aromatic_ring">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">4455</data>
+  <data key="d16">[aromatic_ring] and [ether] co-occur in 4455 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ether" target="ester">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">431</data>
+  <data key="d16">[ester] and [ether] co-occur in 431 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ether" target="thioether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">184</data>
+  <data key="d16">[ether] and [thioether] co-occur in 184 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ether" target="fluorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1730</data>
+  <data key="d16">[ether] and [fluorine] co-occur in 1730 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ether" target="urea">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">221</data>
+  <data key="d16">[ether] and [urea] co-occur in 221 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ether" target="nitrile">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">345</data>
+  <data key="d16">[ether] and [nitrile] co-occur in 345 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ether" target="trifluoromethyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">460</data>
+  <data key="d16">[ether] and [trifluoromethyl] co-occur in 460 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ether" target="chlorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1017</data>
+  <data key="d16">[chlorine] and [ether] co-occur in 1017 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ether" target="sulfone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">730</data>
+  <data key="d16">[ether] and [sulfone] co-occur in 730 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ether" target="trifluoromethyl_ewg">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">227</data>
+  <data key="d16">[ether] and [trifluoromethyl_ewg] co-occur in 227 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ether" target="cyclopropyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">286</data>
+  <data key="d16">[cyclopropyl] and [ether] co-occur in 286 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ether" target="ketone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">218</data>
+  <data key="d16">[ether] and [ketone] co-occur in 218 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ether" target="nitro">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">34</data>
+  <data key="d16">[ether] and [nitro] co-occur in 34 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ether" target="bromine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">85</data>
+  <data key="d16">[bromine] and [ether] co-occur in 85 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ether" target="thiophene">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">177</data>
+  <data key="d16">[ether] and [thiophene] co-occur in 177 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ether" target="indole">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">100</data>
+  <data key="d16">[ether] and [indole] co-occur in 100 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ether" target="aldehyde">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">12</data>
+  <data key="d16">[aldehyde] and [ether] co-occur in 12 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ether" target="sulfoxide">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1</data>
+  <data key="d16">[ether] and [sulfoxide] co-occur in 1 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ether" target="thiol">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">3</data>
+  <data key="d16">[ether] and [thiol] co-occur in 3 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ester" target="logd_effect_ester">
+  <data key="d13">mmp_delta</data>
+  <data key="d14">0.439</data>
+  <data key="d15">46</data>
+  <data key="d16">Adding [ester] to a molecule changes LogD by +0.44 units on average (based on 46 matched molecular pairs). Increases lipophilicity.</data>
+</edge>
+<edge source="ester" target="aromatic_ring">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">346</data>
+  <data key="d16">[aromatic_ring] and [ester] co-occur in 346 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ester" target="fluorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">77</data>
+  <data key="d16">[ester] and [fluorine] co-occur in 77 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ester" target="urea">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">17</data>
+  <data key="d16">[ester] and [urea] co-occur in 17 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ester" target="thioether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">26</data>
+  <data key="d16">[ester] and [thioether] co-occur in 26 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ester" target="ketone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">33</data>
+  <data key="d16">[ester] and [ketone] co-occur in 33 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ester" target="sulfone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">11</data>
+  <data key="d16">[ester] and [sulfone] co-occur in 11 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ester" target="chlorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">61</data>
+  <data key="d16">[chlorine] and [ester] co-occur in 61 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ester" target="thiophene">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">16</data>
+  <data key="d16">[ester] and [thiophene] co-occur in 16 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ester" target="indole">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">22</data>
+  <data key="d16">[ester] and [indole] co-occur in 22 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ester" target="trifluoromethyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">15</data>
+  <data key="d16">[ester] and [trifluoromethyl] co-occur in 15 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ester" target="trifluoromethyl_ewg">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">12</data>
+  <data key="d16">[ester] and [trifluoromethyl_ewg] co-occur in 12 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ester" target="nitrile">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">31</data>
+  <data key="d16">[ester] and [nitrile] co-occur in 31 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ester" target="nitro">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">14</data>
+  <data key="d16">[ester] and [nitro] co-occur in 14 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ester" target="thiol">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">2</data>
+  <data key="d16">[ester] and [thiol] co-occur in 2 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ester" target="bromine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">13</data>
+  <data key="d16">[bromine] and [ester] co-occur in 13 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ester" target="cyclopropyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">7</data>
+  <data key="d16">[cyclopropyl] and [ester] co-occur in 7 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ketone" target="logd_effect_ketone">
+  <data key="d13">mmp_delta</data>
+  <data key="d14">-0.247</data>
+  <data key="d15">55</data>
+  <data key="d16">Adding [ketone] to a molecule changes LogD by -0.25 units on average (based on 55 matched molecular pairs). Decreases lipophilicity.</data>
+</edge>
+<edge source="ketone" target="aromatic_ring">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">387</data>
+  <data key="d16">[aromatic_ring] and [ketone] co-occur in 387 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ketone" target="thioether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">31</data>
+  <data key="d16">[ketone] and [thioether] co-occur in 31 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ketone" target="sulfone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">48</data>
+  <data key="d16">[ketone] and [sulfone] co-occur in 48 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ketone" target="thiophene">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">32</data>
+  <data key="d16">[ketone] and [thiophene] co-occur in 32 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ketone" target="urea">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">12</data>
+  <data key="d16">[ketone] and [urea] co-occur in 12 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ketone" target="bromine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">9</data>
+  <data key="d16">[bromine] and [ketone] co-occur in 9 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ketone" target="fluorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">133</data>
+  <data key="d16">[fluorine] and [ketone] co-occur in 133 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ketone" target="chlorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">90</data>
+  <data key="d16">[chlorine] and [ketone] co-occur in 90 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ketone" target="indole">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">26</data>
+  <data key="d16">[indole] and [ketone] co-occur in 26 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ketone" target="cyclopropyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">28</data>
+  <data key="d16">[cyclopropyl] and [ketone] co-occur in 28 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ketone" target="trifluoromethyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">49</data>
+  <data key="d16">[ketone] and [trifluoromethyl] co-occur in 49 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ketone" target="trifluoromethyl_ewg">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">32</data>
+  <data key="d16">[ketone] and [trifluoromethyl_ewg] co-occur in 32 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ketone" target="nitrile">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">10</data>
+  <data key="d16">[ketone] and [nitrile] co-occur in 10 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="ketone" target="thiol">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1</data>
+  <data key="d16">[ketone] and [thiol] co-occur in 1 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="aldehyde" target="logd_effect_aldehyde">
+  <data key="d13">mmp_delta</data>
+  <data key="d14">-0.516</data>
+  <data key="d15">40</data>
+  <data key="d16">Adding [aldehyde] to a molecule changes LogD by -0.52 units on average (based on 40 matched molecular pairs). Decreases lipophilicity.</data>
+</edge>
+<edge source="aldehyde" target="aromatic_ring">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">14</data>
+  <data key="d16">[aldehyde] and [aromatic_ring] co-occur in 14 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="aldehyde" target="fluorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">2</data>
+  <data key="d16">[aldehyde] and [fluorine] co-occur in 2 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="aldehyde" target="sulfone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1</data>
+  <data key="d16">[aldehyde] and [sulfone] co-occur in 1 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="aldehyde" target="trifluoromethyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1</data>
+  <data key="d16">[aldehyde] and [trifluoromethyl] co-occur in 1 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="aldehyde" target="trifluoromethyl_ewg">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1</data>
+  <data key="d16">[aldehyde] and [trifluoromethyl_ewg] co-occur in 1 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="aldehyde" target="urea">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">2</data>
+  <data key="d16">[aldehyde] and [urea] co-occur in 2 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="aldehyde" target="nitrile">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1</data>
+  <data key="d16">[aldehyde] and [nitrile] co-occur in 1 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="nitrile" target="logd_effect_nitrile">
+  <data key="d13">mmp_delta</data>
+  <data key="d14">0.052</data>
+  <data key="d15">317</data>
+  <data key="d16">Adding [nitrile] to a molecule changes LogD by +0.05 units on average (based on 317 matched molecular pairs). Increases lipophilicity.</data>
+</edge>
+<edge source="nitrile" target="aromatic_ring">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">551</data>
+  <data key="d16">[aromatic_ring] and [nitrile] co-occur in 551 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="nitrile" target="chlorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">109</data>
+  <data key="d16">[chlorine] and [nitrile] co-occur in 109 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="nitrile" target="thioether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">21</data>
+  <data key="d16">[nitrile] and [thioether] co-occur in 21 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="nitrile" target="bromine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">3</data>
+  <data key="d16">[bromine] and [nitrile] co-occur in 3 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="nitrile" target="sulfone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">93</data>
+  <data key="d16">[nitrile] and [sulfone] co-occur in 93 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="nitrile" target="fluorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">264</data>
+  <data key="d16">[fluorine] and [nitrile] co-occur in 264 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="nitrile" target="trifluoromethyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">94</data>
+  <data key="d16">[nitrile] and [trifluoromethyl] co-occur in 94 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="nitrile" target="trifluoromethyl_ewg">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">77</data>
+  <data key="d16">[nitrile] and [trifluoromethyl_ewg] co-occur in 77 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="nitrile" target="cyclopropyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">46</data>
+  <data key="d16">[cyclopropyl] and [nitrile] co-occur in 46 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="nitrile" target="urea">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">19</data>
+  <data key="d16">[nitrile] and [urea] co-occur in 19 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="nitrile" target="nitro">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">2</data>
+  <data key="d16">[nitrile] and [nitro] co-occur in 2 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="nitrile" target="thiophene">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">15</data>
+  <data key="d16">[nitrile] and [thiophene] co-occur in 15 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="nitrile" target="indole">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">16</data>
+  <data key="d16">[indole] and [nitrile] co-occur in 16 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="urea" target="logd_effect_urea">
+  <data key="d13">mmp_delta</data>
+  <data key="d14">-0.145</data>
+  <data key="d15">94</data>
+  <data key="d16">Adding [urea] to a molecule changes LogD by -0.14 units on average (based on 94 matched molecular pairs). Decreases lipophilicity.</data>
+</edge>
+<edge source="urea" target="chlorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">62</data>
+  <data key="d16">[chlorine] and [urea] co-occur in 62 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="urea" target="aromatic_ring">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">427</data>
+  <data key="d16">[aromatic_ring] and [urea] co-occur in 427 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="urea" target="fluorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">183</data>
+  <data key="d16">[fluorine] and [urea] co-occur in 183 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="urea" target="sulfone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">75</data>
+  <data key="d16">[sulfone] and [urea] co-occur in 75 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="urea" target="bromine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">51</data>
+  <data key="d16">[bromine] and [urea] co-occur in 51 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="urea" target="trifluoromethyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">53</data>
+  <data key="d16">[trifluoromethyl] and [urea] co-occur in 53 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="urea" target="trifluoromethyl_ewg">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">39</data>
+  <data key="d16">[trifluoromethyl_ewg] and [urea] co-occur in 39 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="urea" target="thioether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">18</data>
+  <data key="d16">[thioether] and [urea] co-occur in 18 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="urea" target="nitro">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">7</data>
+  <data key="d16">[nitro] and [urea] co-occur in 7 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="urea" target="cyclopropyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">10</data>
+  <data key="d16">[cyclopropyl] and [urea] co-occur in 10 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="urea" target="thiophene">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">22</data>
+  <data key="d16">[thiophene] and [urea] co-occur in 22 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="urea" target="thiol">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1</data>
+  <data key="d16">[thiol] and [urea] co-occur in 1 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="urea" target="indole">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1</data>
+  <data key="d16">[indole] and [urea] co-occur in 1 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="aromatic_ring" target="fluorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">2843</data>
+  <data key="d16">[aromatic_ring] and [fluorine] co-occur in 2843 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="aromatic_ring" target="chlorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1908</data>
+  <data key="d16">[aromatic_ring] and [chlorine] co-occur in 1908 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="aromatic_ring" target="trifluoromethyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">821</data>
+  <data key="d16">[aromatic_ring] and [trifluoromethyl] co-occur in 821 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="aromatic_ring" target="trifluoromethyl_ewg">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">557</data>
+  <data key="d16">[aromatic_ring] and [trifluoromethyl_ewg] co-occur in 557 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="aromatic_ring" target="thioether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">360</data>
+  <data key="d16">[aromatic_ring] and [thioether] co-occur in 360 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="aromatic_ring" target="sulfone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1298</data>
+  <data key="d16">[aromatic_ring] and [sulfone] co-occur in 1298 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="aromatic_ring" target="bromine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">223</data>
+  <data key="d16">[aromatic_ring] and [bromine] co-occur in 223 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="aromatic_ring" target="thiol">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">24</data>
+  <data key="d16">[aromatic_ring] and [thiol] co-occur in 24 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="aromatic_ring" target="nitro">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">102</data>
+  <data key="d16">[aromatic_ring] and [nitro] co-occur in 102 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="aromatic_ring" target="thiophene">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">276</data>
+  <data key="d16">[aromatic_ring] and [thiophene] co-occur in 276 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="aromatic_ring" target="cyclopropyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">513</data>
+  <data key="d16">[aromatic_ring] and [cyclopropyl] co-occur in 513 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="aromatic_ring" target="indole">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">269</data>
+  <data key="d16">[aromatic_ring] and [indole] co-occur in 269 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="aromatic_ring" target="sulfoxide">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">2</data>
+  <data key="d16">[aromatic_ring] and [sulfoxide] co-occur in 2 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="trifluoromethyl" target="logd_effect_trifluoromethyl">
+  <data key="d13">mmp_delta</data>
+  <data key="d14">0.608</data>
+  <data key="d15">66</data>
+  <data key="d16">Adding [trifluoromethyl] to a molecule changes LogD by +0.61 units on average (based on 66 matched molecular pairs). Increases lipophilicity.</data>
+</edge>
+<edge source="trifluoromethyl" target="bromine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">12</data>
+  <data key="d16">[bromine] and [trifluoromethyl] co-occur in 12 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="trifluoromethyl" target="chlorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">156</data>
+  <data key="d16">[chlorine] and [trifluoromethyl] co-occur in 156 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="trifluoromethyl" target="fluorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1002</data>
+  <data key="d16">[fluorine] and [trifluoromethyl] co-occur in 1002 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="trifluoromethyl" target="trifluoromethyl_ewg">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">675</data>
+  <data key="d16">[trifluoromethyl] and [trifluoromethyl_ewg] co-occur in 675 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="trifluoromethyl" target="sulfone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">188</data>
+  <data key="d16">[sulfone] and [trifluoromethyl] co-occur in 188 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="trifluoromethyl" target="cyclopropyl">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">72</data>
+  <data key="d16">[cyclopropyl] and [trifluoromethyl] co-occur in 72 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="trifluoromethyl" target="thioether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">21</data>
+  <data key="d16">[thioether] and [trifluoromethyl] co-occur in 21 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="trifluoromethyl" target="thiophene">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">15</data>
+  <data key="d16">[thiophene] and [trifluoromethyl] co-occur in 15 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="trifluoromethyl" target="nitro">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">7</data>
+  <data key="d16">[nitro] and [trifluoromethyl] co-occur in 7 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="trifluoromethyl" target="indole">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">20</data>
+  <data key="d16">[indole] and [trifluoromethyl] co-occur in 20 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="cyclopropyl" target="fluorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">288</data>
+  <data key="d16">[cyclopropyl] and [fluorine] co-occur in 288 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="cyclopropyl" target="sulfone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">113</data>
+  <data key="d16">[cyclopropyl] and [sulfone] co-occur in 113 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="cyclopropyl" target="trifluoromethyl_ewg">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">49</data>
+  <data key="d16">[cyclopropyl] and [trifluoromethyl_ewg] co-occur in 49 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="cyclopropyl" target="thiophene">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">12</data>
+  <data key="d16">[cyclopropyl] and [thiophene] co-occur in 12 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="cyclopropyl" target="indole">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">6</data>
+  <data key="d16">[cyclopropyl] and [indole] co-occur in 6 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="cyclopropyl" target="chlorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">141</data>
+  <data key="d16">[chlorine] and [cyclopropyl] co-occur in 141 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="cyclopropyl" target="thioether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">15</data>
+  <data key="d16">[cyclopropyl] and [thioether] co-occur in 15 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="cyclopropyl" target="bromine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">7</data>
+  <data key="d16">[bromine] and [cyclopropyl] co-occur in 7 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="indole" target="logd_effect_indole">
+  <data key="d13">mmp_delta</data>
+  <data key="d14">-1.693</data>
+  <data key="d15">4</data>
+  <data key="d16">Adding [indole] to a molecule changes LogD by -1.69 units on average (based on 4 matched molecular pairs). Decreases lipophilicity.</data>
+</edge>
+<edge source="indole" target="sulfone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">38</data>
+  <data key="d16">[indole] and [sulfone] co-occur in 38 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="indole" target="fluorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">76</data>
+  <data key="d16">[fluorine] and [indole] co-occur in 76 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="indole" target="chlorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">36</data>
+  <data key="d16">[chlorine] and [indole] co-occur in 36 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="indole" target="bromine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">9</data>
+  <data key="d16">[bromine] and [indole] co-occur in 9 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="indole" target="trifluoromethyl_ewg">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">19</data>
+  <data key="d16">[indole] and [trifluoromethyl_ewg] co-occur in 19 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="indole" target="thioether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1</data>
+  <data key="d16">[indole] and [thioether] co-occur in 1 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="thiophene" target="thioether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">26</data>
+  <data key="d16">[thioether] and [thiophene] co-occur in 26 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="thiophene" target="chlorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">91</data>
+  <data key="d16">[chlorine] and [thiophene] co-occur in 91 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="thiophene" target="sulfone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">96</data>
+  <data key="d16">[sulfone] and [thiophene] co-occur in 96 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="thiophene" target="bromine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">9</data>
+  <data key="d16">[bromine] and [thiophene] co-occur in 9 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="thiophene" target="fluorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">55</data>
+  <data key="d16">[fluorine] and [thiophene] co-occur in 55 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="thiophene" target="trifluoromethyl_ewg">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">8</data>
+  <data key="d16">[thiophene] and [trifluoromethyl_ewg] co-occur in 8 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="thiophene" target="nitro">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">7</data>
+  <data key="d16">[nitro] and [thiophene] co-occur in 7 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="fluorine" target="logd_effect_fluorine">
+  <data key="d13">mmp_delta</data>
+  <data key="d14">-0.012</data>
+  <data key="d15">790</data>
+  <data key="d16">Adding [fluorine] to a molecule changes LogD by -0.01 units on average (based on 790 matched molecular pairs). Decreases lipophilicity.</data>
+</edge>
+<edge source="fluorine" target="bromine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">38</data>
+  <data key="d16">[bromine] and [fluorine] co-occur in 38 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="fluorine" target="chlorine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">614</data>
+  <data key="d16">[chlorine] and [fluorine] co-occur in 614 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="fluorine" target="trifluoromethyl_ewg">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">675</data>
+  <data key="d16">[fluorine] and [trifluoromethyl_ewg] co-occur in 675 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="fluorine" target="sulfone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">531</data>
+  <data key="d16">[fluorine] and [sulfone] co-occur in 531 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="fluorine" target="thioether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">96</data>
+  <data key="d16">[fluorine] and [thioether] co-occur in 96 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="fluorine" target="nitro">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">13</data>
+  <data key="d16">[fluorine] and [nitro] co-occur in 13 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="chlorine" target="logd_effect_chlorine">
+  <data key="d13">mmp_delta</data>
+  <data key="d14">0.345</data>
+  <data key="d15">634</data>
+  <data key="d16">Adding [chlorine] to a molecule changes LogD by +0.34 units on average (based on 634 matched molecular pairs). Increases lipophilicity.</data>
+</edge>
+<edge source="chlorine" target="bromine">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">22</data>
+  <data key="d16">[bromine] and [chlorine] co-occur in 22 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="chlorine" target="thioether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">104</data>
+  <data key="d16">[chlorine] and [thioether] co-occur in 104 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="chlorine" target="thiol">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1</data>
+  <data key="d16">[chlorine] and [thiol] co-occur in 1 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="chlorine" target="trifluoromethyl_ewg">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">111</data>
+  <data key="d16">[chlorine] and [trifluoromethyl_ewg] co-occur in 111 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="chlorine" target="sulfone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">332</data>
+  <data key="d16">[chlorine] and [sulfone] co-occur in 332 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="chlorine" target="nitro">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">13</data>
+  <data key="d16">[chlorine] and [nitro] co-occur in 13 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="chlorine" target="sulfoxide">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1</data>
+  <data key="d16">[chlorine] and [sulfoxide] co-occur in 1 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="bromine" target="logd_effect_bromine">
+  <data key="d13">mmp_delta</data>
+  <data key="d14">0.497</data>
+  <data key="d15">156</data>
+  <data key="d16">Adding [bromine] to a molecule changes LogD by +0.50 units on average (based on 156 matched molecular pairs). Increases lipophilicity.</data>
+</edge>
+<edge source="bromine" target="trifluoromethyl_ewg">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">5</data>
+  <data key="d16">[bromine] and [trifluoromethyl_ewg] co-occur in 5 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="bromine" target="thioether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">11</data>
+  <data key="d16">[bromine] and [thioether] co-occur in 11 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="bromine" target="sulfone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">42</data>
+  <data key="d16">[bromine] and [sulfone] co-occur in 42 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="bromine" target="nitro">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">18</data>
+  <data key="d16">[bromine] and [nitro] co-occur in 18 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="nitro" target="logd_effect_nitro">
+  <data key="d13">mmp_delta</data>
+  <data key="d14">-1.611</data>
+  <data key="d15">220</data>
+  <data key="d16">Adding [nitro] to a molecule changes LogD by -1.61 units on average (based on 220 matched molecular pairs). Decreases lipophilicity.</data>
+</edge>
+<edge source="nitro" target="thiol">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1</data>
+  <data key="d16">[nitro] and [thiol] co-occur in 1 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="nitro" target="thioether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">9</data>
+  <data key="d16">[nitro] and [thioether] co-occur in 9 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="nitro" target="sulfone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">20</data>
+  <data key="d16">[nitro] and [sulfone] co-occur in 20 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="nitro" target="trifluoromethyl_ewg">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">3</data>
+  <data key="d16">[nitro] and [trifluoromethyl_ewg] co-occur in 3 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="trifluoromethyl_ewg" target="logd_effect_trifluoromethyl_ewg">
+  <data key="d13">mmp_delta</data>
+  <data key="d14">0.095</data>
+  <data key="d15">19</data>
+  <data key="d16">Adding [trifluoromethyl_ewg] to a molecule changes LogD by +0.10 units on average (based on 19 matched molecular pairs). Increases lipophilicity.</data>
+</edge>
+<edge source="trifluoromethyl_ewg" target="sulfone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">100</data>
+  <data key="d16">[sulfone] and [trifluoromethyl_ewg] co-occur in 100 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="trifluoromethyl_ewg" target="thioether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">16</data>
+  <data key="d16">[thioether] and [trifluoromethyl_ewg] co-occur in 16 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="thiol" target="logd_effect_thiol">
+  <data key="d13">mmp_delta</data>
+  <data key="d14">-0.874</data>
+  <data key="d15">29</data>
+  <data key="d16">Adding [thiol] to a molecule changes LogD by -0.87 units on average (based on 29 matched molecular pairs). Decreases lipophilicity.</data>
+</edge>
+<edge source="thiol" target="sulfone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">7</data>
+  <data key="d16">[sulfone] and [thiol] co-occur in 7 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="thiol" target="thioether">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1</data>
+  <data key="d16">[thioether] and [thiol] co-occur in 1 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="thioether" target="logd_effect_thioether">
+  <data key="d13">mmp_delta</data>
+  <data key="d14">1.442</data>
+  <data key="d15">82</data>
+  <data key="d16">Adding [thioether] to a molecule changes LogD by +1.44 units on average (based on 82 matched molecular pairs). Increases lipophilicity.</data>
+</edge>
+<edge source="thioether" target="sulfone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">24</data>
+  <data key="d16">[sulfone] and [thioether] co-occur in 24 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="sulfoxide" target="logd_effect_sulfoxide">
+  <data key="d13">mmp_delta</data>
+  <data key="d14">-3.343</data>
+  <data key="d15">12</data>
+  <data key="d16">Adding [sulfoxide] to a molecule changes LogD by -3.34 units on average (based on 12 matched molecular pairs). Decreases lipophilicity.</data>
+</edge>
+<edge source="sulfoxide" target="sulfone">
+  <data key="d13">co_occurrence</data>
+  <data key="d17">1</data>
+  <data key="d16">[sulfone] and [sulfoxide] co-occur in 1 molecule(s) in the dataset. Their combined effect on LogD should be considered together.</data>
+</edge>
+<edge source="sulfone" target="logd_effect_sulfone">
+  <data key="d13">mmp_delta</data>
+  <data key="d14">-0.886</data>
+  <data key="d15">182</data>
+  <data key="d16">Adding [sulfone] to a molecule changes LogD by -0.89 units on average (based on 182 matched molecular pairs). Decreases lipophilicity.</data>
+</edge>
+</graph></graphml>
