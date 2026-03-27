@@ -1,3 +1,0 @@
-include requirements.txt
-include graphgen/configs/*.yaml
-recursive-include graphgen/configs *.yaml
