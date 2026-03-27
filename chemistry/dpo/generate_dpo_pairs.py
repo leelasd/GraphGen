@@ -62,7 +62,7 @@ def extract_logd_prediction(response: str) -> Optional[float]:
     """Extract numeric LogD value from model response."""
     patterns = [
         r"LogD\s*[≈=~]\s*(-?\d+\.?\d*)",
-        r"Prediction:\s*-?\d+\.?\d*\s*[≈=~]\s*(-?\d+\.?\d*)",
+        r"Prediction:\s*(?:LogD\s*[≈=~]\s*)?(-?\d+\.?\d+)",
         r"predicted\s+LogD.*?(-?\d+\.?\d+)",
     ]
     for pattern in patterns:
@@ -76,7 +76,13 @@ def extract_logd_prediction(response: str) -> Optional[float]:
 
 
 def perturb_reasoning(correct_chain: str, perturbation: str) -> str:
-    """Generate a flawed reasoning chain by applying a perturbation."""
+    """Generate a flawed reasoning chain by applying a perturbation.
+
+    Corruption direction:
+    - ignore_ionization: sign-invert (ambiguous direction)
+    - wrong_ph: +2.0 offset (LogD at pH 2.0 is typically higher for ionizables)
+    - miss_fg: +1.5 offset (ignoring polar FGs inflates lipophilicity estimate)
+    """
     note = PERTURBATION_TEMPLATES.get(perturbation, "")
     lines = correct_chain.split("\n")
     # Insert perturbation note after Step 1
@@ -85,13 +91,30 @@ def perturb_reasoning(correct_chain: str, perturbation: str) -> str:
         output.append(line)
         if line.startswith("Step 1"):
             output.append(f"[PERTURBATION: {note}]")
-    # Corrupt the final prediction by inverting sign or adding offset
+
     result = "\n".join(output)
-    result = re.sub(
-        r"Prediction: LogD ≈ (-?\d+\.?\d*)",
-        lambda m: f"Prediction: LogD ≈ {-float(m.group(1)):.1f}",
-        result,
-    )
+
+    if perturbation == "ignore_ionization":
+        # Sign-invert: ambiguous direction, safe for all FG types
+        result = re.sub(
+            r"Prediction: LogD ≈ (-?\d+\.?\d*)",
+            lambda m: f"Prediction: LogD ≈ {-float(m.group(1)):.1f}",
+            result,
+        )
+    elif perturbation == "wrong_ph":
+        # +2.0: at pH 2.0 ionizable acids/bases are protonated → more lipophilic
+        result = re.sub(
+            r"Prediction: LogD ≈ (-?\d+\.?\d*)",
+            lambda m: f"Prediction: LogD ≈ {float(m.group(1)) + 2.0:.1f}",
+            result,
+        )
+    elif perturbation == "miss_fg":
+        # +1.5: ignoring polar groups inflates lipophilicity
+        result = re.sub(
+            r"Prediction: LogD ≈ (-?\d+\.?\d*)",
+            lambda m: f"Prediction: LogD ≈ {float(m.group(1)) + 1.5:.1f}",
+            result,
+        )
     return result
 
 
@@ -109,7 +132,8 @@ def _call_llm(prompt: str, model: str = "llama-3-2-3b") -> str:
     headers = {"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"}
     resp = httpx.post(f"{base_url}/chat/completions", json=payload, headers=headers, timeout=60)
     resp.raise_for_status()
-    return resp.json()["choices"][0]["message"]["content"] or ""
+    data = resp.json()
+    return (data.get("choices", [{}])[0].get("message", {}).get("content") or "")
 
 
 def generate_dpo_pairs(
