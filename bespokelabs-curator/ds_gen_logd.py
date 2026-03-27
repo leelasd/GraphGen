@@ -14,7 +14,7 @@ litellm.drop_params = True
 import os
 os.environ["AWS_PROFILE"] = "genai"
 os.environ["CURATOR_VIEWER"] = "1"
-os.environ["BESPOKE_API_KEY"] = "bespoke-9ff97e97445794907bec5ef8d57fd925da61e8ba7586c17ec2dca4bdffb87b9b"
+os.environ["BESPOKE_API_KEY"] = os.getenv("BESPOKE_API_KEY", "your-bespoke-api-key-here")
 
 #model_name = "bedrock/us.anthropic.claude-3-7-sonnet-20250219-v1:0"
 model_name = "bedrock/us.amazon.nova-micro-v1:0"

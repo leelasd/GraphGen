@@ -276,7 +276,7 @@ model_list:
       aws_profile_name: genai
 
 general_settings:
-  master_key: bedrock-graphgen-2024
+  master_key: your-master-key-here
   port: 4000
 ```
 
@@ -314,7 +314,7 @@ curl -s http://localhost:4000/health
 # Test Llama 3.2 3B (working)
 curl -X POST http://localhost:4000/v1/chat/completions \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer bedrock-graphgen-2024" \
+  -H "Authorization: Bearer your-master-key-here" \
   -d '{
     "model": "llama-3-2-3b",
     "messages": [{"role": "user", "content": "Hello"}],
@@ -324,7 +324,7 @@ curl -X POST http://localhost:4000/v1/chat/completions \
 # Test Claude 3.7 Sonnet (requires inference profile)
 curl -X POST http://localhost:4000/v1/chat/completions \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer bedrock-graphgen-2024" \
+  -H "Authorization: Bearer your-master-key-here" \
   -d '{
     "model": "claude-3-7-sonnet",
     "messages": [{"role": "user", "content": "Hello"}],
@@ -352,7 +352,7 @@ aws bedrock list-foundation-models --region us-east-1 --profile genai \
 #### **✅ Llama 3.2 3B Instruct - WORKING**
 ```bash
 curl -X POST http://localhost:4000/v1/chat/completions \
-  -H "Authorization: Bearer bedrock-graphgen-2024" \
+  -H "Authorization: Bearer your-master-key-here" \
   -d '{"model": "llama-3-2-3b", "messages": [{"role": "user", "content": "Hello"}]}'
 
 # Response: "Hello. Is there something I can help you with"
@@ -383,12 +383,12 @@ curl -X POST http://localhost:4000/v1/chat/completions \
 # Synthesizer - Using LiteLLM proxy for Bedrock access
 SYNTHESIZER_MODEL=claude-3-7-sonnet  # (fallback to working model needed)
 SYNTHESIZER_BASE_URL=http://localhost:4000/v1
-SYNTHESIZER_API_KEY=bedrock-graphgen-2024
+SYNTHESIZER_API_KEY=your-master-key-here
 
 # Trainee - Working Llama 3.2 3B via Bedrock
 TRAINEE_MODEL=llama-3-2-3b
 TRAINEE_BASE_URL=http://localhost:4000/v1
-TRAINEE_API_KEY=bedrock-graphgen-2024
+TRAINEE_API_KEY=your-master-key-here
 
 TOKENIZER_MODEL=meta-llama/Llama-3.2-1B
 ```
@@ -433,7 +433,7 @@ TOKENIZER_MODEL=meta-llama/Llama-3.2-1B
 ```bash
 # All 6 models confirmed working via LiteLLM proxy
 curl -X POST http://localhost:4000/v1/chat/completions \
-  -H "Authorization: Bearer bedrock-graphgen-2024" \
+  -H "Authorization: Bearer your-master-key-here" \
   -d '{"model": "MODEL_NAME", "messages": [{"role": "user", "content": "Hello"}]}'
 ```
 
@@ -496,7 +496,7 @@ model_list:
       aws_profile_name: genai
 
 general_settings:
-  master_key: bedrock-graphgen-2024
+  master_key: your-master-key-here
   port: 4000
 ```
 
@@ -511,12 +511,12 @@ general_settings:
 # Synthesizer - Latest Llama 3.3 70B via Bedrock
 SYNTHESIZER_MODEL=llama-3-3-70b
 SYNTHESIZER_BASE_URL=http://localhost:4000/v1
-SYNTHESIZER_API_KEY=bedrock-graphgen-2024
+SYNTHESIZER_API_KEY=your-master-key-here
 
 # Trainee - Largest Llama 3.2 90B via Bedrock
 TRAINEE_MODEL=llama-3-2-90b
 TRAINEE_BASE_URL=http://localhost:4000/v1
-TRAINEE_API_KEY=bedrock-graphgen-2024
+TRAINEE_API_KEY=your-master-key-here
 
 TOKENIZER_MODEL=meta-llama/Llama-3.2-1B
 ```
