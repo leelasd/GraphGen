@@ -79,3 +79,10 @@ def test_build_all_fg_nodes():
     for node in nodes:
         assert "id" in node
         assert "content" in node
+        attrs_nonzero = (
+            node.get("logp_contribution", 0.0) != 0.0
+            or node.get("hbd", 0) > 0
+            or node.get("hba", 0) > 0
+            or node.get("tpsa", 0.0) > 0.0
+        )
+        assert attrs_nonzero, f"All-zero RDKit attributes for node: {node['id']}"
