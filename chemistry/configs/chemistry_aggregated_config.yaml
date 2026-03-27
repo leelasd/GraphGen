@@ -1,0 +1,59 @@
+# chemistry/configs/chemistry_aggregated_config.yaml
+# KG2 → SFT-2 anchor: scaffold-class aggregated patterns (ChatML format)
+global_params:
+  working_dir: chemistry/output/kg2_aggregated_cache
+  graph_backend: networkx
+  kv_backend: json_kv
+
+nodes:
+  - id: read
+    op_name: read
+    type: source
+    dependencies: []
+    params:
+      input_path:
+        - chemistry/kg2_build/molecule_graph.graphml
+
+  - id: chunk
+    op_name: chunk
+    type: map_batch
+    dependencies:
+      - read
+    params:
+      chunk_size: 4096
+      chunk_overlap: 0
+
+  - id: build_kg
+    op_name: build_kg
+    type: map_batch
+    execution_params:
+      replicas: 1
+      batch_size: 64
+    dependencies:
+      - chunk
+
+  - id: partition
+    op_name: partition
+    type: aggregate
+    dependencies:
+      - build_kg
+    params:
+      method: ece
+      method_params:
+        max_units_per_community: 5
+        min_units_per_community: 2
+        max_tokens_per_community: 10240
+        unit_sampling: random
+
+  - id: generate
+    op_name: generate
+    type: map_batch
+    dependencies:
+      - partition
+    execution_params:
+      replicas: 1
+      batch_size: 64
+    save_output: true
+    params:
+      method: aggregated
+      data_format: ChatML

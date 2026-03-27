@@ -1,0 +1,56 @@
+# chemistry/configs/chemistry_atomic_config.yaml
+# KG1 → SFT-1 Atomic facts (Alpaca format)
+global_params:
+  working_dir: chemistry/output/kg1_atomic_cache
+  graph_backend: networkx
+  kv_backend: json_kv
+
+nodes:
+  - id: read
+    op_name: read
+    type: source
+    dependencies: []
+    params:
+      input_path:
+        - chemistry/kg1_build/chemistry_rule_graph.graphml
+
+  - id: chunk
+    op_name: chunk
+    type: map_batch
+    dependencies:
+      - read
+    params:
+      chunk_size: 4096
+      chunk_overlap: 0
+
+  - id: build_kg
+    op_name: build_kg
+    type: map_batch
+    execution_params:
+      replicas: 1
+      batch_size: 64
+    dependencies:
+      - chunk
+
+  - id: partition
+    op_name: partition
+    type: aggregate
+    dependencies:
+      - build_kg
+    params:
+      method: dfs
+      method_params:
+        max_units_per_community: 1
+
+  - id: generate
+    op_name: generate
+    type: map_batch
+    dependencies:
+      - partition
+    execution_params:
+      replicas: 1
+      batch_size: 64
+    save_output: true
+    params:
+      method: atomic
+      data_format: Alpaca

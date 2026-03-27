@@ -1,0 +1,58 @@
+# chemistry/configs/chemistry_cot_config.yaml
+# KG1 → SFT-2 Chain-of-thought (ChatML format)
+global_params:
+  working_dir: chemistry/output/kg1_cot_cache
+  graph_backend: networkx
+  kv_backend: json_kv
+
+nodes:
+  - id: read
+    op_name: read
+    type: source
+    dependencies: []
+    params:
+      input_path:
+        - chemistry/kg1_build/chemistry_rule_graph.graphml
+
+  - id: chunk
+    op_name: chunk
+    type: map_batch
+    dependencies:
+      - read
+    params:
+      chunk_size: 4096
+      chunk_overlap: 0
+
+  - id: build_kg
+    op_name: build_kg
+    type: map_batch
+    execution_params:
+      replicas: 1
+      batch_size: 64
+    dependencies:
+      - chunk
+
+  - id: partition
+    op_name: partition
+    type: aggregate
+    dependencies:
+      - build_kg
+    params:
+      method: leiden
+      method_params:
+        max_size: 15
+        use_lcc: false
+        random_seed: 42
+
+  - id: generate
+    op_name: generate
+    type: map_batch
+    dependencies:
+      - partition
+    execution_params:
+      replicas: 1
+      batch_size: 64
+    save_output: true
+    params:
+      method: cot
+      data_format: Sharegpt
