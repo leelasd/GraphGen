@@ -26,6 +26,7 @@ def _logd_bin(logd: float) -> str:
 def _compute_mol_descriptors(smiles: str) -> dict:
     mol = Chem.MolFromSmiles(smiles)
     if mol is None:
+        logger.warning("Invalid SMILES in descriptor computation: %s", smiles)
         return {"logp": 0.0, "hbd": 0, "hba": 0, "tpsa": 0.0, "mw": 0.0, "rotbonds": 0}
     return {
         "logp": round(Crippen.MolLogP(mol), 3),
@@ -128,8 +129,11 @@ def build_scaffold_edges(nodes: list[dict]) -> list[dict]:
     for scaffold, group in scaffold_groups.items():
         if len(group) < 2:
             continue
+        # Window cap: connect each molecule to its next 5 neighbors only.
+        # Prevents O(N^2) explosion for common scaffolds (e.g., bare benzene ring)
+        # on real ChEMBL data where hundreds of molecules share the same Murcko scaffold.
         for i in range(len(group)):
-            for j in range(i + 1, len(group)):
+            for j in range(i + 1, min(i + 6, len(group))):
                 ni, nj = group[i], group[j]
                 content = (
                     f"Molecules [{ni['smiles']}] and [{nj['smiles']}] share scaffold: {scaffold}. "
@@ -197,11 +201,13 @@ def build_kg2(df: pd.DataFrame, fg_defs: list[dict], similarity_threshold: float
     for edge in build_scaffold_edges(nodes_with_id):
         src, tgt = edge.pop("source"), edge.pop("target")
         if not G.has_edge(src, tgt):
+            # First-writer-wins: similarity edges take priority; scaffold edges fill gaps.
             G.add_edge(src, tgt, **edge)
 
     for edge in build_fg_class_edges(nodes_with_id):
         src, tgt = edge.pop("source"), edge.pop("target")
         if not G.has_edge(src, tgt):
+            # First-writer-wins: only add FG class edge if no edge exists between this pair yet.
             G.add_edge(src, tgt, **edge)
 
     logger.info("KG2 built: %d nodes, %d edges", G.number_of_nodes(), G.number_of_edges())
