@@ -31,21 +31,20 @@ Two knowledge graphs are built and run through GraphGen in parallel, each target
   - Crippen LogP fragment contribution (RDKit `Chem.rdMolDescriptors.CalcCrippenDescriptors` on FG-containing fragment)
   - HBD/HBA counts (RDKit Lipinski descriptors)
   - TPSA contribution (RDKit `CalcTPSA`)
-  - Estimated ionization state at pH 7.4 (dimorphite-DL or pkasolver)
   - Molecular weight contribution
+  - 3D physicochemical properties via OpenBabel (polar surface area, logP, rotatable bonds)
 
 **Edges (~400–600):**
 - Computed delta edges: δLogD when adding FG to reference scaffold (computed on matched molecular pairs from ChEMBL)
 - Interaction edges derived from computed descriptors: "electron-withdrawing (σp > 0.3)", "H-bond donor competes with lipophilic surface"
-- Ionization edges: "ionized fraction > 99% at pH 7.4 (Henderson-Hasselbalch from estimated pKa)"
+- Ionization edges: derived from OpenBabel's pH-dependent charge model at pH 7.4
 - Structural adjacency effects: computed via RDKit atom environment analysis
 
 **Source:** Fully RDKit-derived + OpenBabel for 3D ionization states. No manual literature encoding.
 
 **Toolchain:**
 - `RDKit` — SMARTS-based FG enumeration, Crippen fragments, Lipinski descriptors, TPSA, matched molecular pairs
-- `dimorphite-DL` or `pkasolver` — pKa estimation and ionization state at pH 7.4
-- `OpenBabel` — 3D conformer generation, additional physicochemical properties
+- `OpenBabel` — pH-dependent ionization states, 3D conformer generation, additional physicochemical properties
 
 **GraphGen modes used:**
 - `atomic` → single-FG factual QA (Alpaca format)
@@ -161,10 +160,10 @@ Training proceeds in three stages on Llama 3.2 3B (and optionally 8B in parallel
 ### KG1 Build Process
 1. Define ~150–200 functional groups as SMARTS patterns (`fg_smarts.yaml`)
 2. For each FG, enumerate a set of representative fragment molecules using RDKit
-3. Compute node attributes per FG: Crippen LogP contribution, HBD/HBA, TPSA, MW contribution
-4. Estimate pKa and ionization fraction at pH 7.4 using dimorphite-DL (or pkasolver)
-5. Build delta edges using matched molecular pairs from ChEMBL: find pairs differing by exactly one FG, compute δLogD from experimental values
-6. Add interaction edges from computed descriptor correlations (e.g., electron-withdrawing σp values from RDKit)
+3. Compute node attributes per FG: Crippen LogP contribution, HBD/HBA, TPSA, MW contribution (RDKit)
+4. Compute ionization states at pH 7.4 using OpenBabel's pH model (`obabel -p 7.4`)
+5. Build delta edges using matched molecular pairs from ChEMBL: find pairs differing by exactly one FG, compute δLogD from experimental values (RDKit)
+6. Add interaction edges from computed descriptor correlations (e.g., electron-withdrawing effect via RDKit atom environment analysis)
 7. Export as GraphML using NetworkX → feed into GraphGen via `GraphmlReader`
 
 **Key script:** `chemistry/kg1_build/build_kg1.py` — fully automated, no manual curation
@@ -246,5 +245,5 @@ GraphGen/
 │   │   └── generate_dpo_pairs.py         # GNN oracle + DPO pair builder
 │   └── evaluate/
 │       └── evaluate_logd.py              # Spearman R, RMSE, chain review
-├── requirements-chemistry.txt            # rdkit, openbabel, dimorphite-dl, pkasolver
+├── requirements-chemistry.txt            # rdkit, openbabel-wheel
 ```
