@@ -23,19 +23,29 @@ Two knowledge graphs are built and run through GraphGen in parallel, each target
 
 ### KG1 — Functional Group Rule Graph
 
-**Purpose:** Teach the model chemistry vocabulary and how individual functional groups affect LogD.
+**Purpose:** Teach the model chemistry vocabulary and how individual functional groups affect LogD. Fully computationally derived — no manual literature encoding.
 
-**Nodes (~150):**
-- Functional groups: carboxylic acid, piperazine, fluorine, aromatic ring, HBD, HBA, sulfonamide, amide, ester, etc.
-- pH concepts: physiological pH (7.4), pKa, ionization state, zwitter ion
-- LogD contribution rules: lipophilicity units, additive/subtractive effects
+**Nodes (~150–200):**
+- Functional groups identified via RDKit SMARTS patterns (carboxylic acid, piperazine, fluorine, aromatic ring, sulfonamide, amide, ester, etc.)
+- Each node stores computed attributes:
+  - Crippen LogP fragment contribution (RDKit `Chem.rdMolDescriptors.CalcCrippenDescriptors` on FG-containing fragment)
+  - HBD/HBA counts (RDKit Lipinski descriptors)
+  - TPSA contribution (RDKit `CalcTPSA`)
+  - Estimated ionization state at pH 7.4 (dimorphite-DL or pkasolver)
+  - Molecular weight contribution
 
-**Edges (~400):**
-- Directional contribution edges: "increases LogD by ~1.5 units", "decreases LogD by ~1.5–2.5 units (ionized at pH 7.4)"
-- Interaction edges: "competes with", "activates adjacent", "electron-withdrawing effect on"
-- Contextual edges: "dominant effect at pH 7.4", "pKa-dependent", "additive with"
+**Edges (~400–600):**
+- Computed delta edges: δLogD when adding FG to reference scaffold (computed on matched molecular pairs from ChEMBL)
+- Interaction edges derived from computed descriptors: "electron-withdrawing (σp > 0.3)", "H-bond donor competes with lipophilic surface"
+- Ionization edges: "ionized fraction > 99% at pH 7.4 (Henderson-Hasselbalch from estimated pKa)"
+- Structural adjacency effects: computed via RDKit atom environment analysis
 
-**Source:** Medicinal chemistry literature (Lipinski, Hansch, Leo), Crippen fragment contributions, expert knowledge encoded as YAML/JSON.
+**Source:** Fully RDKit-derived + OpenBabel for 3D ionization states. No manual literature encoding.
+
+**Toolchain:**
+- `RDKit` — SMARTS-based FG enumeration, Crippen fragments, Lipinski descriptors, TPSA, matched molecular pairs
+- `dimorphite-DL` or `pkasolver` — pKa estimation and ionization state at pH 7.4
+- `OpenBabel` — 3D conformer generation, additional physicochemical properties
 
 **GraphGen modes used:**
 - `atomic` → single-FG factual QA (Alpaca format)
@@ -149,10 +159,15 @@ Training proceeds in three stages on Llama 3.2 3B (and optionally 8B in parallel
 ## 5. KG Construction
 
 ### KG1 Build Process
-1. Encode ~150 functional group nodes + rule edges as a structured YAML file (`chemistry_rule_graph.yaml`)
-2. Assign edge weights based on literature fragment contributions (e.g., Crippen LogP fragments as prior)
-3. Convert to GraphML using NetworkX → feed into GraphGen as input file
-4. Use GraphGen's existing `GraphmlReader` for ingestion
+1. Define ~150–200 functional groups as SMARTS patterns (`fg_smarts.yaml`)
+2. For each FG, enumerate a set of representative fragment molecules using RDKit
+3. Compute node attributes per FG: Crippen LogP contribution, HBD/HBA, TPSA, MW contribution
+4. Estimate pKa and ionization fraction at pH 7.4 using dimorphite-DL (or pkasolver)
+5. Build delta edges using matched molecular pairs from ChEMBL: find pairs differing by exactly one FG, compute δLogD from experimental values
+6. Add interaction edges from computed descriptor correlations (e.g., electron-withdrawing σp values from RDKit)
+7. Export as GraphML using NetworkX → feed into GraphGen via `GraphmlReader`
+
+**Key script:** `chemistry/kg1_build/build_kg1.py` — fully automated, no manual curation
 
 ### KG2 Build Process
 1. Load ChEMBL experimental dataset (SMILES + LogD)
@@ -216,11 +231,11 @@ Test set: held-out 10% of ChEMBL data (not used in KG2 construction).
 GraphGen/
 ├── chemistry/
 │   ├── kg1_build/
-│   │   ├── chemistry_rule_graph.yaml     # FG rules source
-│   │   ├── build_kg1.py                  # YAML → GraphML
+│   │   ├── fg_smarts.yaml                # SMARTS patterns for ~150 FGs
+│   │   ├── build_kg1.py                  # RDKit/OpenBabel → GraphML (fully automated)
 │   │   └── chemistry_rule_graph.graphml  # KG1 output
 │   ├── kg2_build/
-│   │   ├── build_kg2.py                  # ChEMBL → molecule GraphML
+│   │   ├── build_kg2.py                  # ChEMBL → molecule GraphML (RDKit edges)
 │   │   └── molecule_graph.graphml        # KG2 output
 │   ├── configs/
 │   │   ├── chemistry_atomic_config.yaml
@@ -231,4 +246,5 @@ GraphGen/
 │   │   └── generate_dpo_pairs.py         # GNN oracle + DPO pair builder
 │   └── evaluate/
 │       └── evaluate_logd.py              # Spearman R, RMSE, chain review
+├── requirements-chemistry.txt            # rdkit, openbabel, dimorphite-dl, pkasolver
 ```
