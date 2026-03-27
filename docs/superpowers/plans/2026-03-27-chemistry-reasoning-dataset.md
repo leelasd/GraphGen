@@ -11,13 +11,22 @@
 **Scope:** This plan covers **data generation only** (KG build → GraphGen → DPO pairs → evaluation script). Model fine-tuning (QLoRA SFT + DPO training) is out of scope and handled separately once the dataset is validated.
 
 **Environment variables required before running GraphGen** (synthesizer/trainee are configured via env, not YAML):
+
+GraphGen has no native Bedrock backend. The routing is:
+`GraphGen → http_api backend → LiteLLM proxy (localhost:4000) → AWS Bedrock`
+
+Model names below are LiteLLM aliases defined in `litellm_config.yaml` that map to Bedrock model ARNs.
+No OpenAI models are used.
+
 ```bash
-export SYNTHESIZER_BACKEND=openai
+# Synthesizer: Claude Sonnet 4 on Bedrock (via LiteLLM proxy)
+export SYNTHESIZER_BACKEND=http_api
 export SYNTHESIZER_BASE_URL=http://localhost:4000
 export SYNTHESIZER_MODEL=claude-sonnet-4
 export SYNTHESIZER_API_KEY=your-master-key-here
 
-export TRAINEE_BACKEND=openai
+# Trainee: Llama 3.2 3B on Bedrock (via LiteLLM proxy)
+export TRAINEE_BACKEND=http_api
 export TRAINEE_BASE_URL=http://localhost:4000
 export TRAINEE_MODEL=llama-3-2-3b
 export TRAINEE_API_KEY=your-master-key-here
@@ -76,6 +85,7 @@ networkx>=3.0
 pandas>=2.0
 scipy>=1.11
 numpy>=1.24
+httpx>=0.27
 ```
 
 - [ ] **Step 3: Write the failing test**
@@ -1790,19 +1800,20 @@ def perturb_reasoning(correct_chain: str, perturbation: str) -> str:
 
 
 def _call_llm(prompt: str, model: str = "llama-3-2-3b") -> str:
-    """Call LiteLLM proxy at localhost:4000."""
-    from openai import OpenAI
-    client = OpenAI(
-        base_url=os.getenv("SYNTHESIZER_BASE_URL", "http://localhost:4000"),
-        api_key=os.getenv("SYNTHESIZER_API_KEY", "your-master-key-here"),
-    )
-    resp = client.chat.completions.create(
-        model=model,
-        messages=[{"role": "user", "content": prompt}],
-        max_tokens=512,
-        temperature=0.3,
-    )
-    return resp.choices[0].message.content or ""
+    """Call LiteLLM proxy at localhost:4000 (routes to AWS Bedrock — no OpenAI models)."""
+    import httpx
+    base_url = os.getenv("SYNTHESIZER_BASE_URL", "http://localhost:4000").rstrip("/")
+    api_key = os.getenv("SYNTHESIZER_API_KEY", "your-master-key-here")
+    payload = {
+        "model": model,
+        "messages": [{"role": "user", "content": prompt}],
+        "max_tokens": 512,
+        "temperature": 0.3,
+    }
+    headers = {"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"}
+    resp = httpx.post(f"{base_url}/chat/completions", json=payload, headers=headers, timeout=60)
+    resp.raise_for_status()
+    return resp.json()["choices"][0]["message"]["content"] or ""
 
 
 def generate_dpo_pairs(
@@ -2199,12 +2210,13 @@ python chemistry/kg2_build/build_kg2.py
 # 2. Start LiteLLM proxy (required for GraphGen)
 litellm --config litellm_config.yaml &
 
-# 3. Set synthesizer/trainee env vars (required — GraphGen reads these, not the YAML)
-export SYNTHESIZER_BACKEND=openai
+# 3. Set synthesizer/trainee env vars
+# GraphGen → http_api backend → LiteLLM proxy → AWS Bedrock (no OpenAI models)
+export SYNTHESIZER_BACKEND=http_api
 export SYNTHESIZER_BASE_URL=http://localhost:4000
 export SYNTHESIZER_MODEL=claude-sonnet-4
 export SYNTHESIZER_API_KEY=your-master-key-here
-export TRAINEE_BACKEND=openai
+export TRAINEE_BACKEND=http_api
 export TRAINEE_BASE_URL=http://localhost:4000
 export TRAINEE_MODEL=llama-3-2-3b
 export TRAINEE_API_KEY=your-master-key-here
