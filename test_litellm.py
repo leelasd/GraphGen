@@ -9,7 +9,7 @@ def test_litellm_direct():
     # Test data
     url = "http://localhost:4000/v1/chat/completions"
     headers = {
-        "Authorization": "Bearer bedrock-graphgen-2024",
+        "Authorization": "Bearer your-master-key-here",
         "Content-Type": "application/json"
     }
     data = {
@@ -35,7 +35,7 @@ def test_litellm_direct():
 def test_health_endpoint():
     """Test LiteLLM health endpoint"""
     try:
-        headers = {"Authorization": "Bearer bedrock-graphgen-2024"}
+        headers = {"Authorization": "Bearer your-master-key-here"}
         response = requests.get("http://localhost:4000/health", headers=headers, timeout=10)
         print(f"Health Status: {response.status_code}")
         if response.status_code == 200:

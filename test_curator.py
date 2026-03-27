@@ -45,7 +45,7 @@ def main():
         backend="openai",
         backend_params={
             "base_url": "http://localhost:4000/v1",
-            "api_key": "bedrock-graphgen-2024",
+            "api_key": "your-master-key-here",
             "max_requests_per_minute": 10,
             "max_tokens_per_minute": 10000
         }
