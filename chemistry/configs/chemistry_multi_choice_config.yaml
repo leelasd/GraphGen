@@ -1,0 +1,52 @@
+# chemistry/configs/chemistry_multi_choice_config.yaml
+# KG2 → chemistry-specific multiple-choice QA (ChatML format)
+global_params:
+  working_dir: chemistry/output/kg2_multi_choice_cache
+  graph_backend: networkx
+  kv_backend: json_kv
+
+nodes:
+  - id: read
+    op_name: read
+    type: source
+    dependencies: []
+    params:
+      input_path:
+        - chemistry/kg2_build/molecule_graph.graphml
+      include_edges: false
+
+  - id: chunk
+    op_name: chunk
+    type: map_batch
+    dependencies:
+      - read
+    params:
+      chunk_size: 4096
+      chunk_overlap: 0
+
+  - id: partition
+    op_name: partition
+    type: aggregate
+    dependencies:
+      - chunk
+    params:
+      method: ece
+      method_params:
+        max_units_per_community: 5
+        min_units_per_community: 3
+        max_tokens_per_community: 10240
+        unit_sampling: random
+
+  - id: generate
+    op_name: generate
+    type: map_batch
+    dependencies:
+      - partition
+    execution_params:
+      replicas: 1
+      batch_size: 64
+    save_output: true
+    params:
+      method: chemistry_multi_choice
+      data_format: ChatML
+      num_of_questions: 4

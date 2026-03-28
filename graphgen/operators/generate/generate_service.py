@@ -78,6 +78,50 @@ class GenerateService(BaseOperator):
                 self.llm_client,
                 num_of_questions=generate_kwargs.get("num_of_questions", 5),
             )
+        elif self.method == "chemistry_atomic":
+            from graphgen.models import ChemistryAtomicGenerator
+
+            self.generator = ChemistryAtomicGenerator(self.llm_client)
+        elif self.method == "chemistry_multi_choice":
+            from graphgen.models import ChemistryMultiChoiceGenerator
+
+            self.generator = ChemistryMultiChoiceGenerator(
+                self.llm_client,
+                num_of_questions=generate_kwargs.get("num_of_questions", 5),
+            )
+        elif self.method == "chemistry_multi_answer":
+            from graphgen.models import ChemistryMultiAnswerGenerator
+
+            self.generator = ChemistryMultiAnswerGenerator(
+                self.llm_client,
+                num_of_questions=generate_kwargs.get("num_of_questions", 3),
+            )
+        elif self.method == "chemistry_fill_in_blank":
+            from graphgen.models import ChemistryFillInBlankGenerator
+
+            self.generator = ChemistryFillInBlankGenerator(
+                self.llm_client,
+                num_of_questions=generate_kwargs.get("num_of_questions", 5),
+            )
+        elif self.method == "chemistry_true_false":
+            from graphgen.models import ChemistryTrueFalseGenerator
+
+            self.generator = ChemistryTrueFalseGenerator(
+                self.llm_client,
+                num_of_questions=generate_kwargs.get("num_of_questions", 5),
+            )
+        elif self.method == "pairwise_preference":
+            from graphgen.models import PairwisePreferenceGenerator
+
+            self.generator = PairwisePreferenceGenerator(self.llm_client)
+        elif self.method == "ranking":
+            from graphgen.models import RankingGenerator
+
+            self.generator = RankingGenerator(self.llm_client)
+        elif self.method == "matched_molecular_pair":
+            from graphgen.models import MatchedMolecularPairGenerator
+
+            self.generator = MatchedMolecularPairGenerator(self.llm_client)
         else:
             raise ValueError(f"Unsupported generation mode: {method}")
 
