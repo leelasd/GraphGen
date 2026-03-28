@@ -14,9 +14,11 @@ class AtomicGenerator(BaseGenerator):
         nodes, edges = batch
         context = ""
         for node in nodes:
-            context += f"- {node[0]}: {node[1]['description']}\n"
+            desc = node[1].get("description") or node[1].get("content", "")
+            context += f"- {node[0]}: {desc}\n"
         for edge in edges:
-            context += f"- {edge[0]} - {edge[1]}: {edge[2]['description']}\n"
+            desc = edge[2].get("description") or edge[2].get("content", f"{edge[0]} -> {edge[1]}")
+            context += f"- {edge[0]} - {edge[1]}: {desc}\n"
         language = detect_main_language(context)
 
         prompt = ATOMIC_GENERATION_PROMPT[language].format(context=context)

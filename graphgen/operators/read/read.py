@@ -4,6 +4,7 @@ from typing import TYPE_CHECKING, Any, List, Optional, Union
 from graphgen.common.init_storage import init_storage
 from graphgen.models import (
     CSVReader,
+    GraphmlReader,
     HuggingFaceReader,
     JSONReader,
     ParquetReader,
@@ -33,6 +34,7 @@ _MAPPING = {
     "rdf": RDFReader,
     "owl": RDFReader,
     "ttl": RDFReader,
+    "graphml": GraphmlReader,
 }
 
 

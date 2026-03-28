@@ -23,20 +23,11 @@ nodes:
       chunk_size: 4096
       chunk_overlap: 0
 
-  - id: build_kg
-    op_name: build_kg
-    type: map_batch
-    execution_params:
-      replicas: 1
-      batch_size: 64
-    dependencies:
-      - chunk
-
   - id: partition
     op_name: partition
     type: aggregate
     dependencies:
-      - build_kg
+      - chunk
     params:
       method: dfs
       method_params:

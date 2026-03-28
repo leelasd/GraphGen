@@ -20,7 +20,8 @@ def test_configs_valid_yaml():
         assert "nodes" in data
 
 def test_configs_have_required_nodes():
-    required_ops = {"read", "chunk", "build_kg", "partition", "generate"}
+    # All configs skip build_kg (KGs are pre-loaded into graph storage)
+    required_ops = {"read", "chunk", "partition", "generate"}
     for path in CONFIGS:
         data = yaml.safe_load(Path(path).read_text())
         op_names = {n["op_name"] for n in data["nodes"]}

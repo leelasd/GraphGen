@@ -15,14 +15,14 @@ class VQAGenerator(BaseGenerator):
         nodes, edges = batch
         entities_str = "\n".join(
             [
-                f"{index + 1}. {node[0]}: {node[1]['description']}"
+                f"{index + 1}. {node[0]}: {(node[1].get('description') or node[1].get('content', ''))}"
                 for index, node in enumerate(nodes)
             ]
         )
 
         relationships_str = "\n".join(
             [
-                f"{index + 1}. {edge[0]} -- {edge[1]}: {edge[2]['description']}"
+                f"{index + 1}. {edge[0]} -- {edge[1]}: {(edge[2].get('description') or edge[2].get('content', f'{edge[0]} -> {edge[1]}'))}"
                 for index, edge in enumerate(edges)
             ]
         )
