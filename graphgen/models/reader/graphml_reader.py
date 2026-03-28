@@ -16,9 +16,10 @@ class GraphmlReader(BaseReader):
     Uses Ray Data for distributed processing.
     """
 
-    def __init__(self, *, text_column: str = "content", **kwargs):
+    def __init__(self, *, text_column: str = "content", include_edges: bool = True, **kwargs):
         super().__init__(**kwargs)
         self.text_column = text_column
+        self.include_edges = include_edges
 
     def read(
         self,
@@ -40,10 +41,12 @@ class GraphmlReader(BaseReader):
 
         paths_ds = ray.data.from_items(input_path)
 
+        include_edges = self.include_edges
+
         def process_graphml(row: Dict[str, Any]) -> List[Dict[str, Any]]:
             try:
                 file_path = row["item"]
-                return self._parse_graphml_file(Path(file_path))
+                return self._parse_graphml_file(Path(file_path), include_edges=include_edges)
             except Exception as e:
                 logger.error(
                     "Failed to process GraphML file %s: %s", row.get("item", "unknown"), e
@@ -54,7 +57,64 @@ class GraphmlReader(BaseReader):
         docs_ds = docs_ds.filter(self._should_keep_item)
         return docs_ds
 
-    def _parse_graphml_file(self, file_path: Path) -> List[Dict[str, Any]]:
+    @staticmethod
+    def _read_graphml_nodes_only(file_path: Path):
+        """Parse GraphML with iterparse, extracting only nodes (skips edges for large graphs)."""
+        import xml.etree.ElementTree as ET
+        import networkx as nx
+
+        # Detect namespace from the root element rather than hardcoding it,
+        # since files can use either "graphml" or "xmlns" suffix variants.
+        ns = None
+        key_map: dict = {}  # id -> (attr_name, attr_type, default)
+        graph = nx.Graph()
+
+        for event, elem in ET.iterparse(str(file_path), events=("start", "end")):
+            if ns is None and event == "start":
+                # First start event is the <graphml> root; extract its namespace
+                if elem.tag.startswith("{"):
+                    ns = elem.tag[1:elem.tag.index("}")]
+                else:
+                    ns = ""
+            if event == "end":
+                tag = elem.tag.replace(f"{{{ns}}}", "") if ns else elem.tag
+                if tag == "key":
+                    kid = elem.get("id")
+                    aname = elem.get("attr.name", kid)
+                    atype = elem.get("attr.type", "string")
+                    default_el = elem.find(f"{{{ns}}}default")
+                    default = default_el.text if default_el is not None else None
+                    key_map[kid] = (aname, atype, default)
+                    elem.clear()
+                elif tag == "node":
+                    node_id = elem.get("id")
+                    attrs: dict = {}
+                    for d in elem.findall(f"{{{ns}}}data"):
+                        kid = d.get("key")
+                        if kid in key_map:
+                            aname, atype, _ = key_map[kid]
+                            val = d.text or ""
+                            if atype == "int":
+                                try:
+                                    val = int(val)
+                                except (ValueError, TypeError):
+                                    pass
+                            elif atype in ("double", "float"):
+                                try:
+                                    val = float(val)
+                                except (ValueError, TypeError):
+                                    pass
+                            elif atype == "boolean":
+                                val = val.lower() == "true"
+                            attrs[aname] = val
+                    if node_id:
+                        graph.add_node(node_id, **attrs)
+                    elem.clear()
+                elif tag == "edge":
+                    elem.clear()  # skip edges entirely
+        return graph
+
+    def _parse_graphml_file(self, file_path: Path, include_edges: bool = True) -> List[Dict[str, Any]]:
         """
         Parse a GraphML file and extract node/edge documents.
 
@@ -67,7 +127,11 @@ class GraphmlReader(BaseReader):
             raise FileNotFoundError(f"GraphML file not found: {file_path}")
 
         try:
-            graph = nx.read_graphml(str(file_path))
+            if include_edges:
+                graph = nx.read_graphml(str(file_path))
+            else:
+                # nodes-only: parse via iterparse to avoid loading millions of edges
+                graph = self._read_graphml_nodes_only(file_path)
         except Exception as e:
             raise ValueError(f"Cannot parse GraphML file {file_path}: {e}") from e
 
@@ -80,6 +144,7 @@ class GraphmlReader(BaseReader):
                 parts.append(f"{k}: {v}")
             doc = {
                 "id": str(node_id),
+                "type": "text",
                 self.text_column: " | ".join(parts),
                 "properties": attrs,
                 "path": str(file_path),
@@ -87,12 +152,15 @@ class GraphmlReader(BaseReader):
             docs.append(doc)
 
         # Represent each edge as a document
-        for src, dst, attrs in graph.edges(data=True):
+        if not include_edges:
+            logger.info("GraphML file %s: skipping edge documents (include_edges=False)", file_path)
+        for src, dst, attrs in (graph.edges(data=True) if include_edges else []):
             parts = [f"Edge: {src} -> {dst}"]
             for k, v in attrs.items():
                 parts.append(f"{k}: {v}")
             doc = {
                 "id": f"{src}__{dst}",
+                "type": "text",
                 self.text_column: " | ".join(parts),
                 "properties": {"source": src, "target": dst, **attrs},
                 "path": str(file_path),

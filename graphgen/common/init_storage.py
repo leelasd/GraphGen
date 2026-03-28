@@ -304,10 +304,8 @@ class StorageFactory:
             proxy_class = RemoteGraphStorageProxy
         else:
             raise ValueError(f"Unknown storage backend: {backend}")
-        try:
-            actor_handle = ray.get_actor(actor_name)
-        except ValueError:
-            actor_handle = (
+        def _create_actor():
+            return (
                 ray.remote(actor_class)
                 .options(
                     name=actor_name,
@@ -315,7 +313,38 @@ class StorageFactory:
                 )
                 .remote(backend, working_dir, namespace)
             )
-            ray.get(actor_handle.ready.remote())
+
+        def _wait_ready(handle, retries: int = 15, delay: float = 3.0):
+            import time
+            last_exc = None
+            for attempt in range(retries):
+                try:
+                    ray.get(handle.ready.remote())
+                    return
+                except ray.exceptions.ActorUnavailableError as exc:
+                    last_exc = exc
+                    time.sleep(delay)
+                except Exception as exc:
+                    last_exc = exc
+                    if attempt == retries - 1:
+                        raise
+                    time.sleep(delay)
+            raise RuntimeError(
+                f"Actor {actor_name!r} not ready after {retries} attempts"
+            ) from last_exc
+
+        try:
+            actor_handle = ray.get_actor(actor_name)
+            # Verify the actor is actually alive before reusing it
+            _wait_ready(actor_handle)
+        except ValueError:
+            # Actor does not exist yet — create it
+            actor_handle = _create_actor()
+            _wait_ready(actor_handle)
+        except Exception:
+            # Actor reference is stale (e.g. after ray stop / kill) — recreate
+            actor_handle = _create_actor()
+            _wait_ready(actor_handle)
         return proxy_class(actor_handle)
 
 

@@ -62,9 +62,13 @@ CURRENT_LOGGER_VAR = contextvars.ContextVar("current_logger")
 
 
 def get_current_logger() -> logging.Logger:
-    current_logger = CURRENT_LOGGER_VAR.get()
+    try:
+        current_logger = CURRENT_LOGGER_VAR.get()
+    except LookupError:
+        current_logger = None
     if not current_logger:
-        raise RuntimeError("No logger is set in the current context.")
+        # Fallback for Ray worker processes where ContextVar is not propagated
+        return logging.getLogger("graphgen")
     return current_logger
 
 
