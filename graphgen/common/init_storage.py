@@ -314,18 +314,29 @@ class StorageFactory:
                 .remote(backend, working_dir, namespace)
             )
 
+        def _wait_ready(handle, retries: int = 5, delay: float = 2.0):
+            import time
+            for attempt in range(retries):
+                try:
+                    ray.get(handle.ready.remote(), timeout=10)
+                    return
+                except Exception:
+                    if attempt == retries - 1:
+                        raise
+                    time.sleep(delay)
+
         try:
             actor_handle = ray.get_actor(actor_name)
             # Verify the actor is actually alive before reusing it
-            ray.get(actor_handle.ready.remote(), timeout=10)
+            _wait_ready(actor_handle)
         except ValueError:
             # Actor does not exist yet — create it
             actor_handle = _create_actor()
-            ray.get(actor_handle.ready.remote())
+            _wait_ready(actor_handle)
         except Exception:
             # Actor reference is stale (e.g. after ray stop / kill) — recreate
             actor_handle = _create_actor()
-            ray.get(actor_handle.ready.remote())
+            _wait_ready(actor_handle)
         return proxy_class(actor_handle)
 
 
