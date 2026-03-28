@@ -63,13 +63,21 @@ class GraphmlReader(BaseReader):
         import xml.etree.ElementTree as ET
         import networkx as nx
 
-        ns = "http://graphml.graphdrawing.org/graphml"
+        # Detect namespace from the root element rather than hardcoding it,
+        # since files can use either "graphml" or "xmlns" suffix variants.
+        ns = None
         key_map: dict = {}  # id -> (attr_name, attr_type, default)
         graph = nx.Graph()
 
         for event, elem in ET.iterparse(str(file_path), events=("start", "end")):
+            if ns is None and event == "start":
+                # First start event is the <graphml> root; extract its namespace
+                if elem.tag.startswith("{"):
+                    ns = elem.tag[1:elem.tag.index("}")]
+                else:
+                    ns = ""
             if event == "end":
-                tag = elem.tag.replace(f"{{{ns}}}", "")
+                tag = elem.tag.replace(f"{{{ns}}}", "") if ns else elem.tag
                 if tag == "key":
                     kid = elem.get("id")
                     aname = elem.get("attr.name", kid)

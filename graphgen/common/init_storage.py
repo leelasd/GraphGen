@@ -314,16 +314,24 @@ class StorageFactory:
                 .remote(backend, working_dir, namespace)
             )
 
-        def _wait_ready(handle, retries: int = 5, delay: float = 2.0):
+        def _wait_ready(handle, retries: int = 15, delay: float = 3.0):
             import time
+            last_exc = None
             for attempt in range(retries):
                 try:
-                    ray.get(handle.ready.remote(), timeout=10)
+                    ray.get(handle.ready.remote())
                     return
-                except Exception:
+                except ray.exceptions.ActorUnavailableError as exc:
+                    last_exc = exc
+                    time.sleep(delay)
+                except Exception as exc:
+                    last_exc = exc
                     if attempt == retries - 1:
                         raise
                     time.sleep(delay)
+            raise RuntimeError(
+                f"Actor {actor_name!r} not ready after {retries} attempts"
+            ) from last_exc
 
         try:
             actor_handle = ray.get_actor(actor_name)
