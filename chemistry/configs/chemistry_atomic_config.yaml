@@ -1,5 +1,5 @@
 # chemistry/configs/chemistry_atomic_config.yaml
-# KG1 → SFT-1 Atomic facts (Alpaca format)
+# KG1 → SFT-1 Atomic facts (ChatML format)
 global_params:
   working_dir: chemistry/output/kg1_atomic_cache
   graph_backend: networkx
@@ -44,4 +44,4 @@ nodes:
     save_output: true
     params:
       method: atomic
-      data_format: Alpaca
+      data_format: ChatML
