@@ -8,6 +8,8 @@ Generate ONE comparison question asking which molecule has a property advantage,
 3. Explains the mechanistic or structural reason for the difference
 4. Notes any pharmacokinetic implications (e.g., oral absorption, CNS penetration, metabolic stability)
 
+Important: Whenever you reference a molecule in the question or answer, always follow its label with the SMILES in parentheses, e.g.: "Molecule A (SMILES: CC(=O)O)".
+
 Good question types:
 - "Which of these two molecules is more lipophilic, and what structural features drive the difference?"
 - "Which molecule would you expect to have better passive membrane permeability based on logD?"

@@ -7,9 +7,10 @@ Generate ONE SAR question asking how the structural difference between the two m
 Question requirements:
 - Identify the structural change between the two SMILES strings (different substituent, functional group transformation, ring modification)
 - Ask how this change affects logD (or lipophilicity) and why
-- Reference both molecule IDs or SMILES
+- Reference both molecules by label (Molecule A / Molecule B) followed by their SMILES in parentheses, e.g.: "Molecule A (SMILES: CC(=O)O)"
 
 Answer requirements:
+- When referencing a molecule, always follow its label with the SMILES in parentheses, e.g.: "Molecule A (SMILES: CC(=O)O)"
 - Identify the specific structural difference (e.g., "replacing -OH with -CH3", "adding a fluorine atom", "removing a nitro group")
 - State the direction of the logD change and the magnitude if data is available (ΔlogD = logD_2 - logD_1)
 - Explain the physicochemical mechanism:

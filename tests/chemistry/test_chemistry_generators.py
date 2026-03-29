@@ -79,8 +79,7 @@ class TestChemistryAtomicGenerator:
         prompt = self.gen.build_prompt(PAIR_BATCH)
         assert "logD" in prompt or "logd" in prompt.lower()
         assert "smiles" in prompt.lower() or "SMILES" in prompt
-        assert "mol_0" in prompt
-        assert "mol_1" in prompt
+        assert "Cc1ncc" in prompt  # SMILES from mol_0 node content
 
     def test_build_prompt_output_format_instruction(self):
         prompt = self.gen.build_prompt(PAIR_BATCH)
@@ -142,7 +141,7 @@ class TestChemistryMultiChoiceGenerator:
     def test_build_prompt_contains_chemistry_context(self):
         prompt = self.gen.build_prompt(PAIR_BATCH)
         assert "logD" in prompt or "lipophilicity" in prompt.lower()
-        assert "mol_0" in prompt
+        assert "Cc1ncc" in prompt  # SMILES from mol_0 node content
         assert "4" in prompt  # num_of_questions
 
     def test_build_prompt_has_output_format(self):
@@ -192,7 +191,7 @@ class TestChemistryMultiAnswerGenerator:
     def test_build_prompt_multi_select_language(self):
         prompt = self.gen.build_prompt(PAIR_BATCH)
         assert "multiple" in prompt.lower() or "select" in prompt.lower()
-        assert "mol_0" in prompt
+        assert "Cc1ncc" in prompt  # SMILES from mol_0 node content
 
     def test_parse_response_multi_answer(self):
         result = self.gen.parse_response(MOCK_MAQ_RESPONSE)
@@ -297,8 +296,8 @@ class TestChemistryTrueFalseGenerator:
 # ---------------------------------------------------------------------------
 
 MOCK_PAIRWISE_RESPONSE = """
-<question>Which of these two molecules is more lipophilic: mol_0 (logD=-0.02) or mol_1 (logD=2.10)?</question>
-<answer>mol_1 is significantly more lipophilic (logD=2.10, medium bin) than mol_0 (logD=-0.02, low bin). The ethyl-phenol scaffold in mol_1 contributes aromatic and alkyl hydrophobicity, while mol_0's nitro and hydroxylethyl groups reduce lipophilicity through polarity and H-bonding.</answer>
+<question>Which of these two molecules is more lipophilic: Molecule A (logD=-0.02) or Molecule B (logD=2.10)?</question>
+<answer>Molecule B is significantly more lipophilic (logD=2.10, medium bin) than Molecule A (logD=-0.02, low bin). The ethyl-phenol scaffold in Molecule B contributes aromatic and alkyl hydrophobicity, while Molecule A's nitro and hydroxylethyl groups reduce lipophilicity through polarity and H-bonding.</answer>
 """
 
 class TestPairwisePreferenceGenerator:
@@ -314,18 +313,17 @@ class TestPairwisePreferenceGenerator:
 
     def test_build_prompt_both_molecules_present(self):
         prompt = self.gen.build_prompt(PAIR_BATCH)
-        assert "mol_0" in prompt
-        assert "mol_1" in prompt
+        assert "Molecule A" in prompt
+        assert "Molecule B" in prompt
 
     def test_build_prompt_includes_edges(self):
         prompt = self.gen.build_prompt(PAIR_BATCH)
-        # edges should appear when present
-        assert "mol_0" in prompt and "mol_1" in prompt
+        assert "Molecule A" in prompt and "Molecule B" in prompt
 
     def test_parse_response_valid(self):
         result = self.gen.parse_response(MOCK_PAIRWISE_RESPONSE)
         assert len(result) == 1
-        assert "mol_1" in result[0]["question"] or "mol_0" in result[0]["question"]
+        assert "Molecule" in result[0]["question"]
         assert "logD" in result[0]["answer"] or "lipophilic" in result[0]["answer"].lower()
 
     def test_parse_response_missing_tags(self):
@@ -337,11 +335,11 @@ class TestPairwisePreferenceGenerator:
 # ---------------------------------------------------------------------------
 
 MOCK_RANKING_RESPONSE = """
-<question>Rank mol_0, mol_1, and mol_2 from lowest to highest logD.</question>
+<question>Rank the three molecules from lowest to highest logD.</question>
 <answer>
-1. mol_0 (logD=-0.02, low): Nitro and hydroxylethyl groups strongly reduce lipophilicity.
-2. mol_2 (logD=1.45, medium): Chlorobenzyl acetic acid — chlorine raises lipophilicity but carboxylic acid tempers it.
-3. mol_1 (logD=2.10, medium): Ethylphenol scaffold with only a mild polar hydroxyl; highest logD of the three.
+1. Molecule A (logD=-0.02, low): Nitro and hydroxylethyl groups strongly reduce lipophilicity.
+2. Molecule C (logD=1.45, medium): Chlorobenzyl acetic acid — chlorine raises lipophilicity but carboxylic acid tempers it.
+3. Molecule B (logD=2.10, medium): Ethylphenol scaffold with only a mild polar hydroxyl; highest logD of the three.
 </answer>
 """
 
@@ -356,15 +354,15 @@ class TestRankingGenerator:
 
     def test_build_prompt_all_molecules_present(self):
         prompt = self.gen.build_prompt(TRIPLE_BATCH)
-        assert "mol_0" in prompt
-        assert "mol_1" in prompt
-        assert "mol_2" in prompt
+        assert "Molecule A" in prompt
+        assert "Molecule B" in prompt
+        assert "Molecule C" in prompt
 
     def test_parse_response_valid(self):
         result = self.gen.parse_response(MOCK_RANKING_RESPONSE)
         assert len(result) == 1
-        assert "mol_0" in result[0]["question"] or "rank" in result[0]["question"].lower()
-        assert "mol_0" in result[0]["answer"]
+        assert "rank" in result[0]["question"].lower() or "molecule" in result[0]["question"].lower()
+        assert "Molecule A" in result[0]["answer"]
 
     def test_parse_response_missing_tags(self):
         assert self.gen.parse_response("no tags") == []
@@ -375,8 +373,8 @@ class TestRankingGenerator:
 # ---------------------------------------------------------------------------
 
 MOCK_MMP_RESPONSE = """
-<question>mol_0 and mol_1 share a similar scaffold but differ at one substituent. How does this structural change affect logD?</question>
-<answer>mol_0 carries a nitro group ([N+](=O)[O-]) on the imidazole ring, which is strongly electron-withdrawing and polar, reducing logD to -0.02. mol_1 replaces this with an ethyl group on a phenol, which is hydrophobic, raising logD to 2.10. The ΔlogD = +2.12 reflects the shift from a polar nitro substituent to a non-polar alkyl chain.</answer>
+<question>Molecule A and Molecule B share a similar scaffold but differ at one substituent. How does this structural change affect logD?</question>
+<answer>Molecule A carries a nitro group ([N+](=O)[O-]) on the imidazole ring, which is strongly electron-withdrawing and polar, reducing logD to -0.02. Molecule B replaces this with an ethyl group on a phenol, which is hydrophobic, raising logD to 2.10. The ΔlogD = +2.12 reflects the shift from a polar nitro substituent to a non-polar alkyl chain.</answer>
 """
 
 class TestMatchedMolecularPairGenerator:
@@ -398,14 +396,14 @@ class TestMatchedMolecularPairGenerator:
 
     def test_build_prompt_both_molecules(self):
         prompt = self.gen.build_prompt(PAIR_BATCH)
-        assert "mol_0" in prompt
-        assert "mol_1" in prompt
+        assert "Molecule A" in prompt
+        assert "Molecule B" in prompt
 
     def test_parse_response_valid(self):
         result = self.gen.parse_response(MOCK_MMP_RESPONSE)
         assert len(result) == 1
         assert "logD" in result[0]["answer"] or "logd" in result[0]["answer"].lower()
-        assert "mol_0" in result[0]["answer"] or "mol_1" in result[0]["answer"]
+        assert "Molecule A" in result[0]["answer"] or "Molecule B" in result[0]["answer"]
 
     def test_parse_response_missing_tags(self):
         assert self.gen.parse_response("no tags") == []

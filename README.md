@@ -29,6 +29,7 @@ GraphGen: Enhancing Supervised Fine-Tuning for LLMs with Knowledge-Driven Synthe
 - 📌 [Latest Updates](#-latest-updates)
 - ⚙️ [Support List](#-support-list)
 - 🚀 [Quick Start](#-quick-start)
+- 🧪 [Chemistry Dataset Pipeline](#-chemistry-dataset-pipeline)
 - 🏗️ [System Architecture](#-system-architecture)
 - 🍀 [Acknowledgements](#-acknowledgements)
 - 📚 [Citation](#-citation)
@@ -51,6 +52,7 @@ Furthermore, GraphGen incorporates multi-hop neighborhood sampling to capture co
 After data generation, you can use [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory) and [xtuner](https://github.com/InternLM/xtuner) to finetune your LLMs.
 
 ## 📌 Latest Updates
+- **2026.03.29**: **Chemistry reasoning dataset pipeline** — 12 generation formats across 2 molecular knowledge graphs (KG1: rule graph, KG2: molecule graph), including 3 new chemistry-specific generators: `pairwise_preference`, `ranking`, and `matched_molecular_pair`. See [Chemistry Dataset Pipeline](#-chemistry-dataset-pipeline).
 - **2026.02.04**: We support HuggingFace Datasets as input data source for data generation now.
 - **2026.01.15**: **LLM benchmark synthesis** now supports single/multiple-choice & fill-in-the-blank & true-or-false—ideal for education 🌟🌟
 - **2025.12.26**: Knowledge graph evaluation metrics about accuracy (entity/relation), consistency (conflict detection), structural robustness (noise, connectivity, degree distribution)
@@ -327,6 +329,113 @@ For any questions, please check [FAQ](https://github.com/open-sciencelab/GraphGe
     docker run -p 7860:7860 graphgen
     ```
 
+
+## 🧪 Chemistry Dataset Pipeline
+
+GraphGen includes a domain-specific pipeline for generating chemistry reasoning datasets from two molecular knowledge graphs:
+
+- **KG1** (`chemistry/kg1_build/chemistry_rule_graph.graphml`) — a rule-based graph encoding lipophilicity rules, functional group effects, and structure-property relationships.
+- **KG2** (`chemistry/kg2_build/molecule_graph.graphml`) — a molecule-centric graph where nodes are individual compounds (with SMILES, logD, lipophilicity bin) and edges encode structural similarity (Tanimoto), shared functional groups, and scaffold membership.
+
+### Knowledge Graph Construction
+
+```bash
+# Build KG1: chemistry rule graph
+python chemistry/kg1_build/build_kg1.py
+
+# Build KG2: molecule property graph
+python chemistry/kg2_build/build_kg2.py
+```
+
+### Supported Generation Formats
+
+All 12 configs produce **ChatML-format** output (`messages` list with `role`/`content`).
+
+#### KG1 Configs (rule-based chemistry knowledge)
+
+| Config | Method | Description |
+|--------|--------|-------------|
+| `chemistry/configs/chemistry_atomic_config.yaml` | `atomic` | Single-turn QA covering basic chemistry rules and facts |
+| `chemistry/configs/chemistry_cot_config.yaml` | `cot` | Chain-of-thought reasoning over chemistry rules |
+
+#### KG2 Configs (molecule-level property data)
+
+| Config | Method | Description |
+|--------|--------|-------------|
+| `chemistry/configs/chemistry_atomic_config2.yaml` | `chemistry_atomic` | QA targeting logD values, lipophilicity bins, and SMILES functional groups |
+| `chemistry/configs/chemistry_multi_choice_config.yaml` | `chemistry_multi_choice` | 4-option MCQ with chemically plausible distractors |
+| `chemistry/configs/chemistry_multi_answer_config.yaml` | `chemistry_multi_answer` | Questions with 1–3 correct answers from 5 options |
+| `chemistry/configs/chemistry_fill_in_blank_config.yaml` | `chemistry_fill_in_blank` | Fill-in-the-blank for logD values, bin names, and property directions |
+| `chemistry/configs/chemistry_true_false_config.yaml` | `chemistry_true_false` | ~50/50 true/false statements about molecular properties |
+| `chemistry/configs/chemistry_pairwise_config.yaml` | `pairwise_preference` | Compare two molecules on lipophilicity and drug-likeness |
+| `chemistry/configs/chemistry_ranking_config.yaml` | `ranking` | Order 3–5 molecules by logD with per-position justification |
+| `chemistry/configs/chemistry_mmp_config.yaml` | `matched_molecular_pair` | SAR explanation: structural delta → logD change (uses Tanimoto/scaffold edges) |
+
+### Running the Pipeline
+
+Set environment variables for your LLM backend, then run any config:
+
+```bash
+# Example: generate chemistry atomic QA from KG2
+python -m graphgen.run --config chemistry/configs/chemistry_atomic_config2.yaml
+
+# Example: generate matched molecular pair SAR data
+python -m graphgen.run --config chemistry/configs/chemistry_mmp_config.yaml
+
+# Example: generate ranking QA
+python -m graphgen.run --config chemistry/configs/chemistry_ranking_config.yaml
+```
+
+Output JSONL files are written to the `working_dir/output/` path specified in each config (e.g. `chemistry/output/kg2_atomic_cache/output/`).
+
+### Output Example (ChatML format)
+
+```json
+{
+  "messages": [
+    {
+      "role": "user",
+      "content": "Compound X has SMILES CC(=O)Oc1ccccc1C(=O)O and a measured logD of 1.19. Which lipophilicity bin does it belong to?"
+    },
+    {
+      "role": "assistant",
+      "content": "Compound X belongs to the **Low** lipophilicity bin (logD 1–2). The ester and carboxylic acid groups both increase polarity, keeping the overall logD below 2."
+    }
+  ]
+}
+```
+
+### Verified Output Counts (smoke test, 50-molecule subset)
+
+| Format | Rows generated | Source KG |
+|--------|:--------------:|:---------:|
+| `atomic` (KG1) | 634 | KG1 |
+| `cot` (KG1) | 6 | KG1 |
+| `multihop` | 766 | KG2 |
+| `aggregated` | 504 | KG2 |
+| `chemistry_atomic` | 406 | KG2 |
+| `chemistry_multi_choice` | 156 | KG2 |
+| `chemistry_multi_answer` | 108 | KG2 |
+| `chemistry_fill_in_blank` | 148 | KG2 |
+| `chemistry_true_false` | 195 | KG2 |
+| `pairwise_preference` | 50 | KG2 |
+| `ranking` | 38 | KG2 |
+| `matched_molecular_pair` | 50 | KG2 |
+
+### New Generator Classes
+
+All chemistry generators live in `graphgen/models/generator/` and are registered in `graphgen/operators/generate/generate_service.py`:
+
+| Class | Method name | Notes |
+|-------|-------------|-------|
+| `ChemistryAtomicGenerator` | `chemistry_atomic` | Standalone; targets logD, bin, functional groups |
+| `ChemistryMultiChoiceGenerator` | `chemistry_multi_choice` | Subclasses `MultiChoiceGenerator` |
+| `ChemistryMultiAnswerGenerator` | `chemistry_multi_answer` | Subclasses `MultiAnswerGenerator` |
+| `ChemistryFillInBlankGenerator` | `chemistry_fill_in_blank` | Subclasses `FillInBlankGenerator` |
+| `ChemistryTrueFalseGenerator` | `chemistry_true_false` | Subclasses `TrueFalseGenerator` |
+| `PairwisePreferenceGenerator` | `pairwise_preference` | Compares two molecules; includes edge attributes |
+| `RankingGenerator` | `ranking` | Orders 3–5 molecules by logD |
+| `MatchedMolecularPairGenerator` | `matched_molecular_pair` | Encodes Tanimoto, shared_fg, scaffold in prompt |
 
 ## 🏗️ System Architecture
 

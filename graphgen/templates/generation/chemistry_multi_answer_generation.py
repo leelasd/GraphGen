@@ -11,6 +11,7 @@ Focus on topics where multiple answers naturally apply:
 - Which molecules have logD values in the same lipophilicity bin?
 
 Separate multiple correct answer letters with commas (e.g., "A, C" or "A, B, D").
+When referencing a specific molecule in a question or answer option, always identify it by its SMILES string, e.g.: "the molecule with SMILES CC(=O)O".
 
 Output Format:
 <qa_pairs>
