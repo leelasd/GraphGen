@@ -3,7 +3,7 @@ TEMPLATE_EN: str = """You are creating chemistry study materials for medicinal c
 Generate {num_of_questions} fill-in-the-blank questions from the molecular data below.
 
 Good targets for blanks:
-- The numeric logD value of a molecule (e.g., "The logD of mol_X is ________")
+- The numeric logD value of a molecule (e.g., "The molecule with SMILES CC(=O)O has a logD of ________")
 - The lipophilicity bin classification (low / medium / high)
 - A key functional group name found in the SMILES
 - A property direction (increases / decreases / no change)
@@ -12,6 +12,7 @@ Good targets for blanks:
 
 Use ________ (four underscores) as the blank placeholder.
 Each question must be self-contained and answerable directly from the provided data.
+When referencing a specific molecule, always identify it by its SMILES string, e.g.: "the molecule with SMILES CC(=O)O".
 
 Output Format:
 <qa_pairs>

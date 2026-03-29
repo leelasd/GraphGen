@@ -22,13 +22,17 @@ class PairwisePreferenceGenerator(BaseGenerator):
         batch: tuple[list[tuple[str, dict]], list[tuple[Any, Any, dict]]]
     ) -> str:
         nodes, edges = batch
+        labels = {node[0]: f"Molecule {chr(65 + i)}" for i, node in enumerate(nodes)}
         context = ""
         for node in nodes:
+            label = labels[node[0]]
             desc = node[1].get("description") or node[1].get("content", "")
-            context += f"- {node[0]}: {desc}\n"
+            context += f"- {label}: {desc}\n"
         for edge in edges:
-            desc = edge[2].get("description") or edge[2].get("content", f"{edge[0]} -> {edge[1]}")
-            context += f"  relationship: {edge[0]} -- {edge[1]}: {desc}\n"
+            src = labels.get(edge[0], edge[0])
+            tgt = labels.get(edge[1], edge[1])
+            desc = edge[2].get("description") or edge[2].get("content", "")
+            context += f"  relationship: {src} -- {tgt}: {desc}\n"
         prompt = PAIRWISE_PREFERENCE_GENERATION_PROMPT["en"].format(context=context)
         return prompt
 

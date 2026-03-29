@@ -10,11 +10,13 @@ False statements should contain chemically plausible but incorrect claims, such 
 - An incorrect functional group attribution
 
 Good statement types:
-- "The experimental logD of molecule X is Y" (cite actual or false value)
-- "Molecule X is classified as [low/medium/high] lipophilicity"
-- "The [functional group] in molecule X contributes to [higher/lower] logD"
-- "Molecule X and Y have similar lipophilicity profiles" (true or false based on their bins)
+- "The molecule with SMILES [X] has an experimental logD of Y" (cite actual or false value)
+- "The molecule with SMILES [X] is classified as [low/medium/high] lipophilicity"
+- "The [functional group] in the molecule with SMILES [X] contributes to [higher/lower] logD"
+- "The molecules with SMILES [X] and [Y] have similar lipophilicity profiles" (true or false based on their bins)
 - "A molecule with logD < 0 is typically more water-soluble than one with logD > 3"
+
+When referencing a specific molecule, always identify it by its SMILES string, e.g.: "the molecule with SMILES CC(=O)O".
 
 Output Format:
 <qa_pairs>

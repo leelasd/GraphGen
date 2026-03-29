@@ -11,6 +11,7 @@ Focus on chemistry-relevant aspects:
 
 Each question must have 4 options (A/B/C/D) with exactly ONE correct answer.
 Distractors must be chemically plausible (e.g., nearby numeric logD values, related but incorrect functional group names).
+When referencing a specific molecule in a question or answer option, always identify it by its SMILES string, e.g.: "the molecule with SMILES CC(=O)O".
 
 Output Format:
 <qa_pairs>

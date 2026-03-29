@@ -11,7 +11,8 @@ Question requirements:
 
 Answer requirements:
 - List the molecules in ranked order (1st = lowest, last = highest, or reverse as appropriate)
-- For each position, cite the logD value or bin classification from the data
+- For each position, identify the molecule by label AND include its SMILES in parentheses, e.g.: "1. Molecule A (SMILES: CC(=O)O, logD = -1.2, low): ..."
+- Cite the logD value or bin classification from the data for each molecule
 - Briefly explain why each molecule is ranked where it is, using structural features where available
 - If two molecules have similar values, note that they are close
 
@@ -22,9 +23,9 @@ Output format:
 Example:
 <question>Rank the following three molecules from lowest to highest logD, and justify each position based on their structural features.</question>
 <answer>
-1. mol_3 (logD = -1.2, low): Contains two polar carboxylic acid groups that strongly reduce lipophilicity.
-2. mol_1 (logD = 0.5, low): Has a hydroxyl group and a small aromatic ring, giving moderate polarity.
-3. mol_7 (logD = 3.1, high): Dominated by a bicyclic aromatic core and chlorine substituent, both increasing lipophilicity.
+1. Molecule A (SMILES: OC(=O)CC(=O)O, logD = -1.2, low): Contains two polar carboxylic acid groups that strongly reduce lipophilicity.
+2. Molecule B (SMILES: Oc1ccccc1CC, logD = 0.5, low): Has a hydroxyl group and a small aromatic ring, giving moderate polarity.
+3. Molecule C (SMILES: Clc1ccc2ccccc2c1, logD = 3.1, high): Dominated by a bicyclic aromatic core and chlorine substituent, both increasing lipophilicity.
 </answer>
 
 Molecular data:

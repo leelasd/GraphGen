@@ -15,10 +15,10 @@ class ChemistryFillInBlankGenerator(FillInBlankGenerator):
         context = ""
         for node in nodes:
             desc = node[1].get("description") or node[1].get("content", "")
-            context += f"- {node[0]}: {desc}\n"
+            context += f"- {desc}\n"
         for edge in edges:
-            desc = edge[2].get("description") or edge[2].get("content", f"{edge[0]} -> {edge[1]}")
-            context += f"- {edge[0]} - {edge[1]}: {desc}\n"
+            desc = edge[2].get("description") or edge[2].get("content", "")
+            context += f"- {desc}\n"
         prompt = CHEMISTRY_FILL_IN_BLANK_GENERATION_PROMPT["en"].format(
             context=context,
             num_of_questions=self.num_of_questions,
