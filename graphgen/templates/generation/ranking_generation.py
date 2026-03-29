@@ -6,7 +6,7 @@ Generate ONE ranking question that asks the model to order the molecules by a ch
 
 Question requirements:
 - Ask for an ordering by a specific property: logD, lipophilicity, expected solubility, drug-likeness, or membrane permeability
-- Reference all molecules in the set
+- List all molecules with their labels and SMILES at the start of the question, e.g.: "Rank the following molecules from lowest to highest logD — Molecule A (SMILES: CCO), Molecule B (SMILES: CC(=O)O), Molecule C (SMILES: c1ccccc1) — and justify each position."
 - Be specific about the direction (e.g., "from lowest to highest logD")
 
 Answer requirements:

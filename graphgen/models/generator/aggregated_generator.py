@@ -24,16 +24,23 @@ class AggregatedGenerator(BaseGenerator):
         :return:
         """
         nodes, edges = batch
+        labels = {node[0]: f"Molecule {chr(65 + i)}" for i, node in enumerate(nodes)}
+        _next_idx = len(nodes)
+        for edge in edges:
+            for ep in (edge[0], edge[1]):
+                if ep not in labels:
+                    labels[ep] = f"Molecule {chr(65 + _next_idx)}"
+                    _next_idx += 1
         entities_str = "\n".join(
             [
-                f"{index + 1}. {node[0]}: {node[1].get('description') or node[1].get('content', '')}"
-                for index, node in enumerate(nodes)
+                f"{i + 1}. {labels[node[0]]}: {node[1].get('description') or node[1].get('content', '')}"
+                for i, node in enumerate(nodes)
             ]
         )
         relations_str = "\n".join(
             [
-                f"{index + 1}. {edge[0]} -- {edge[1]}: {edge[2].get('description') or edge[2].get('content', f'{edge[0]} -> {edge[1]}')}"
-                for index, edge in enumerate(edges)
+                f"{i + 1}. {labels.get(edge[0], edge[0])} -- {labels.get(edge[1], edge[1])}: {edge[2].get('description') or edge[2].get('content', '')}"
+                for i, edge in enumerate(edges)
             ]
         )
         language = detect_main_language(entities_str + relations_str)

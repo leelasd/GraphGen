@@ -488,7 +488,8 @@ def test_mmp_config_includes_edges():
 
 
 def test_pairwise_and_mmp_use_pairs():
-    """Pairwise and MMP configs must use exactly 2 units per partition."""
+    """Pairwise and MMP configs must use 3 units per partition (2 nodes + 1 edge)
+    so both molecule endpoints are in community_nodes and receive Molecule A/B labels."""
     for path in [
         "chemistry/configs/chemistry_pairwise_config.yaml",
         "chemistry/configs/chemistry_mmp_config.yaml",
@@ -496,8 +497,8 @@ def test_pairwise_and_mmp_use_pairs():
         data = yaml.safe_load(Path(path).read_text())
         part_node = next(n for n in data["nodes"] if n["op_name"] == "partition")
         mp = part_node["params"]["method_params"]
-        assert mp["min_units_per_community"] == 2, f"{path}: min_units should be 2"
-        assert mp["max_units_per_community"] == 2, f"{path}: max_units should be 2"
+        assert mp["min_units_per_community"] == 3, f"{path}: min_units should be 3 (2 nodes + 1 edge)"
+        assert mp["max_units_per_community"] == 3, f"{path}: max_units should be 3 (2 nodes + 1 edge)"
 
 
 def test_ranking_config_uses_multi_molecule_partitions():

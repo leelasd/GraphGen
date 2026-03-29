@@ -1,6 +1,7 @@
 # chemistry/configs/chemistry_pairwise_config.yaml
 # KG2 → pairwise preference QA comparing two molecules (ChatML format)
-# Partitions into pairs (min=2, max=2) so each batch has exactly 2 molecules.
+# Partitions into triples (min=3, max=3 = 2 nodes + 1 edge) so both molecules
+# are always in community_nodes and get Molecule A/B labels in the generator.
 global_params:
   working_dir: chemistry/output/kg2_pairwise_cache
   graph_backend: networkx
@@ -33,8 +34,8 @@ nodes:
     params:
       method: ece
       method_params:
-        max_units_per_community: 2
-        min_units_per_community: 2
+        max_units_per_community: 3
+        min_units_per_community: 3
         max_tokens_per_community: 10240
         unit_sampling: random
 

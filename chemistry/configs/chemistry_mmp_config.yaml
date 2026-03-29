@@ -34,8 +34,8 @@ nodes:
     params:
       method: ece
       method_params:
-        max_units_per_community: 2
-        min_units_per_community: 2
+        max_units_per_community: 3
+        min_units_per_community: 3
         max_tokens_per_community: 10240
         unit_sampling: random
 

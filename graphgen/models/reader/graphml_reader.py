@@ -139,7 +139,7 @@ class GraphmlReader(BaseReader):
 
         # Represent each node as a document
         for node_id, attrs in graph.nodes(data=True):
-            parts = [f"Node: {node_id}"]
+            parts = []
             for k, v in attrs.items():
                 parts.append(f"{k}: {v}")
             doc = {
@@ -155,7 +155,7 @@ class GraphmlReader(BaseReader):
         if not include_edges:
             logger.info("GraphML file %s: skipping edge documents (include_edges=False)", file_path)
         for src, dst, attrs in (graph.edges(data=True) if include_edges else []):
-            parts = [f"Edge: {src} -> {dst}"]
+            parts = []
             for k, v in attrs.items():
                 parts.append(f"{k}: {v}")
             doc = {
