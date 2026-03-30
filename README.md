@@ -332,20 +332,247 @@ For any questions, please check [FAQ](https://github.com/open-sciencelab/GraphGe
 
 ## 🧪 Chemistry Dataset Pipeline
 
-GraphGen includes a domain-specific pipeline for generating chemistry reasoning datasets from two molecular knowledge graphs:
+GraphGen includes a domain-specific pipeline for generating chemistry reasoning datasets from pre-built molecular knowledge graphs. This section describes the full workflow: building the KGs, loading them into GraphGen, and running 14 generation configs to produce ChatML training data.
 
-- **KG1** (`chemistry/kg1_build/chemistry_rule_graph.graphml`) — a rule-based graph encoding lipophilicity rules, functional group effects, and structure-property relationships.
-- **KG2** (`chemistry/kg2_build/molecule_graph.graphml`) — a molecule-centric graph where nodes are individual compounds (with SMILES, logD, lipophilicity bin) and edges encode structural similarity (Tanimoto), shared functional groups, and scaffold membership.
+### Overview
 
-### Knowledge Graph Construction
+The pipeline has three stages:
+
+```
+1. Build KG  →  GraphML file on disk
+2. Load KG   →  Copy GraphML into GraphGen's graph storage working directory
+3. Generate  →  Run GraphGen config  →  ChatML JSONL output
+```
+
+GraphGen uses two separate KGs as data sources:
+
+- **KG1** — a rule-based graph encoding lipophilicity rules, functional group effects, and structure–property relationships. Nodes are functional group rules; edges connect related rules. Small (~60 nodes), used for foundational chemistry QA.
+- **KG2** — a molecule-centric graph where nodes are individual compounds (SMILES string, experimental logD, lipophilicity bin) and edges encode structural similarity (Tanimoto ≥ 0.4), shared functional groups, and scaffold membership. Large (~2,400 molecules in full graph, 50 in smoke-test subset).
+
+---
+
+### Prerequisites — Python Environment
+
+The chemistry pipeline requires the **conda base environment** (Python 3.12.7). Do **not** use a virtualenv or uv-created `.venv` — Ray actor workers inherit the interpreter from the launching process, and a venv-launched Ray cluster fails to share the same package paths across workers, producing 0 generated rows.
 
 ```bash
-# Build KG1: chemistry rule graph
-python chemistry/kg1_build/build_kg1.py
+# Verify you are in the conda base environment
+which python
+# Expected: /opt/anaconda3/bin/python
 
-# Build KG2: molecule property graph
-python chemistry/kg2_build/build_kg2.py
+python --version
+# Expected: Python 3.12.7
 ```
+
+**Key packages required** (all present in conda base):
+
+| Package | Version | Role |
+|---------|---------|------|
+| `ray` | 2.53.0 | Distributed pipeline execution |
+| `networkx` | 3.3 | Graph storage backend |
+| `rdkit` | 2025.3.2 | SMILES parsing & chemistry utilities |
+| `torch` + `torch-geometric` | 2.8.0 / 2.7.0 | GNN evaluation (optional) |
+| `litellm` | 1.80.16 | LLM proxy (routes to AWS Bedrock) |
+| `boto3` / `botocore` | 1.42.67 | AWS Bedrock API access |
+| `tiktoken` | 0.9.0 | Token counting for chunk sizing |
+| `graphg` | 0.1.0 (editable) | GraphGen package (installed via `pip install -e .`) |
+
+Install the package in editable mode if not already done:
+
+```bash
+pip install -e .
+```
+
+Limit Ray CPU usage to avoid consuming all cores:
+
+```bash
+export RAY_NUM_CPUS=4
+```
+
+---
+
+### Step 1 — Build the Knowledge Graphs
+
+The KG build scripts live in `chemistry/kg1_build/` and `chemistry/kg2_build/`. Run them once; the output GraphML files are reused for all generation runs.
+
+```bash
+# Build KG1: chemistry rule graph  (~60 nodes, ~190KB)
+python chemistry/kg1_build/build_kg1.py
+# Output: chemistry/kg1_build/chemistry_rule_graph.graphml
+
+# Build KG2: molecule property graph  (~2400 molecules, ~6MB full)
+python chemistry/kg2_build/build_kg2.py
+# Output: chemistry/kg2_build/molecule_graph.graphml
+
+# A 50-molecule smoke-test subset is already committed:
+# chemistry/kg2_build/molecule_graph_smoke.graphml  (~196KB)
+```
+
+**What the KG build scripts do:**
+
+| Script | Input | Output |
+|--------|-------|--------|
+| `build_kg1.py` | `fg_smarts.yaml` — SMARTS patterns for functional groups | GraphML with nodes = FG rules, edges = related-rule links |
+| `build_kg2.py` | SMILES + logD dataset (CSV) | GraphML with nodes = molecules, edges = Tanimoto/scaffold/FG similarity |
+
+The resulting `.graphml` files are standard NetworkX-compatible GraphML and can be inspected with any graph tool.
+
+---
+
+### Step 2 — Load the KG into GraphGen's Graph Storage
+
+> **This step is required before every fresh run.** It is the most important setup detail.
+
+GraphGen's partition operator reads the knowledge graph from a file named `graph.graphml` inside each config's `working_dir`. This file is **not** the raw input file — it is GraphGen's internal graph storage, loaded via NetworkX at startup.
+
+Because the chemistry KGs are pre-built (we skip the LLM-based `build_kg` entity-extraction step), you must **manually copy** the source GraphML into the correct working directory before running:
+
+```bash
+# ── KG1 configs ──────────────────────────────────────────────────────────────
+mkdir -p chemistry/output/kg1_atomic_cache chemistry/output/kg1_cot_cache
+cp chemistry/kg1_build/chemistry_rule_graph.graphml \
+   chemistry/output/kg1_atomic_cache/graph.graphml
+cp chemistry/kg1_build/chemistry_rule_graph.graphml \
+   chemistry/output/kg1_cot_cache/graph.graphml
+
+# ── KG2 configs (smoke test — 50 molecules) ───────────────────────────────────
+for dir in kg2_chemistry_atomic_cache kg2_multi_choice_cache \
+           kg2_multi_answer_cache kg2_fill_in_blank_cache \
+           kg2_true_false_cache kg2_pairwise_cache kg2_ranking_cache \
+           kg2_mmp_cache kg2_multihop_cache kg2_aggregated_cache \
+           kg2_logd_prediction_cache kg2_logd_cot_cache; do
+  mkdir -p chemistry/output/$dir
+  cp chemistry/kg2_build/molecule_graph_smoke.graphml \
+     chemistry/output/$dir/graph.graphml
+done
+
+# ── KG2 configs (full dataset) ───────────────────────────────────────────────
+# Replace molecule_graph_smoke.graphml with molecule_graph.graphml above
+# for production runs on the full ~2400-molecule graph.
+```
+
+**Why this is needed:** GraphGen's `PartitionService` calls `graph_storage.reload()` to load the NetworkX graph, then runs community detection (DFS/BFS/Leiden) to partition the KG into context windows for the LLM. If `graph.graphml` does not exist, the graph is empty and the partition step produces 0 communities → 0 rows generated.
+
+**What happens under the hood:**
+```
+GraphML file  →  NetworkX graph loaded into graph storage actor
+                 ↓
+         DFS partition (max_units_per_community=1)
+                 ↓
+      One community per node or edge  →  LLM context window
+                 ↓
+            LLM generates Q&A pair
+```
+
+---
+
+### Step 3 — Configure the LLM Backend
+
+The chemistry pipeline is designed to work with any OpenAI-compatible API. We use [LiteLLM](https://github.com/BerriAI/litellm) as a proxy to route requests to AWS Bedrock models.
+
+**LiteLLM config** (`litellm_config.yaml` in the repo root):
+
+```yaml
+model_list:
+  - model_name: claude-sonnet-4        # synthesizer (data generator)
+    litellm_params:
+      model: bedrock/us.anthropic.claude-sonnet-4-20250514-v1:0
+      aws_region_name: us-east-1
+      aws_profile_name: genai
+
+  - model_name: llama-3-8b             # trainee (used for quiz/judge steps)
+    litellm_params:
+      model: bedrock/meta.llama3-8b-instruct-v1:0
+      aws_region_name: us-east-1
+      aws_profile_name: genai
+
+general_settings:
+  master_key: bedrock-graphgen-2024    # must match SYNTHESIZER_API_KEY in .env
+  port: 4000
+```
+
+Start the proxy:
+
+```bash
+litellm --config litellm_config.yaml
+```
+
+Verify both models are reachable:
+
+```bash
+# Test synthesizer
+curl -s http://localhost:4000/chat/completions \
+  -H "Authorization: Bearer bedrock-graphgen-2024" \
+  -H "Content-Type: application/json" \
+  -d '{"model":"claude-sonnet-4","messages":[{"role":"user","content":"Say OK"}],"max_tokens":5}'
+
+# Test trainee
+curl -s http://localhost:4000/chat/completions \
+  -H "Authorization: Bearer bedrock-graphgen-2024" \
+  -H "Content-Type: application/json" \
+  -d '{"model":"llama-3-8b","messages":[{"role":"user","content":"Say OK"}],"max_tokens":5}'
+```
+
+**`.env` file** (repo root):
+
+```bash
+SYNTHESIZER_BACKEND=http_api
+SYNTHESIZER_BASE_URL=http://localhost:4000
+SYNTHESIZER_API_KEY=bedrock-graphgen-2024
+SYNTHESIZER_MODEL=claude-sonnet-4       # synthesizer: data generator
+
+TRAINEE_BACKEND=http_api
+TRAINEE_BASE_URL=http://localhost:4000
+TRAINEE_API_KEY=bedrock-graphgen-2024
+TRAINEE_MODEL=llama-3-8b                # trainee: the model being trained on generated data
+```
+
+> **Note:** The `master_key` in `litellm_config.yaml` and the `SYNTHESIZER_API_KEY` / `TRAINEE_API_KEY` in `.env` must be identical. A mismatch causes HTTP 400 auth errors on every LLM call and produces 0 generated rows.
+
+---
+
+### Step 4 — Run the Configs
+
+Set `RAY_NUM_CPUS` to avoid using all available CPU cores (Ray defaults to using everything it finds):
+
+```bash
+export RAY_NUM_CPUS=4
+```
+
+Run any single config:
+
+```bash
+# KG1 — foundational chemistry rules
+python graphgen/run.py --config_file chemistry/configs/chemistry_atomic_config.yaml
+python graphgen/run.py --config_file chemistry/configs/chemistry_cot_config.yaml
+
+# KG2 — molecule-level property QA
+python graphgen/run.py --config_file chemistry/configs/chemistry_atomic_config2.yaml
+python graphgen/run.py --config_file chemistry/configs/chemistry_multi_choice_config.yaml
+python graphgen/run.py --config_file chemistry/configs/chemistry_multi_answer_config.yaml
+python graphgen/run.py --config_file chemistry/configs/chemistry_fill_in_blank_config.yaml
+python graphgen/run.py --config_file chemistry/configs/chemistry_true_false_config.yaml
+python graphgen/run.py --config_file chemistry/configs/chemistry_pairwise_config.yaml
+python graphgen/run.py --config_file chemistry/configs/chemistry_ranking_config.yaml
+python graphgen/run.py --config_file chemistry/configs/chemistry_mmp_config.yaml
+python graphgen/run.py --config_file chemistry/configs/chemistry_multihop_config.yaml
+python graphgen/run.py --config_file chemistry/configs/chemistry_aggregated_config.yaml
+
+# KG2 — logD prediction (SMILES-only input, no CoT)
+python graphgen/run.py --config_file chemistry/configs/chemistry_logd_prediction_config.yaml
+
+# KG2 — logD chain-of-thought reasoning (SMILES-only input, 4-step CoT answer)
+python graphgen/run.py --config_file chemistry/configs/chemistry_logd_cot_config.yaml
+```
+
+Output JSONL files are written to `{working_dir}/output/{run_id}/generate/`.
+
+For example, after running `chemistry_atomic_config.yaml`, generated data appears at:
+```
+chemistry/output/kg1_atomic_cache/output/<timestamp>/generate/*.jsonl
+```
+
+---
 
 ### Supported Generation Formats
 
@@ -353,40 +580,29 @@ All 12 configs produce **ChatML-format** output (`messages` list with `role`/`co
 
 #### KG1 Configs (rule-based chemistry knowledge)
 
-| Config | Method | Description |
-|--------|--------|-------------|
-| `chemistry/configs/chemistry_atomic_config.yaml` | `atomic` | Single-turn QA covering basic chemistry rules and facts |
-| `chemistry/configs/chemistry_cot_config.yaml` | `cot` | Chain-of-thought reasoning over chemistry rules |
+| Config file | Method | Description |
+|-------------|--------|-------------|
+| `chemistry_atomic_config.yaml` | `atomic` | Single-turn QA covering chemistry rules and functional group effects |
+| `chemistry_cot_config.yaml` | `cot` | Chain-of-thought reasoning over chemistry rules |
 
 #### KG2 Configs (molecule-level property data)
 
-| Config | Method | Description |
-|--------|--------|-------------|
-| `chemistry/configs/chemistry_atomic_config2.yaml` | `chemistry_atomic` | QA targeting logD values, lipophilicity bins, and SMILES functional groups |
-| `chemistry/configs/chemistry_multi_choice_config.yaml` | `chemistry_multi_choice` | 4-option MCQ with chemically plausible distractors |
-| `chemistry/configs/chemistry_multi_answer_config.yaml` | `chemistry_multi_answer` | Questions with 1–3 correct answers from 5 options |
-| `chemistry/configs/chemistry_fill_in_blank_config.yaml` | `chemistry_fill_in_blank` | Fill-in-the-blank for logD values, bin names, and property directions |
-| `chemistry/configs/chemistry_true_false_config.yaml` | `chemistry_true_false` | ~50/50 true/false statements about molecular properties |
-| `chemistry/configs/chemistry_pairwise_config.yaml` | `pairwise_preference` | Compare two molecules on lipophilicity and drug-likeness |
-| `chemistry/configs/chemistry_ranking_config.yaml` | `ranking` | Order 3–5 molecules by logD with per-position justification |
-| `chemistry/configs/chemistry_mmp_config.yaml` | `matched_molecular_pair` | SAR explanation: structural delta → logD change (uses Tanimoto/scaffold edges) |
+| Config file | Method | Description |
+|-------------|--------|-------------|
+| `chemistry_atomic_config2.yaml` | `chemistry_atomic` | QA targeting logD values, lipophilicity bins, SMILES functional groups |
+| `chemistry_multi_choice_config.yaml` | `chemistry_multi_choice` | 4-option MCQ with chemically plausible distractors |
+| `chemistry_multi_answer_config.yaml` | `chemistry_multi_answer` | Multiple-select: 1–3 correct answers from 4 options |
+| `chemistry_fill_in_blank_config.yaml` | `chemistry_fill_in_blank` | Fill-in-the-blank for logD values, bin names, property directions |
+| `chemistry_true_false_config.yaml` | `chemistry_true_false` | ~50/50 true/false statements about molecular properties |
+| `chemistry_pairwise_config.yaml` | `pairwise_preference` | Compare two molecules (Molecule A vs B) on lipophilicity and drug-likeness |
+| `chemistry_ranking_config.yaml` | `ranking` | Order 3+ molecules by logD with per-position SMILES justification |
+| `chemistry_mmp_config.yaml` | `matched_molecular_pair` | SAR explanation: structural delta → logD change (uses Tanimoto/scaffold edges) |
+| `chemistry_multihop_config.yaml` | `multihop` | Multi-hop reasoning across connected molecule nodes |
+| `chemistry_aggregated_config.yaml` | `aggregated` | Aggregated QA combining multiple molecule properties |
+| `chemistry_logd_prediction_config.yaml` | `chemistry_logd_prediction` | Direct logD prediction: question = SMILES only; answer = logD + bin + structural justification |
+| `chemistry_logd_cot_config.yaml` | `chemistry_logd_cot` | CoT logD prediction: question = SMILES only; answer = 4-step reasoning chain |
 
-### Running the Pipeline
-
-Set environment variables for your LLM backend, then run any config:
-
-```bash
-# Example: generate chemistry atomic QA from KG2
-python -m graphgen.run --config chemistry/configs/chemistry_atomic_config2.yaml
-
-# Example: generate matched molecular pair SAR data
-python -m graphgen.run --config chemistry/configs/chemistry_mmp_config.yaml
-
-# Example: generate ranking QA
-python -m graphgen.run --config chemistry/configs/chemistry_ranking_config.yaml
-```
-
-Output JSONL files are written to the `working_dir/output/` path specified in each config (e.g. `chemistry/output/kg2_atomic_cache/output/`).
+---
 
 ### Output Example (ChatML format)
 
@@ -395,47 +611,209 @@ Output JSONL files are written to the `working_dir/output/` path specified in ea
   "messages": [
     {
       "role": "user",
-      "content": "Compound X has SMILES CC(=O)Oc1ccccc1C(=O)O and a measured logD of 1.19. Which lipophilicity bin does it belong to?"
+      "content": "The molecule with SMILES CC(=O)Oc1ccccc1C(=O)O has a measured logD of 1.19. Which lipophilicity bin does it belong to?"
     },
     {
       "role": "assistant",
-      "content": "Compound X belongs to the **Low** lipophilicity bin (logD 1–2). The ester and carboxylic acid groups both increase polarity, keeping the overall logD below 2."
+      "content": "The molecule CC(=O)Oc1ccccc1C(=O)O belongs to the **Low** lipophilicity bin (logD 1–2). The ester and carboxylic acid groups both increase polarity, keeping the overall logD below 2."
     }
   ]
 }
 ```
 
-### Verified Output Counts (smoke test, 50-molecule subset)
+For multi-molecule formats (pairwise, ranking, MMP), molecules are labelled **Molecule A / B / C** and identified by their SMILES in both prompt and answer:
 
-| Format | Rows generated | Source KG |
-|--------|:--------------:|:---------:|
-| `atomic` (KG1) | 634 | KG1 |
-| `cot` (KG1) | 6 | KG1 |
-| `multihop` | 766 | KG2 |
-| `aggregated` | 504 | KG2 |
-| `chemistry_atomic` | 406 | KG2 |
-| `chemistry_multi_choice` | 156 | KG2 |
-| `chemistry_multi_answer` | 108 | KG2 |
-| `chemistry_fill_in_blank` | 148 | KG2 |
-| `chemistry_true_false` | 195 | KG2 |
-| `pairwise_preference` | 50 | KG2 |
-| `ranking` | 38 | KG2 |
-| `matched_molecular_pair` | 50 | KG2 |
+```json
+{
+  "messages": [
+    {
+      "role": "user",
+      "content": "Compare Molecule A (SMILES: CCO) and Molecule B (SMILES: c1ccccc1) on lipophilicity. Which is more drug-like?"
+    },
+    {
+      "role": "assistant",
+      "content": "Molecule B (SMILES: c1ccccc1, logD = 2.13, medium) is more lipophilic than Molecule A (SMILES: CCO, logD = -0.31, low)..."
+    }
+  ]
+}
+```
 
-### New Generator Classes
+---
+
+### Verified Output Counts (50-molecule KG2 smoke test)
+
+| Format | Config | Rows | Source KG |
+|--------|--------|:----:|:---------:|
+| `atomic` | `chemistry_atomic_config.yaml` | 634 | KG1 |
+| `cot` | `chemistry_cot_config.yaml` | 6 | KG1 |
+| `chemistry_atomic` | `chemistry_atomic_config2.yaml` | 400 | KG2 |
+| `chemistry_multi_choice` | `chemistry_multi_choice_config.yaml` | 152 | KG2 |
+| `chemistry_multi_answer` | `chemistry_multi_answer_config.yaml` | 111 | KG2 |
+| `chemistry_fill_in_blank` | `chemistry_fill_in_blank_config.yaml` | 136 | KG2 |
+| `chemistry_true_false` | `chemistry_true_false_config.yaml` | 185 | KG2 |
+| `pairwise_preference` | `chemistry_pairwise_config.yaml` | 50 | KG2 |
+| `ranking` | `chemistry_ranking_config.yaml` | 37 | KG2 |
+| `matched_molecular_pair` | `chemistry_mmp_config.yaml` | 50 | KG2 |
+| `multihop` | `chemistry_multihop_config.yaml` | 41 | KG2 |
+| `aggregated` | `chemistry_aggregated_config.yaml` | 38 | KG2 |
+| `chemistry_logd_prediction` | `chemistry_logd_prediction_config.yaml` | 50 | KG2 |
+| `chemistry_logd_cot` | `chemistry_logd_cot_config.yaml` | 50 | KG2 |
+
+> KG1 row counts are fixed (the rule graph has ~60 nodes regardless of molecule count). KG2 counts scale with graph size — expect significantly more rows with the full 2400-molecule graph (`molecule_graph.graphml`) vs. the 50-molecule smoke test subset.
+
+---
+
+### Generator Classes
 
 All chemistry generators live in `graphgen/models/generator/` and are registered in `graphgen/operators/generate/generate_service.py`:
 
-| Class | Method name | Notes |
-|-------|-------------|-------|
-| `ChemistryAtomicGenerator` | `chemistry_atomic` | Standalone; targets logD, bin, functional groups |
-| `ChemistryMultiChoiceGenerator` | `chemistry_multi_choice` | Subclasses `MultiChoiceGenerator` |
-| `ChemistryMultiAnswerGenerator` | `chemistry_multi_answer` | Subclasses `MultiAnswerGenerator` |
-| `ChemistryFillInBlankGenerator` | `chemistry_fill_in_blank` | Subclasses `FillInBlankGenerator` |
-| `ChemistryTrueFalseGenerator` | `chemistry_true_false` | Subclasses `TrueFalseGenerator` |
-| `PairwisePreferenceGenerator` | `pairwise_preference` | Compares two molecules; includes edge attributes |
-| `RankingGenerator` | `ranking` | Orders 3–5 molecules by logD |
-| `MatchedMolecularPairGenerator` | `matched_molecular_pair` | Encodes Tanimoto, shared_fg, scaffold in prompt |
+| Class | Method key | Notes |
+|-------|------------|-------|
+| `ChemistryAtomicGenerator` | `chemistry_atomic` | Standalone; targets logD, bin, functional groups; identifies molecules by SMILES |
+| `ChemistryMultiChoiceGenerator` | `chemistry_multi_choice` | Extends `MultiChoiceGenerator`; adds chemistry-specific distractor rules |
+| `ChemistryMultiAnswerGenerator` | `chemistry_multi_answer` | Extends `MultiAnswerGenerator`; multi-correct answers for structural features |
+| `ChemistryFillInBlankGenerator` | `chemistry_fill_in_blank` | Extends `FillInBlankGenerator`; blanks target logD values and bin names |
+| `ChemistryTrueFalseGenerator` | `chemistry_true_false` | Extends `TrueFalseGenerator`; ~50% plausible-but-false statements |
+| `PairwisePreferenceGenerator` | `pairwise_preference` | Multi-molecule: labels nodes Molecule A/B, includes edge attributes (Tanimoto, shared_fg) |
+| `RankingGenerator` | `ranking` | Multi-molecule: orders 3–5 nodes by logD; answer includes SMILES per rank position |
+| `MatchedMolecularPairGenerator` | `matched_molecular_pair` | Multi-molecule: SAR format; encodes Tanimoto similarity, shared functional groups, scaffold in prompt |
+| `ChemistryLogdPredictionGenerator` | `chemistry_logd_prediction` | Single-molecule: question = SMILES only; answer = logD + bin + 2–3 structural features + ≥1 descriptor |
+| `ChemistryLogdCotGenerator` | `chemistry_logd_cot` | Single-molecule: question = SMILES only; answer = 4-step CoT (SMILES parsing → FG contributions → descriptor analysis → logD prediction) |
+
+**Context assembly for multi-molecule generators** — raw graph node IDs (e.g. `mol_39`) are replaced with human-readable labels so the LLM never sees opaque identifiers:
+
+```python
+# labels built in build_prompt():
+labels = {node[0]: f"Molecule {chr(65 + i)}" for i, node in enumerate(nodes)}
+# → {"mol_39": "Molecule A", "mol_42": "Molecule B", ...}
+
+# node lines:
+context += f"- {label}: {desc}\n"
+# → "- Molecule A: smiles: CCO | logd_exp: -0.31 | logd_bin: low"
+
+# edge lines:
+context += f"  relationship: {src} -- {tgt}: {desc}\n"
+# → "  relationship: Molecule A -- Molecule B: tanimoto: 0.42 | shared_fg: hydroxyl"
+```
+
+---
+
+### LogD Prediction Pipeline — How It Works
+
+The `chemistry_logd_prediction` and `chemistry_logd_cot` configs are purpose-built for training a language model to **predict logD from SMILES alone** — without seeing the experimental value, bin label, or any descriptors in the question.
+
+#### Design Goal
+
+| Format | Question contains | Answer contains |
+|--------|-------------------|-----------------|
+| `chemistry_logd_prediction` | SMILES string only | logD value + bin + 2–3 structural features + ≥1 descriptor |
+| `chemistry_logd_cot` | SMILES string only | 4-step CoT reasoning chain |
+
+This separation forces the model to learn the *structure → property* mapping rather than memorising labelled examples.
+
+#### Data Flow (end-to-end)
+
+```
+molecule_graph.graphml
+       │
+       │  node attrs per molecule:
+       │  smiles, logd_exp, logd_bin, functional_groups, scaffold,
+       │  logp, mw, hbd, hba, tpsa, rotbonds, content
+       │
+       ▼
+  GraphmlReader  (include_edges=False)
+       │  → one Ray dataset row per molecule
+       │    content = "smiles: CCO | logd_exp: -0.31 | ..."
+       ▼
+  ChunkService  (chunk_size=4096)
+       │  → pass-through (molecules fit in one chunk)
+       ▼
+  ECE Partition  (max_units=1)
+       │  → one community per molecule
+       │    community = {nodes: ["mol_N"], edges: []}
+       ▼
+  community2batch()
+       │  → batch = ([(node_id, attrs)], [])
+       │    attrs = {"smiles": "CCO", "logd_exp": -0.31, ...}   ← raw graphml attrs
+       ▼
+  ChemistryLogdPredictionGenerator.build_prompt(batch)
+       │  smiles = attrs["smiles"]       ← direct key lookup
+       │  context = "\n".join([          ← all molecular data
+       │    "smiles: CCO",
+       │    "logd_exp: -0.31",
+       │    "logd_bin: low",
+       │    "functional_groups: hydroxyl",
+       │    "scaffold: CCO",
+       │    "logp: -0.31",
+       │    ...
+       │    "description: Molecule SMILES: CCO. Experimental logD ..."
+       │  ])
+       │  → LOGD_PREDICTION_PROMPT["en"].format(smiles=smiles, context=context)
+       ▼
+  LLM (claude-sonnet-4)
+       │  → generates <question>...</question><answer>...</answer>
+       ▼
+  parse_response()
+       │  → [{"question": "What is the logD for SMILES: CCO?",
+       │       "answer": "Predicted logD = -0.31 (low)..."}]
+       ▼
+  format_generation_results(data_format="ChatML")
+       │
+       ▼
+  Output JSONL:
+  {"messages": [
+    {"role": "user",    "content": "What is the logD at pH 7.4 for the molecule with SMILES: CCO?"},
+    {"role": "assistant","content": "The predicted logD is -0.31 (low lipophilicity)..."}
+  ]}
+```
+
+#### CoT answer structure (chemistry_logd_cot)
+
+The 4-step answer is generated by the LLM following a strict template:
+
+```
+Step 1 — Structural features:   identify FGs, ring systems, heteroatoms, ionizable groups
+Step 2 — FG contributions:      explain each group's effect on logD at pH 7.4
+Step 3 — Descriptor analysis:   cite MW, LogP, TPSA, HBD, HBA, RotBonds with values
+Step 4 — LogD prediction:       final logD ≈ X, bin = low/mid/high, PK implication
+```
+
+#### Key implementation details
+
+- **Single-molecule partition** (`max_units=1`, `min_units=1`): guarantees each LLM call receives exactly one molecule. No multi-molecule communities are formed, so no label mapping (Molecule A/B/C) is needed.
+- **SMILES extraction**: `attrs.get("smiles", "")` reads the value directly from the NetworkX node attribute dict (populated when the graph is loaded from `graph.graphml` via `nx.read_graphml`). A regex fallback parses SMILES from the `content` pipe-delimited string if the direct key is absent.
+- **Context vs question separation**: the full molecular data (`context`) is passed to the LLM for answer generation, but the **template explicitly forbids** including logD values, bins, or descriptors in the `<question>` tag. The LLM sees all the data but must produce a SMILES-only question.
+- **Empty prompt guard**: `generate()` is overridden to return `[]` immediately if `build_prompt` produces an empty string (e.g., molecules missing a SMILES), preventing an empty user message from being sent to the API.
+- **ChatML output**: both configs produce `messages` arrays usable directly as SFT training data with LLaMA-Factory or xtuner.
+
+#### Example output
+
+```json
+{
+  "messages": [
+    {
+      "role": "user",
+      "content": "What is the logD at pH 7.4 for the molecule with SMILES: O=C(N[C@@H]1CCC[C@@H](NC(=O)c2cccc(Cl)c2)C1)c1cccc(F)c1?"
+    },
+    {
+      "role": "assistant",
+      "content": "The predicted logD is 5.0 (high lipophilicity). The molecule contains two aromatic rings with halogen substituents (chlorine and fluorine) that increase lipophilicity significantly. The two amide bonds (C(=O)N) provide some polarity but are insufficient to offset the hydrophobic cyclohexane ring and the halogenated arenes. With LogP = 4.2 and TPSA = 58 Å², the compound is expected to have high membrane permeability but potential metabolic liability."
+    }
+  ]
+}
+```
+
+---
+
+### Troubleshooting
+
+| Symptom | Likely cause | Fix |
+|---------|-------------|-----|
+| `Total communities partitioned: 0` | `graph.graphml` missing from `working_dir` | Run the copy commands in Step 2 |
+| `HTTP 400 Bad Request` from LiteLLM | `master_key` in `litellm_config.yaml` doesn't match `SYNTHESIZER_API_KEY` | Update `master_key` to match, restart LiteLLM |
+| `0 rows written` despite communities > 0 | LLM auth failure during generation | Check LiteLLM logs; verify API key and model name |
+| Ray workers show `ModuleNotFoundError` | Wrong Python environment | Use the conda base `python`, not a venv (Ray workers must share the same environment) |
+| `Cluster resources are not enough` warning | Ray initialised with too few CPUs | Set `RAY_NUM_CPUS=4` (or higher); this is usually a non-fatal warning |
 
 ## 🏗️ System Architecture
 
