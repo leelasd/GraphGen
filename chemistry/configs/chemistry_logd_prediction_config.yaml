@@ -1,0 +1,59 @@
+# chemistry/configs/chemistry_logd_prediction_config.yaml
+# KG2 → logD prediction QA (ChatML format)
+#
+# Generates training data where:
+#   question: contains ONLY the SMILES string (no logD, no descriptors)
+#   answer:   predicted logD value + bin + 2-3 sentence structural justification
+#
+# Purpose: train/fine-tune a model to predict logD at pH 7.4 from molecular SMILES alone.
+# Each molecule in the graph produces one prediction QA example.
+global_params:
+  working_dir: chemistry/output/kg2_logd_prediction_cache
+  graph_backend: networkx
+  kv_backend: json_kv
+
+nodes:
+  - id: read
+    op_name: read
+    type: source
+    dependencies: []
+    params:
+      input_path:
+        - chemistry/kg2_build/molecule_graph.graphml
+      include_edges: false
+
+  - id: chunk
+    op_name: chunk
+    type: map_batch
+    dependencies:
+      - read
+    params:
+      chunk_size: 4096
+      chunk_overlap: 0
+
+  - id: partition
+    op_name: partition
+    type: aggregate
+    dependencies:
+      - chunk
+    params:
+      method: ece
+      method_params:
+        # max_units=1: single molecule per batch — question is SMILES-only prediction
+        max_units_per_community: 1
+        min_units_per_community: 1
+        max_tokens_per_community: 4096
+        unit_sampling: random
+
+  - id: generate
+    op_name: generate
+    type: map_batch
+    dependencies:
+      - partition
+    execution_params:
+      replicas: 1
+      batch_size: 64
+    save_output: true
+    params:
+      method: chemistry_logd_prediction
+      data_format: ChatML
