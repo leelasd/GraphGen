@@ -23,6 +23,15 @@ class PairwisePreferenceGenerator(BaseGenerator):
     ) -> str:
         nodes, edges = batch
         labels = {node[0]: f"Molecule {chr(65 + i)}" for i, node in enumerate(nodes)}
+        # Also label edge endpoints that weren't included in the nodes list
+        # (can happen when ECE partitioner seeds from a node and adds edges before
+        # the second endpoint node is reached)
+        _next_idx = len(nodes)
+        for edge in edges:
+            for ep in (edge[0], edge[1]):
+                if ep not in labels:
+                    labels[ep] = f"Molecule {chr(65 + _next_idx)}"
+                    _next_idx += 1
         context = ""
         for node in nodes:
             label = labels[node[0]]

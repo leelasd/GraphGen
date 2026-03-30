@@ -17,7 +17,10 @@ Good question types:
 - "Comparing these two molecules, which is more drug-like according to Lipinski criteria?"
 
 Output format:
-<question>question_text</question>
+<question>
+Your question MUST open with a one-line context identifying both molecules by label and SMILES, then ask the comparison. Example:
+"Given Molecule A (SMILES: CCO, logD = -0.31, low) and Molecule B (SMILES: c1ccccc1, logD = 2.13, medium): which is more lipophilic, and what structural features drive the difference?"
+</question>
 <answer>detailed_comparative_answer_with_reasoning</answer>
 
 Molecular data:

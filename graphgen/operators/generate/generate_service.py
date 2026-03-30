@@ -122,6 +122,14 @@ class GenerateService(BaseOperator):
             from graphgen.models import MatchedMolecularPairGenerator
 
             self.generator = MatchedMolecularPairGenerator(self.llm_client)
+        elif self.method == "chemistry_logd_prediction":
+            from graphgen.models import ChemistryLogdPredictionGenerator
+
+            self.generator = ChemistryLogdPredictionGenerator(self.llm_client)
+        elif self.method == "chemistry_logd_cot":
+            from graphgen.models import ChemistryLogdCotGenerator
+
+            self.generator = ChemistryLogdCotGenerator(self.llm_client)
         else:
             raise ValueError(f"Unsupported generation mode: {method}")
 
